@@ -36,11 +36,7 @@
 					<input placeholder="Search or Start new Chat" type="text">
 				</div>
 			</div>
-
-
-				<div data---="chat" ></div>
-				
-			
+				<div data---="chat__common.chats" ></div>
 		</div>
 		<div class="chat">
 
@@ -58,26 +54,34 @@
 				 <i class="fa fa-ellipsis-v"></i>
 				</div>
 			</div>
-			<div class="chat_body">
-				<div class="chat_message">
-					<span class="chat_messageAuthor">Agape Raston</span>
-					<div style="background-color: #fff;" class="chat_messageBody">
-						<p>
-							Hi Louis, how are you doing?
-						</p>
-						<div class="chat_messageBodyMeta">
-							<div class="chat_messageBodyMetaStatus">sent</div>
-							<div class="chat_messageBodyMetaTimeStamp">Fri, 23 Nov 2021</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div data---="chatbody__common.messages" class="chat_body"></div>
 		</div>
 	</div>	
 </div>
 	<script>
-
-		
+		var common = {};
+		common.messages = [
+			{ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true},
+			{ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false},
+			{ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true},
+		];
+		common.chats = [
+			{ 'id': 1 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
+			{ 'id': 2 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
+			{ 'id': 3 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
+			{ 'id': 4 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
+			{ 'id': 5 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
+		];
 		ON('message', function(msg) {
 			name.innerHTML = msg.firstname + ' ' + msg.lastname
 			// Send message to the server
@@ -99,9 +103,16 @@
 			SETTER('chat/append',6, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
 			SETTER('chat/append',7, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
 			SETTER('chat/append',8, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			
+			SETTER('chatbody/append',1, 'Agape Raston','I miss you my love','25 Nov 2021',false);
+			SETTER('chatbody/append',2, 'Louis Bertson','i miss you tooo','25 Nov 2021',true);
+			SETTER('chatbody/append',3, 'Agape Raston','Where are you?','25 Nov 2021',false);
+			SETTER('chatbody/append',4, 'Louis Bertson','I\'m at home, i will come. worry out','25 Nov 2021',true);
+			SETTER('chatbody/append',5, 'Agape Raston','Okay my friend','25 Nov 2021',false);
+			SETTER('chatbody/append',6, 'Louis Bertson','Okay','25 Nov 2021',true);
+			SETTER('chatbody/append',7, 'Louis Bertson','Have a nice day','25 Nov 2021',true);
 			SETTER('loading','hide',1000);
    }	
-
    setTimeout(initUsers,2000)
 	</script>
 </body>

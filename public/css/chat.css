@@ -28,11 +28,3 @@
     padding-left: 20px;
 }
 
-.chat_body{
-    flex: 1;
-    background-image: url('http://localhost:8000/img/chiron.jpg');
-    background-repeat: repeat;
-    background-position: center;
-    padding: 30px;
-    overflow: scroll;
-}

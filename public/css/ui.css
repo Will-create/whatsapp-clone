@@ -29,11 +29,11 @@
 @media(max-width: 767px) {
   .ui-chat-container { width: auto; left: 0; padding-left: 20px; }
 }
+.chat_body{ flex: 1;background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll;}
+.chat_message{position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
+.chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800;}
+.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+.chat_receiver{margin-left:auto;background-color: #dcf8c6;}
 
 
-.chat_message{display: flex;flex-direction: column;max-width: 50%;background: transparent;}
-.chat_messageAuthor{font-size: 10px;font-weight: bold;}
-.chat_messageBody{display: flex; flex-direction: column; flex:1;border: 1px solid #ededed; border-radius: 12px;padding: 10px;}
-.chat_messageBody .chat_messageBodyMeta{ display: flex; width: 100%; justify-content: space-between;align-items: center;}
-.chat_messageBody .chat_messageBodyMetaTimeStamp{ display: flex; flex: 1; font-size: xx-small; color: grey;}
-.chat_messageBody .chat_messageBodyMetaStatus{display: flex; flex: 1; font-size: x-small;}
+.chat_footer{}
