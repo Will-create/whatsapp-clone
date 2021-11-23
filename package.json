@@ -1,0 +1,20 @@
+{
+	"name": "emptyproject",
+	"description": "Total.js with WebSocket empty project",
+	"version": "1.0.0",
+	"main": "index.js",
+	"dependencies": {
+		"total4": "^0.0.53"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"empty",
+		"project",
+		"total4",
+		"websocket"
+	],
+	"author": "Peter Širka",
+	"license": "MIT"
+}

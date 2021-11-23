@@ -1,0 +1,97 @@
+@{layout('')}
+@{title(config.name)}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="robots" content="all,follow" />
+	@{import('meta', 'head','default.js','style.css','sidebar.css','chat.css','spa.min@18.js','spa.min@18.css','ui.css','ui.js')}
+	<script src="/js/livereload.js" data-url="ws://127.0.0.1:35729" ></script>
+</head>
+<body>
+	<div data---="websocket__message__url:/;encoder:false"></div>
+	<div data---="loading" class="hidden"></div>
+<div class="app">
+	<div class="app_body">
+		<div class="sidebar">
+			<div class="sidebar_header">
+				<div class="sidebar_headerLeft">
+					<img src="/img/bugatti.jpg" alt="">
+				</div>
+				<div class="sidebar_headerRight">
+				 <i class="fa fa-circle-notch" ></i>
+				 <i class="fa fa-comment-dots" ></i>
+				 <i class="fa fa-ellipsis-v" ></i>
+				</div>
+			</div>
+
+
+			<div class="sidebar_search">
+				<div class="sidebar_searchContainer">
+					<i class="fa fa-search" ></i>
+					<input placeholder="Search or Start new Chat" type="text">
+				</div>
+			</div>
+
+
+				<div data---="chat" ></div>
+				
+			
+		</div>
+		<div class="chat">
+
+			<div class="chat_header">
+				<div class="chat_headerAvatar">
+					<img src="/img/bugatti.jpg" alt="">
+				</div>
+				<div class="chat_headerInfo">
+					<h3>Agape Raston</h3>
+					<p>A good girl from Green City</p>
+				</div>
+				<div class="chat_headerRight">
+				<i class="fa fa-search"></i>
+				 <i class="fa fa-link"></i>
+				 <i class="fa fa-ellipsis-v"></i>
+				</div>
+			</div>
+			<div class="chat_body">
+				<p>This is a message body</p>
+			</div>
+		</div>
+	</div>	
+</div>
+	<script>
+
+		
+		ON('message', function(msg) {
+			name.innerHTML = msg.firstname + ' ' + msg.lastname
+			// Send message to the server
+			// SETTER('websocket/send', { your: 'message' });
+			AJAX('GET http://louisbertson.dev',function(res){
+				console.log(res);
+			})
+		});
+	</script>
+	
+	<script defer>
+		function initUsers(){
+			SETTER('loading','show');
+			SETTER('chat/append',1, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',2, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',3, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',4, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',5, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',6, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',7, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('chat/append',8, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
+			SETTER('loading','hide',1000);
+   }	
+
+   setTimeout(initUsers,2000)
+	</script>
+</body>
+</html>
