@@ -59,8 +59,11 @@
 				<i class="fa fa-smile"></i>
 				<i class="fa fa-paperclip"></i>
 				
-				<form action="">
-					<input type="text" placeholder="Type message here">
+				<form action="/api/v1/messages/new" method="POST">
+
+					<input type="hidden" name="name"value="Louis Bertson">
+					<input type="hidden" name="receiver"value="0">
+					<input type="text" name="message" placeholder="Type message here">
 					<button type="submit" >Send Message</button>
 				</form>
 				<i class="fa fa-microphone"></i>

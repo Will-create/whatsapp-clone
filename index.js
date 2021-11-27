@@ -18,7 +18,7 @@ const options = {};
 // options.watcher = true; // enables watcher for the release mode only controlled by the app `F.restart()`
 // options.edit = 'wss://www.yourcodeinstance.com/?id=projectname'
 
-// Service mode:
+// Service mode: 
 options.servicemode = process.argv.indexOf('--servicemode', 1) !== -1;
 // options.servicemode = 'definitions,modules,config';
 
