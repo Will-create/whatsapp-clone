@@ -4,7 +4,7 @@ COMPONENT('chat',function(self){self.singleton();self.readonly();self.nocompile&
             <div class="ui-chat-bodyLeft">
                <div class="ui-chat-image">
                 <img src="{{img}}"/>
-            </div>
+            	</div>
             </div>
             <div class="ui-chat-bodyRight">
                 <div class="ui-chat-name">{{ name}}</div>
@@ -18,4 +18,4 @@ COMPONENT('chat',function(self){self.singleton();self.readonly();self.nocompile&
 	{{body | raw}}
 	<span class="chat_messageBodyMetaTimeStamp">{{timestamp}}</span>
 	</p>
-	`);self.items={};self.make=function(){self.aclass('chat_body');self.event('click','.ui-chat',function(){var el=$(this);var id=+el.attr('data-id');});self.setter=function(value){value.forEach(el=>{self.append(el.id,el.author,el.body,el.timestamp,el.incoming)})}};self.append=function(id,author,body,timestamp,incoming){var obj={id:id,author:author,body:body,timestamp:timestamp,incoming:incoming};self.items[obj.id]=obj;self.element.append(self.template(obj))}});
+	`);self.items={};self.make=function(){self.aclass('chat_body');self.event('click','.ui-chat',function(){var el=$(this);var id=+el.attr('data-id');});};self.setter=function(value){console.log(value);value.forEach(el=>{self.template(el)})}self.append=function(id,author,body,timestamp,incoming){var obj={id:id,author:author,body:body,timestamp:timestamp,incoming:incoming};self.items[obj.id]=obj;self.element.append(self.template(obj))}});

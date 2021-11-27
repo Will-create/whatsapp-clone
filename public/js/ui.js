@@ -13,7 +13,7 @@ COMPONENT('chat',  function(self) {
             <div class="ui-chat-bodyLeft">
                <div class="ui-chat-image">
                 <img src="{{img}}"/>
-            </div>
+            	</div>
             </div>
             <div class="ui-chat-bodyRight">
                 <div class="ui-chat-name">{{ name }}</div>
@@ -21,7 +21,8 @@ COMPONENT('chat',  function(self) {
             </div>
 
         </div>
-    </div>`);
+    </div>`
+	);
 	self.items = {};
 
 	self.make = function() {
@@ -122,20 +123,21 @@ COMPONENT('chatbody',  function(self) {
 			// self.open(id);
 		});
 
-		self.setter = function (value){
-			value.forEach(el => {
-				self.append(el.id,el.author,el.body,el.timestamp,el.incoming)
-			});
-		}
-
+		
 		// if (config.native === true && N) {
-		// 	system = N.permission === 'granted';
-		// 	!system && N.requestPermission(function (permission) {
-		// 		system = permission === 'granted';
-		// 	});
-		// }
-	};
-
+			// 	system = N.permission === 'granted';
+			// 	!system && N.requestPermission(function (permission) {
+				// 		system = permission === 'granted';
+				// 	});
+				// }
+			};
+			
+	self.setter = function (value){
+		console.log(value);
+		value.forEach(el => {
+			self.template(el);
+		});
+	}
 	// self.close = function(id) {
 	// 	var obj = self.items[id];
 	// 	if (!obj)

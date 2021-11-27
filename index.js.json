@@ -1,6 +1,6 @@
 {
-	"pid": 1960,
-	"date": "2021-04-12T18:24:06.081Z",
+	"pid": 281095,
+	"date": "2021-11-27T09:29:09.197Z",
 	"port": 8000,
 	"ip": "0.0.0.0",
 	"stats": [
@@ -11,12 +11,12 @@
 				"total": "4",
 				"app": "1.0.0"
 			},
-			"pid": 1960,
+			"pid": 281095,
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
-			"date": "2021-04-12T21:12:17.292Z",
-			"memory": 10.98,
+			"date": "2021-11-27T13:51:09.852Z",
+			"memory": 10.06,
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -31,15 +31,15 @@
 			"dbrm": 0,
 			"dbwm": 0,
 			"usage": 0,
-			"requests": 7903,
+			"requests": 4263,
 			"pending": 0,
 			"external": 0,
 			"errors": 0,
 			"timeouts": 0,
-			"online": 2,
-			"uptime": 80,
+			"online": 1,
+			"uptime": 263,
 			"download": 0,
-			"upload": 1.343
+			"upload": 0.989
 		}
 	]
 }

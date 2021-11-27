@@ -36,84 +36,70 @@
 					<input placeholder="Search or Start new Chat" type="text">
 				</div>
 			</div>
-				<div data---="chat__common.chats" ></div>
+			<div data---="chat__common.chats" ></div>
 		</div>
 		<div class="chat">
-
 			<div class="chat_header">
 				<div class="chat_headerAvatar">
-					<img src="/img/bugatti.jpg" alt="">
+					<img src="/img/agape.jpg" alt="">
 				</div>
 				<div class="chat_headerInfo">
 					<h3>Agape Raston</h3>
 					<p>A good girl from Green City</p>
 				</div>
 				<div class="chat_headerRight">
-				<i class="fa fa-search"></i>
-				 <i class="fa fa-link"></i>
-				 <i class="fa fa-ellipsis-v"></i>
+					<i class="fa fa-search"></i>
+					<i class="fa fa-paperclip"></i>
+					<i class="fa fa-ellipsis-v"></i>
 				</div>
 			</div>
 			<div data---="chatbody__common.messages" class="chat_body"></div>
+			
+			<div class="chat_footer">
+				<i class="fa fa-smile"></i>
+				<i class="fa fa-paperclip"></i>
+				
+				<form action="">
+					<input type="text" placeholder="Type message here">
+					<button type="submit" >Send Message</button>
+				</form>
+				<i class="fa fa-microphone"></i>
+			</div>
 		</div>
 	</div>	
 </div>
-	<script>
-		var common = {};
-		common.messages = [
-			{ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true},
-			{ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false},
-			{ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true},
-		];
-		common.chats = [
-			{ 'id': 1 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
-			{ 'id': 2 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
-			{ 'id': 3 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
-			{ 'id': 4 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
-			{ 'id': 5 , 'img': '/img/bugatti.jpg', 'message': 'Worry out my friend', 'name': "Agape Raston"},
-		];
-		ON('message', function(msg) {
-			name.innerHTML = msg.firstname + ' ' + msg.lastname
-			// Send message to the server
-			// SETTER('websocket/send', { your: 'message' });
-			AJAX('GET http://louisbertson.dev',function(res){
-				console.log(res);
-			})
-		});
-	</script>
-	
-	<script defer>
+
+<script defer>
+	SETTER('loading','show');
+	var common = {};
+		common.messages = [];
+		common.chats = [];
+		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true});
+
+		common.chats.push({ 'id': 1 , 'img': '/img/agape.jpg', 'message': 'I have understand you...', 'name': "Agape Raston"});
+		common.chats.push({ 'id': 2 , 'img': '/img/chris.jpg', 'message': 'Where is your Bugatti????', 'name': "Kinda Christian"});
+		common.chats.push({ 'id': 3 , 'img': '/img/maman.jpg', 'message': 'Du courage...', 'name': "Dear Maman"});
+		common.chats.push({ 'id': 6 , 'img': '/img/peter.jpg', 'message': 'It depends on you', 'name': "Peter Sirka"});
+		common.chats.push({ 'id': 8 , 'img': '/img/elon.jpg', 'message': 'That 6 months can change your life...', 'name': "Elon Musk"});
+		common.chats.push({ 'id': 7 , 'img': '/img/sonny.jpg', 'message': 'Reveille le lion qui dors en toi...', 'name': "Sonny Court"});
+		common.chats.push({ 'id': 4 , 'img': '/img/edith.jpg', 'message': 'Ce n\'est pas un probleme', 'name': "Edith"});
+		common.chats.push({ 'id': 5 , 'img': '/img/bro.jpg', 'message': 'Tu es au bureau?', 'name': "Blood brother"});
 		function initUsers(){
-			SETTER('loading','show');
-			SETTER('chat/append',1, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',2, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',3, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',4, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',5, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',6, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',7, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			SETTER('chat/append',8, '/img/bugatti.jpg', 'This is a new notification component.','Agape Raston');
-			
-			SETTER('chatbody/append',1, 'Agape Raston','I miss you my love','25 Nov 2021',false);
-			SETTER('chatbody/append',2, 'Louis Bertson','i miss you tooo','25 Nov 2021',true);
-			SETTER('chatbody/append',3, 'Agape Raston','Where are you?','25 Nov 2021',false);
-			SETTER('chatbody/append',4, 'Louis Bertson','I\'m at home, i will come. worry out','25 Nov 2021',true);
-			SETTER('chatbody/append',5, 'Agape Raston','Okay my friend','25 Nov 2021',false);
-			SETTER('chatbody/append',6, 'Louis Bertson','Okay','25 Nov 2021',true);
-			SETTER('chatbody/append',7, 'Louis Bertson','Have a nice day','25 Nov 2021',true);
 			SETTER('loading','hide',1000);
-   }	
-   setTimeout(initUsers,2000)
+		}	
+   initUsers();
 	</script>
 </body>
 </html>
