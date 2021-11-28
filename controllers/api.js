@@ -6,6 +6,7 @@ exports.install = function(){
     ROUTE('GET /opendb/',db_connect);
     ROUTE('GET /sendsms/',send_sms);
     ROUTE('POST      /api/v1/messages/new/    *Messages --> insert');
+    ROUTE('GET      /api/v1/messages/sync/    *Messages --> query');
      
 }
 

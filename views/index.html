@@ -11,10 +11,25 @@
 	<meta name="robots" content="all,follow" />
 	@{import('meta', 'head','default.js','style.css','sidebar.css','chat.css','spa.min@18.js','spa.min@18.css','ui.css','ui.js')}
 	<script src="/js/livereload.js" data-url="ws://127.0.0.1:35729" ></script>
+	<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+	<script>
+
+		// Enable pusher logging - don't include this in production
+		Pusher.logToConsole = true;
+	
+		var pusher = new Pusher('d8dd33fb0ca5daf6d733', {
+		  cluster: 'eu'
+		});
+	
+	
+	  </script>
 </head>
 <body>
 	<div data---="websocket__message__url:/;encoder:false"></div>
 	<div data---="loading" class="hidden"></div>
+	<div data---="notify"></div>
+	<div data---="sounds__common.volume"></div>
+
 <div class="app">
 	<div class="app_body">
 		<div class="sidebar">
@@ -37,6 +52,7 @@
 				</div>
 			</div>
 			<div data---="chat__common.chats" ></div>
+
 		</div>
 		<div class="chat">
 			<div class="chat_header">
@@ -62,9 +78,9 @@
 				<form action="/api/v1/messages/new" method="POST">
 
 					<input type="hidden" name="name"value="Louis Bertson">
-					<input type="hidden" name="receiver"value="0">
+					<input type="hidden" name="receiver" value="0">
 					<input type="text" name="message" placeholder="Type message here">
-					<button type="submit" >Send Message</button>
+					<button onclick="sendMessage()" type="submit" >Send Message</button>
 				</form>
 				<i class="fa fa-microphone"></i>
 			</div>
@@ -77,6 +93,11 @@
 	var common = {};
 		common.messages = [];
 		common.chats = [];
+		common.volume = 80;
+		function sendMessage(){
+			this.preventDefault();
+
+		}
 		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
 		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
 		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
@@ -102,6 +123,12 @@
 		function initUsers(){
 			SETTER('loading','hide',1000);
 		}	
+		var channel = pusher.subscribe('my-channel');
+		channel.bind('my-event', function(data) {
+		console.log(data);
+		SETTER('sounds','play','success');
+		SETTER('notify/success',data.message);
+		});
    initUsers();
 	</script>
 </body>
