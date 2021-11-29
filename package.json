@@ -4,6 +4,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"dependencies": {
+		"-": "^0.0.1",
+		"@capacitor/core": "^3.3.2",
 		"pusher": "^5.0.0",
 		"total4": "^0.0.53"
 	},

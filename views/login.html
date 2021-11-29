@@ -11,18 +11,6 @@
 	<meta name="robots" content="all,follow" />
 	@{import('meta', 'head','default.js','style.css','sidebar.css','chat.css','spa.min@18.js','spa.min@18.css','ui.css','ui.js')}
 	<script src="/js/livereload.js" data-url="ws://127.0.0.1:35729" ></script>
-	<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-	<script>
-
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
-	
-		var pusher = new Pusher('d8dd33fb0ca5daf6d733', {
-		  cluster: 'eu'
-		});
-	
-	
-	  </script>
 </head>
 <body>
 	<div data---="websocket__message__url:/;encoder:false"></div>
@@ -30,61 +18,9 @@
 	<div data---="notify"></div>
 	<div data---="sounds__common.volume"></div>
 
-<div class="app">
-	<div class="app_body">
-		<div class="sidebar">
-			<div class="sidebar_header">
-				<div class="sidebar_headerLeft">
-					<img src="/img/bugatti.jpg" alt="">
-				</div>
-				<div class="sidebar_headerRight">
-				 <i class="fa fa-circle-notch" ></i>
-				 <i class="fa fa-comment-dots" ></i>
-				 <i class="fa fa-ellipsis-v" ></i>
-				</div>
-			</div>
-			<div class="sidebar_search">
-				<div class="sidebar_searchContainer">
-					<i class="fa fa-search" ></i>
-					<input placeholder="Search or Start new Chat" type="text">
-				</div>
-			</div>
-			<div data---="chat__common.chats" ></div>
-		</div>
-		<div class="chat">
-			<div class="chat_header">
-				<div class="chat_headerAvatar">
-					<img src="/img/agape.jpg" alt="">
-				</div>
-				<div class="chat_headerInfo">
-					<h3>Agape Raston</h3>
-					<p>A good girl from Green City</p>
-				</div>
-				<div class="chat_headerRight">
-					<i class="fa fa-search"></i>
-					<i class="fa fa-paperclip"></i>
-					<i class="fa fa-ellipsis-v"></i>
-				</div>
-			</div>
-			<div data---="chatbody__common.messages" class="chat_body"></div>
-			
-			<div class="chat_footer">
-				<i class="fa fa-smile"></i>
-				<i class="fa fa-paperclip"></i>
-				
-				<form action="/api/v1/messages/new" method="POST">
-
-					<input type="hidden" name="name"value="Louis Bertson">
-					<input type="hidden" name="receiver" value="0">
-					<input type="text" name="message" placeholder="Type message here">
-					<button onclick="sendMessage()" type="submit" >Send Message</button>
-				</form>
-				<i class="fa fa-microphone"></i>
-			</div>
-		</div>
-	</div>	
-</div>
-
+        <div class="container">
+            login form
+        </div>
 <script defer>
 	SETTER('loading','show');
 	var common = {};
