@@ -7,3 +7,4 @@ NEWOPERATION('users.save',function($){
         })
 	}, 500, 20);
 })
+PREF.settings =  {color : 'blueviolet'};

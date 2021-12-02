@@ -26,7 +26,7 @@ exports.install = function() {
 	ROUTE('POST      /api/blacklist/', json_blacklist);
 
 		// Messages
-	ROUTE('GET       /api/messages/{id}/ *Message --> save');
+	ROUTE('GET       /api/messages/{id}/ *Message --> query');
 	ROUTE('GET       /api/files/{id}/    *Message --> files' );
 
 		// Favorites

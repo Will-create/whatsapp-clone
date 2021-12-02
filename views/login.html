@@ -11,57 +11,59 @@
 	<meta name="robots" content="all,follow" />
 	@{import('meta', 'head','default.js','style.css','sidebar.css','chat.css','spa.min@18.js','spa.min@18.css','ui.css','ui.js')}
 	<script src="/js/livereload.js" data-url="ws://127.0.0.1:35729" ></script>
+	@{if PREF.settings && PREF.settings.color}
+	<style id="csssettings">
+		:root {
+			--color: @{PREF.settings.color};
+		}
+	</style>
+	@{fi}
+	<style>
+		body {background-color: var(--color);}
+		button { background-color: var(--color); width: 100%; height: 40px; border: 0; color: #FFF; border-radius: 5px; font-size: 14px; }
+		button i { margin-right: 7px; }
+		button:disabled { background-color: #F0F0F0; color: #A0A0A0; cursor: not-allowed; }
+	</style>
 </head>
 <body>
 	<div data---="websocket__message__url:/;encoder:false"></div>
 	<div data---="loading" class="hidden"></div>
 	<div data---="notify"></div>
 	<div data---="sounds__common.volume"></div>
-
+	<div data---="message__null__style:2"></div>
         <div class="container">
-            login form
+            <div data---="animation">
+				<div data-scope="loginform" class="animation" style="background-color:#FFF;padding:35px;border-radius:5px;margin:100px 0 0;width:380px;position:absolute;left:50%;top:40%;margin:-200px 0 0 -175px;box-shadow:0 0 20px rgba(0,0,0,0.3);">
+					<div data---="enter__?">
+						<div class="caption" style="text-align:center;font-size:20px;margin-bottom:15px">@(FineX)</div>
+						<div data---="input__?.phone__required:1__" class="m" style="margin-top:10px" data-bind="?.showcode__disabled">@(Numéro de Téléphone)</div>
+						<div data-bind="?.showcode__show" class="hidden">
+							<p><i class="far fa-qrcode mr5"></i>@(Entrer votre le code PIN recu sur votre numéro)</p>
+							<div data---="pin__?.code__count:4;requied:1" class="m">@(Code)</div>
+						</div>
+						<div data---="validation__?" class="mt10">
+							<button name="submit" class="exec" data-exec="?/submit" disabled><i class="far fa-sign-in-alt"></i>@(Sign-in)</button>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
-<script defer>
-	SETTER('loading','show');
-	var common = {};
-		common.messages = [];
-		common.chats = [];
-		common.volume = 80;
-		function sendMessage(){
-			this.preventDefault();
-		}
-		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true});
+	<script>
+		var common = {};
 
-		common.chats.push({ 'id': 1 , 'img': '/img/agape.jpg', 'message': 'I have understand you...', 'name': "Agape Raston"});
-		common.chats.push({ 'id': 2 , 'img': '/img/chris.jpg', 'message': 'Where is your Bugatti????', 'name': "Kinda Christian"});
-		common.chats.push({ 'id': 3 , 'img': '/img/maman.jpg', 'message': 'Du courage...', 'name': "Dear Maman"});
-		common.chats.push({ 'id': 6 , 'img': '/img/peter.jpg', 'message': 'It depends on you', 'name': "Peter Sirka"});
-		common.chats.push({ 'id': 8 , 'img': '/img/elon.jpg', 'message': 'That 6 months can change your life...', 'name': "Elon Musk"});
-		common.chats.push({ 'id': 7 , 'img': '/img/sonny.jpg', 'message': 'Reveille le lion qui dors en toi...', 'name': "Sonny Court"});
-		common.chats.push({ 'id': 4 , 'img': '/img/edith.jpg', 'message': 'Ce n\'est pas un probleme', 'name': "Edith"});
-		common.chats.push({ 'id': 5 , 'img': '/img/bro.jpg', 'message': 'Tu es au bureau?', 'name': "Blood brother"});
-		function initUsers(){
-			SETTER('loading','hide',1000);
-		}	
-		var channel = pusher.subscribe('my-channel');
-		channel.bind('my-event', function(data) {
-		console.log(data);
-		SETTER('sounds','play','success');
-		SETTER('notify/success',data.message);
+		PLUGIN('loginform', function(exports) {
+			exports.submit = function() {
+				AJAX('POST  /api/login/', GET('? @reset'), ASETTER('message/response', function(response) {
+					if (response.value) {
+						SET('?.showcode', true);
+						FIND('pin').focus();
+					} else
+						location.href = '/';
+				}));
+			};
+
 		});
-   initUsers();
+	
 	</script>
 </body>
 </html>

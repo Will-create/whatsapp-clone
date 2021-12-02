@@ -1,6 +1,6 @@
 {
-	"pid": 5457,
-	"date": "2021-12-02T15:41:54.708Z",
+	"pid": 16218,
+	"date": "2021-12-02T17:25:47.940Z",
 	"port": 35729,
 	"ip": "0.0.0.0",
 	"stats": [
@@ -11,12 +11,12 @@
 				"total": "4",
 				"app": "1.0.0"
 			},
-			"pid": 5457,
+			"pid": 16218,
 			"thread": "",
 			"mode": "release",
 			"overload": 0,
-			"date": "2021-12-02T17:01:54.953Z",
-			"memory": 12.89,
+			"date": "2021-12-02T18:06:48.049Z",
+			"memory": 8.82,
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -37,7 +37,7 @@
 			"errors": 0,
 			"timeouts": 0,
 			"online": 0,
-			"uptime": 81,
+			"uptime": 42,
 			"download": 0,
 			"upload": 0
 		}
