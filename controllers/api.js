@@ -1,56 +1,50 @@
 const db = MAIN.openDB;
 const db2 = MAIN.openDB2;
 
-exports.install = function(){
-    ROUTE('GET /api/profile/',profile);
-    ROUTE('GET /opendb/',db_connect);
-    ROUTE('+POST      /api/v1/messages/new/    *Messages --> insert');
-    ROUTE('+GET      /api/v1/messages/sync/    *Messages --> query');
-     
-}
 const BASE64 = { width: 0, height: 0 };
 
 exports.install = function() {
 
-    ROUTE('-POST /api/login/ *Login --> exec');
+    ROUTE('-POST     /api/login/ *Login --> exec');
 
 		// Common
-	ROUTE('+GET /logoff/', logoff);
+	ROUTE('+GET      /logoff/', logoff);
 
 		// Uploads
-	ROUTE('/api/upload/',upload, 1024 * 5); // 5 MB
-	ROUTE('/api/upload/photo/',   upload_photo,1024 * 5); // 5MB
-	ROUTE('/api/upload/base64/',  upload_base64, 1024 * 5); // 5 MB
+	ROUTE('FILE      /api/upload/',upload, 1024 * 5); // 5 MB
+	ROUTE('FILE      /api/upload/photo/',   upload_photo,1024 * 5); // 5MB
+	ROUTE('FILE      /api/upload/base64/',  upload_base64, 1024 * 5); // 5 MB
+	ROUTE('FILE      /download/', file_read);
 
 		// Users
-	ROUTE('/api/account/',        json_save,     ['*Account', 'post']);
+	ROUTE('POST      /api/account/        *Account     --> save');
 
-		// Channels (SA)
-	ROUTE('/api/channels/',       json_save,     ['*Channel', 'post']);
-	ROUTE('/api/channels/{id}/',  json_remove,   ['*Channel', 'delete']);
-	ROUTE('/api/blacklist/',      json_blacklist,['post']);
+
+	// Channels (SA)
+	ROUTE('POST      /api/channels/        		*Channel     --> save');
+	ROUTE('DELETE    /api/channels/{id}/        *Channel     --> remove');
+	ROUTE('POST      /api/blacklist/', json_blacklist);
 
 		// Messages
-	ROUTE('/api/messages/{id}/',  json_query,    ['*Message']);
-	ROUTE('/api/files/{id}/',     json_files,    ['*Message']);
+	ROUTE('GET       /api/messages/{id}/ *Message --> save');
+	ROUTE('GET       /api/files/{id}/    *Message --> files' );
 
 		// Favorites
-	ROUTE('/api/favorites/',      json_query,    ['*Favorite']);
-	ROUTE('/api/favorites/',      json_save,     ['*Favorite', 'post']);
-	ROUTE('/api/favorites/{id}/', json_remove,   ['*Favorite', 'delete']);
+	ROUTE('GET       /api/favorites/          *Favorite  --> query');
+	ROUTE('POST      /api/favorites/          *Favorite  --> save');
+	ROUTE('DELETE    /api/favorites/{id}/     *Favorite  --> remove');
 
 		// Tasks
-	ROUTE('/api/tasks/',          json_query,    ['*Task']);
-	ROUTE('/api/tasks/',          json_save,     ['*Task', 'post']);
-	ROUTE('/api/tasks/{id}/',     json_exec,     ['*Task']);
+	ROUTE('GET       /api/tasks/         *Task  --> query');
+	ROUTE('POST      /api/tasks/         *Task   --> save');
+	ROUTE('GET       /api/tasks/{id}/     *Task  --> exec');
 
 		// Users (SA)
-	ROUTE('/api/users/',          json_query,    ['*User']);
-	ROUTE('/api/users/',          json_save,     ['*User', 'post']);
-	ROUTE('/api/users/{id}/',     json_read,     ['*User']);
-	ROUTE('/api/users/{id}/',     json_remove,   ['*User', 'delete']);
+	ROUTE('GET      /api/users/        *User    --> query');
+	ROUTE('POST     /api/users/        *User    --> save');
+	ROUTE('GET      /api/users/{id}/   *User    --> read');
+	ROUTE('DELETE   /api/users/{id}/   *User    --> remove');
 
-	F.file('/download/', file_read);
 };
 
 function profile(){
@@ -65,14 +59,31 @@ function profile(){
     self.json(profile);
 };
 
-function db_connect(){
-    var self = this;
-    db2.rpc({db : "users", type : "find",filter : "true"},function(err, res){
-        if(err) 
-            console.log(err);
-        self.json(res);
-    })
-}   
+function file_read(req, res) {
+
+	var id = req.split[1].replace('.' + req.extension, '');
+	res.noCompress = true;
+
+	F.exists(req, res, function(next, filename) {
+		NOSQL('files').counter.hit('read');
+		NOSQL('files').binary.read(id, function(err, stream, header) {
+
+			if (err) {
+				next();
+				return res.throw404();
+			}
+
+			var writer = require('fs').createWriteStream(filename);
+
+			CLEANUP(writer, function() {
+				res.file(filename, req.extension === 'js' || req.extension === 'css' || req.extension === 'jpg' || req.extension === 'jpeg' || req.extension === 'png' || req.extension === 'gif' ? undefined : header.name);
+				next();
+			});
+
+			stream.pipe(writer);
+		});
+	});
+}
 
 
 function upload() {
@@ -142,7 +153,21 @@ function upload_photo() {
 	} else
 		self.invalid().push('error-user-photo');
 }
-
+function json_blacklist() {
+	var self = this;
+	if (self.body instanceof Array) {
+		self.user.blacklist = {};
+		for (var i = 0, length = self.body.length; i < length; i++) {
+			var id = self.body[i];
+			if (id.isUID()) {
+				self.user.blacklist[id] = true;
+				self.user.unread[id] && (delete self.user.unread[id]);
+			}
+		}
+		OPERATION('users.save', NOOP);
+	}
+	self.json(SUCCESS(true));
+}
 function logoff() {
 	this.cookie(CONF.cookie, '', '-1 day');
 	this.redirect('/');
