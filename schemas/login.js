@@ -5,8 +5,9 @@ NEWSCHEMA('Login',function(schema) {
 
 	schema.addWorkflow('exec', function($) {
         var model = $.body;
-		var user = MAIN.users.findItem('phone', model.email);
-		if (user && user.password == model.password.sha1()) {
+
+		var user = MAIN.users.findItem('phone', model.phone);
+		if (user) {
 			if (user.blocked)
 				error.push('error-user-blocked');
 			else {

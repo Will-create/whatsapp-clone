@@ -7,8 +7,7 @@ COMPONENT('chat',  function(self) {
 	self.singleton();
 	self.readonly();
 	self.nocompile && self.nocompile();
-	self.template = Tangular.compile(`
-    <div class="ui-chat" data-id="{{ id }}">
+	self.template = Tangular.compile(`<div class="ui-chat" data-id="{{ id }}">
        <div class="ui-chat-body">
             <div class="ui-chat-bodyLeft">
                <div class="ui-chat-image">
@@ -21,8 +20,8 @@ COMPONENT('chat',  function(self) {
             </div>
 
         </div>
-    </div>`
-	);
+    </div>`);
+	
 	self.items = {};
 
 	self.make = function() {
@@ -84,21 +83,17 @@ COMPONENT('chat',  function(self) {
 	
 });
 COMPONENT('chatbody',  function(self) {
-
 	// var autoclosing;
 	// var system = false;
 	// var N = windo  w.Notification;
-
 	self.singleton();
 	self.readonly();
 	self.nocompile && self.nocompile();
-	self.template = Tangular.compile(`
-    <p data-id="{{id}}"  class="chat_message {{if incoming == true }} chat_receiver {{ fi}} ">
+	self.template = Tangular.compile(`<p data-id="{{id}}"  class="chat_message {{if incoming == true }} chat_receiver {{ fi}} ">
 	<span class="chat_messageAuthor">{{author}}</span>
 	{{body | raw}}
 	<span class="chat_messageBodyMetaTimeStamp">{{timestamp}}</span>
-	</p>
-	`);
+	</p>`);
 	self.items = {};
 	self.make = function() {
 		self.aclass('chat_body');
@@ -130,14 +125,14 @@ COMPONENT('chatbody',  function(self) {
 				// 		system = permission === 'granted';
 				// 	});
 				// }
-			};
+	};
 			
-	self.setter = function (value){
-		console.log(value);
-		value.forEach(el => {
-			self.template(el);
-		});
-	}
+	// self.setter = function (value){
+	// 	console.log(value);
+	// 	value.forEach(el => {
+	// 		self.template(el);
+	// 	});
+	// }
 	// self.close = function(id) {
 	// 	var obj = self.items[id];
 	// 	if (!obj)
