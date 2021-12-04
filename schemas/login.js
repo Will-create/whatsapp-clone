@@ -15,7 +15,7 @@ NEWSCHEMA('Login',function(schema) {
 				NOSQL('users').counter.hit('all').hit(user.id);
 			}
 		} else
-			$.invalid('error-user-credentials');
+			$.callback({value : "otp"});
 		$.callback(SUCCESS(true));
 	});
 });

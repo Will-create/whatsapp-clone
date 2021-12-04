@@ -22,7 +22,7 @@
 		/*auto*/
 
 		html,body { overflow: hidden; height: 100%; }
-		body { background-color: #F0F0F0; color: black; background:  black; font-size: 14px; }
+		body { background-color: #F0F0F0; color: black; background:radial-gradient(var(--color),black); font-size: 14px; }
 		form { padding: 0; margin: 0; }
 
 		.panel { max-width: 330px; width: 100%; position: absolute; left: 50%; top: 50%; margin: -240px 0 0 -140px; background-color: white; border-radius: 3px; transition: all 0.5s; transform: scale(1.5); border: 1px solid #D0D0D0; box-shadow: 0 0 30px rgba(0,0,0,0.05); }
@@ -80,8 +80,8 @@
 		<h1><i class="fa fa-lock"></i>@{CONF.name}</h1>
 		@{fi}
 		<div data-bind="password.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(We sent you email with instructions for resetting of your password.)</div>
-		<div data-bind="signin_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i></div>
-		<div data-bind="signup_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i></div>
+		<div data-bind="signin_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5">@(Nous avons envoyé un code de vérification)</i></div>
+		<div data-bind="signup_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(Nous avons envoyé un code de vérification)</div>
 		<div class="padding">
 			<div data-bind="common.type__show:value === 'login'" class="hidden">
 				<form method="POST" action="/" id="login">
@@ -121,7 +121,7 @@
 					<button type="button" class="b signin_otpsubmit" name="submit" disabled="disabled"><i class="fa fa-check-circle"></i>@(Confirmer)</button>
 				</div>
 				<div class="mt10 fs12">
-					<span class="link exec" data-exec="toggletype"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas recu)</span>
+					<span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas recu)</span>
 				</div>
 			</div>
 			<div data-bind="common.type__show:value === 'signup_otp'" class="hidden">
@@ -133,14 +133,14 @@
 					<button type="button" class="b signup_otpsubmit" name="submit" disabled="disabled"><i class="fa fa-check-circle"></i>@(Confirmer)</button>
 				</div>
 				<div class="mt10 fs12">
-					<span class="link exec" data-exec="toggletype"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas recu)</span>
+					<span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas recu)</span>
 				</div>
 			</div>
 			
 
 			<div data-bind="common.type__show:value === 'password'" class="hidden">
 				<form method="POST" onsubmit="return false" action="/">
-					<div class="m" data---="input__password.name__icon2:user;required:1;autofill:1;$id:passwordname;placeholder:@(Entrer votre numéro de téléphone)">@(Numéro de téléphone)</div>
+					<div class="m" data---="input__password.phone__icon2:user;required:1;autofill:1;type:phone;placeholder:@(Entrer votre numéro de téléphone)">@(Numéro de téléphone)</div>
 					<div data---="validation__password">
 						<button type="button" class="b" name="submit" disabled="disabled"><i class="fa fa-lock"></i>@(Réinitialiser mon mot de passe)</button>
 					</div>
@@ -240,11 +240,14 @@
 			if (common.type === 'password')	{
 				if (!CAN('password.*'))
 					return;
-			} else if (common.type === 'otp') {
-				if (!CAN('otp.*'))
+			} else if (common.type === 'signin_otp') {
+				if (!CAN('signin_otp.*'))
 					return;
-			} else {
-				if (!CAN('form.*'))
+			} else if (common.type === 'signup_otp') {
+				if (!CAN('signup_otp.*'))
+					return;
+			}else {
+				if (!CAN('loginform.*'))
 					return;
 			}
 
@@ -252,19 +255,19 @@
 				return;
 
 			RESET('password.*');
-			RESET('signinform.*');
-			RESET('signupform.*');
+			RESET('loginform.*');
 			RESET('signin_otp.*');
 			RESET('signup_otp.*');
 
 			if (common.type === 'password') {
-				DAPI('password', password, ASETTER('message/response', function(response) {
+				AJAX('password', password, ASETTER('message/response', function(response) {
 					SET('password.response', response);
 					response.success && SET('password.name', '', true);
 				}));
 			} else if (common.type === 'signin_otp') {
-				otp.name = form.name;
-				DAPI('signin_otp', otp, function(response) {
+				signin_otp.phone = loginform.name;
+				console.log(signin_otp);
+				AJAX('signin_otp', signin_otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signin_otp.password');
 						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
@@ -274,8 +277,9 @@
 					}
 				});
 			}else if (common.type === 'signup_otp') {
-				otp.name = form.name;
-				DAPI('signup_otp', otp, function(response) {
+				signin_otp.phone = loginform.phone;
+				console.log(signin_otp);
+				AJAX('signup_otp', signin_otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signup_otp.password');
 						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
@@ -286,7 +290,7 @@
 				});
 			}else if (common.type === 'signup') {
 				otp.name = form.name;
-				DAPI('signup', otp, function(response) {
+				AJAX('signup', otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signup_otp.password');
 						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
@@ -295,27 +299,26 @@
 						response.success && location.reload(true);
 					}
 				});
-			} else {
-				DAPI('login', form, ASETTER('message/response', function(response) {
+			}else if (common.type === 'login') {
+				AJAX('POST /api/login/', loginform, ASETTER('message/response', function(response) {
 					if (response.value === 'otp') {
-						SET('common.type', 'otp');
+						SET('signin_otp.response',{success : true});
+						SET('common.type', 'signin_otp');
 						$('#login').submit();
 						setTimeout(function() {
 							$('.ui-pin-input:first-child').find('input').focus();
 						}, 200);
 					} else {
-
 						// Possible redirect
 						if (response.value && response.value.indexOf('/') !== -1) {
 							location.href = response.value;
 							return;
 						}
-
 						SET('form.response', response);
 						response.success && location.reload(true);
 					}
 				}));
-			}
+			} 
 		});
 
 	</script>

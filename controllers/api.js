@@ -1,30 +1,19 @@
-const db = MAIN.openDB;
-const db2 = MAIN.openDB2;
-
 const BASE64 = { width: 0, height: 0 };
-
 exports.install = function() {
-
     ROUTE('-POST     /api/login/ *Login --> exec');
-
 		// Common
 	ROUTE('+GET      /logoff/', logoff);
-
 		// Uploads
 	ROUTE('FILE      /api/upload/',upload, 1024 * 5); // 5 MB
 	ROUTE('FILE      /api/upload/photo/',   upload_photo,1024 * 5); // 5MB
 	ROUTE('FILE      /api/upload/base64/',  upload_base64, 1024 * 5); // 5 MB
 	ROUTE('FILE      /download/', file_read);
-
 		// Users
 	ROUTE('POST      /api/account/        *Account     --> save');
-
-
 	// Channels (SA)
 	ROUTE('POST      /api/channels/        		*Channel     --> save');
 	ROUTE('DELETE    /api/channels/{id}/        *Channel     --> remove');
 	ROUTE('POST      /api/blacklist/', json_blacklist);
-
 		// Messages
 	ROUTE('GET       /api/messages/{id}/ *Message --> query');
 	ROUTE('GET       /api/files/{id}/    *Message --> files' );
