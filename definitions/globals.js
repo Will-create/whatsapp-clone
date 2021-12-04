@@ -1,2 +1,3 @@
 MAIN.users = EMPTYARRAY;
 MAIN.channels = EMPTYARRAY;
+MAIN.newusers = EMPTYOBJECT;

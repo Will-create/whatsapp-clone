@@ -29,11 +29,11 @@ exports.install = function() {
 	ROUTE('GET       /api/tasks/{id}/     *Task  --> exec');
 
 		// Users (SA)
-	ROUTE('GET      /api/users/        *User    --> query');
-	ROUTE('POST     /api/users/        *User    --> save');
-	ROUTE('GET      /api/users/{id}/   *User    --> read');
-	ROUTE('DELETE   /api/users/{id}/   *User    --> remove');
-
+	ROUTE('GET      /api/users/        *User     --> query');
+	ROUTE('-POST     /api/users/        *User     --> save');
+	ROUTE('-POST     /api/users/otp/    *User     --> otp');
+	ROUTE('GET      /api/users/{id}/   *User     --> read');
+	ROUTE('DELETE   /api/users/{id}/   *User     --> remove');
 };
 
 function profile(){

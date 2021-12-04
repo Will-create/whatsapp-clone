@@ -86,11 +86,8 @@
 			<div data-bind="common.type__show:value === 'login'" class="hidden">
 				<form method="POST" action="/" id="login">
 					<div class="m" data---="input__loginform.phone__icon2:user;required:1;type:phone;autofocus:1;autofill:1;">@(Numéro de téléphone)</div>
-					<div class="m" data---="input__loginform.password__icon2:lock;required:1;type:password;autofill:1">@(Mot de passe)</div>
 					<div class="m fs12">
-						<div><a href="#password" class="exec gray" data-exec="toggletype"><i class="fa fa-chevron-right mr5"></i>@(Mot de passe oublié)</a></div>
-						<div><a href="#sign-up" class="exec gray" data-exec="togglesignup"><i class="fa fa-chevron-right mr5"></i>@(Je n'ai pas de compte)</a></div>
-						
+					<span class="link exec" data-exec="togglesignup"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas de compte)</span>
 					</div>
 					<div data---="validation__loginform">
 						<button type="submit" class="b" name="submit" disabled="disabled"><i class="fa fa-lock"></i>@(Connexion)</button>
@@ -98,11 +95,9 @@
 				</form>
 			</div>
 			<div data-bind="common.type__show:value === 'signup'" class="hidden">
-				<form method="POST" action="/" id="sign-up">
-					<div class="m" data---="input__signupform.username__icon2:user;required:1;autofocus:1;autofill:1;$id:formname">@(Nom d'utilisateur)</div>
+				<form method="POST" action="/" id="signup">
+					<div class="m" data---="input__signupform.name__icon2:user;required:1;autofocus:1;autofill:1;$id:formname">@(Nom d'utilisateur)</div>
 					<div class="m" data---="input__signupform.phone__icon2:user;required:1;autofocus:1;autofill:1;$id:formname">@(Numéro de téléphone)</div>
-					<div class="m" data---="input__signupform.password__icon2:lock;required:1;type:password;autofill:1">@(Mot de passe)</div>
-					<div class="m" data---="input__signupform.confirm__icon2:lock;required:1;type:password;autofill:1">@(Mot de passe)</div>
 					<div class="m fs12">
 					<span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(J'ai déja un compte)</span>
 					</div>
@@ -138,18 +133,7 @@
 			</div>
 			
 
-			<div data-bind="common.type__show:value === 'password'" class="hidden">
-				<form method="POST" onsubmit="return false" action="/">
-					<div class="m" data---="input__password.phone__icon2:user;required:1;autofill:1;type:phone;placeholder:@(Entrer votre numéro de téléphone)">@(Numéro de téléphone)</div>
-					<div data---="validation__password">
-						<button type="button" class="b" name="submit" disabled="disabled"><i class="fa fa-lock"></i>@(Réinitialiser mon mot de passe)</button>
-					</div>
-					<div class="mt10 fs12">
-						<div><span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(Se connecter plutôt)</span></div>
-					</div>
-				</form>
-			</div>
-
+			
 		</div>
 		<footer>
 			<div>Tout droits réservé &copy; @{NOW.getFullYear()}</div>
@@ -163,17 +147,14 @@
 		$('#login').submit(function(e) {
 			e.preventDefault();
 		});
-		$('#sign-up').submit(function(e) {
+		$('#signup').submit(function(e) {
 			e.preventDefault();
 		});
-
-
 		setTimeout(function() {
 			$('.panel').aclass('panelshow');
 		}, 200);
 
 		WATCH('signin_otp.password', function(path, value) {
-			console.log(value);
 			if (value && value.length === 6 && value.indexOf(' ') === -1) {
 				setTimeout(function() {
 					$('.signin_otpsubmit').trigger('click');
@@ -181,7 +162,6 @@
 			}
 		});
 		WATCH('signup_otp.password', function(path, value) {
-			console.log(value);
 			if (value && value.length === 6 && value.indexOf(' ') === -1) {
 				setTimeout(function() {
 					$('.signup_otpsubmit').trigger('click');
@@ -202,69 +182,15 @@
 			SET('common.type', 'signup_otp');
 		}
 
-		function togglesignup_otp() {
-			SET('common.type', 'signup_otp');
-		}
-		function togglepassword() {
-			SET('common.type', 'password');
-		}
-		
-
-
-		function toggletype() {
-			if (common.type === 'password' || common.type === 'otp') {
-				SET('common.type', 'login');
-				SET('password.response', null);
-				setTimeout(function() {
-					FIND('#formname').find('input').focus();
-				}, 200);
-			}
-			if (common.type === 'signup_otp') {
-				SET('common.type', 'login');
-				SET('password.response', null);
-				setTimeout(function() {
-					FIND('#formname').find('input').focus();
-				}, 200);
-			} else {
-				SET('common.type', 'password');
-				setTimeout(function() {
-					FIND('#passwordname').find('input').focus();
-				}, 200);
-			}
-		}
-
 		$(document).on('keyup', 'input', function(e) {
 			e.which === 13 && $('button').trigger('click');
 		}).on('click', 'button', function() {
-
-			if (common.type === 'password')	{
-				if (!CAN('password.*'))
-					return;
-			} else if (common.type === 'signin_otp') {
-				if (!CAN('signin_otp.*'))
-					return;
-			} else if (common.type === 'signup_otp') {
-				if (!CAN('signup_otp.*'))
-					return;
-			}else {
-				if (!CAN('loginform.*'))
-					return;
-			}
-
-			if (BLOCKED('managerlogin', 2000))
-				return;
-
-			RESET('password.*');
 			RESET('loginform.*');
+			RESET('signupform.*');
 			RESET('signin_otp.*');
 			RESET('signup_otp.*');
 
-			if (common.type === 'password') {
-				AJAX('password', password, ASETTER('message/response', function(response) {
-					SET('password.response', response);
-					response.success && SET('password.name', '', true);
-				}));
-			} else if (common.type === 'signin_otp') {
+		if (common.type === 'signin_otp') {
 				signin_otp.phone = loginform.name;
 				console.log(signin_otp);
 				AJAX('signin_otp', signin_otp, function(response) {
@@ -277,9 +203,8 @@
 					}
 				});
 			}else if (common.type === 'signup_otp') {
-				signin_otp.phone = loginform.phone;
-				console.log(signin_otp);
-				AJAX('signup_otp', signin_otp, function(response) {
+				console.log(signup_otp);
+				AJAX('POST /api/users/', signup_otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signup_otp.password');
 						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
@@ -289,14 +214,10 @@
 					}
 				});
 			}else if (common.type === 'signup') {
-				otp.name = form.name;
-				AJAX('signup', otp, function(response) {
-					if (response instanceof Array) {
-						NUL('signup_otp.password');
-						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
-					} else {
-						SET('signup_otp.response', response);
-						response.success && location.reload(true);
+				AJAX('POST /api/users/otp/',signupform, function(response) {
+					if (response.otp) {
+						SET('signup_otp',response);
+						togglesignup_otp();
 					}
 				});
 			}else if (common.type === 'login') {
