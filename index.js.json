@@ -1,6 +1,6 @@
 {
-	"pid": 2861,
-	"date": "2021-12-03T05:45:40.154Z",
+	"pid": 28165,
+	"date": "2021-12-04T09:26:58.543Z",
 	"port": 8000,
 	"ip": "0.0.0.0",
 	"stats": [
@@ -11,12 +11,12 @@
 				"total": "4",
 				"app": "1.0.0"
 			},
-			"pid": 2861,
+			"pid": 28165,
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
-			"date": "2021-12-03T06:31:40.344Z",
-			"memory": 11.71,
+			"date": "2021-12-04T10:58:58.796Z",
+			"memory": 12.97,
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -31,15 +31,16 @@
 			"dbrm": 0,
 			"dbwm": 0,
 			"usage": 0,
-			"requests": 20,
+			"requests": 3720,
 			"pending": 0,
 			"external": 0,
-			"errors": 0,
+			"errors": 1,
 			"timeouts": 0,
 			"online": 3,
-			"uptime": 47,
-			"download": 0.001,
-			"upload": 0.015
+			"uptime": 93,
+			"download": 0.003,
+			"upload": 2.589,
+			"lasterror": "2021-12-04T09:51:32.854Z Error: View \"layout\" not found.\n    at ControllerProto.$viewrender (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:14533:9)\n    at ControllerProto.view (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:14498:14)\n    at ControllerProto.$viewrender (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:14738:16)\n    at ControllerProto.view (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:14498:14)\n    at Controller.login (/home/louisb/Desktop/Total4/ws/controllers/default.js:13:7)\n    at IncomingMessage.PROTO.$total_execute2 (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16519:31)\n    at IncomingMessage.PROTO.$total_execute (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16484:9)\n    at IncomingMessage.PROTO.$total_authorize (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16613:9)\n    at AuthOptions.req_authorizetotal [as $callback] (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16054:6)\n    at AuthOptionsProto.next.AuthOptionsProto.callback (/home/louisb/Desktop/Total4/ws/node_modules/total4/builders.js:5518:7)"
 		}
 	]
 }
