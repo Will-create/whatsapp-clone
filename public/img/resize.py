@@ -1,6 +1,6 @@
 from PIL import Image
-image = Image.open('sonny.jpg')
+image = Image.open('sank_business.jpg')
 new = image.resize((584,350))
 #print('new',new.size)
-new.save('sonny2.jpg')
+new.save('sank_business.jpg')
 new.show()
