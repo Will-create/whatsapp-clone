@@ -1,13 +1,19 @@
-NEWOPERATION('users.save',function($){
-    $.callback(SUCCESS(true));
-    setTimeout2('users.save', function() {
-        MAIN.openDB2.rpc({ db : "users", type : "find", filter : "true"},function(err,res){
-        MAIN.users = res;
-        })
-	}, 500, 20);
-})
+// NEWOPERATION('users.save',function($){
+// $.callback(SUCCESS(true));
+// setTimeout2('users.save', function() {
+// MAIN.openDB2.rpc({ db : "users", type : "find", filter : "true"},function(err,res){
+//MAIN.users = res;
+// })
+// }, 500, 20);
+// })
 const Fs = require('fs');
 
+NEWOPERATION('users.save',function($){
+$.callback(SUCCESS(true));
+setTimeout2('users.save', function() {
+	Fs.writeFile(PATH.databases('users.json'),JSON.stringify(MAIN.users),F.error);
+}, 500, 20);
+})
 NEWOPERATION('users.load', function($) {
 	Fs.readFile(F.path.databases('users.json'), function(err, data) {
 		if (err)

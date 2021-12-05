@@ -3,7 +3,8 @@ NEWSCHEMA('User',function(schema) {
 	schema.define('id', 'UID');
 	schema.define('name', 'String(50)', true);
 	schema.define('phone', 'Phone', true);
-	schema.define('status', 'String(50)');
+	schema.define('status', 'Object');
+	schema.define('passcode', 'String(50)');
 	schema.define('picture', 'String(30)');
 	schema.define('channels', 'Object');
 	schema.define('contacts', 'Object');
@@ -15,11 +16,13 @@ NEWSCHEMA('User',function(schema) {
 		var get_user = MAIN.newusers.findItem('phone',model.phone);
         if(get_user){
 			var otp = get_user.otp;
-			if(otp !== model.otp){
+			console.log(otp);
+			console.log(model);
+			if(otp !== model.passcode){
 				$.invalid('error','Code de Confirmation incorrect');
 			}else{
 				var tmp;
-		if (model.id) {
+		if(model.id) {
 			tmp = MAIN.users.findItem('id', model.id);
 			tmp.name = model.name;
 			tmp.phone = model.phone;
@@ -28,6 +31,7 @@ NEWSCHEMA('User',function(schema) {
 			var linker = model.name.slug(); // beacause of unicodes (e.g. Chinese chars)
 			linker && (tmp.linker = linker);
 			tmp.channels = model.channels;
+			tmp.passcode = model.passcode;
 			tmp.contacts = model.contacts;
 			tmp.status = model.status;
 			tmp.notifications = model.notifications;
@@ -38,7 +42,11 @@ NEWSCHEMA('User',function(schema) {
 			tmp.id = UID();
 			tmp.dtcreated = F.datetime;
 			tmp.unread = {};
+			tmp.passcode = '';
+			tmp.status = {};
+			tmp.picture = '/img/bugatti.jpg';
 			tmp.recent = {};
+			tmp.contacts = {};
 			tmp.lastmessages = {};
 			tmp.online = false;
 			tmp.linker = model.name.slug();
@@ -58,7 +66,6 @@ NEWSCHEMA('User',function(schema) {
 		}else{
 			
 		}
-		
 	});
 
     
@@ -88,7 +95,7 @@ NEWSCHEMA('User',function(schema) {
 			var new_otp = U.random_number(6);
 		    user.otp = new_otp;
 			//resend otp confirmation code
-			$.callback({otp : new_otp});
+			$.callback(user);
 		}
         var otp = U.random_number(6);
 		var new_user ={name : model.name, phone : model.phone,otp : otp};
