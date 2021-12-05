@@ -42,6 +42,7 @@
 		.m { margin-bottom: 15px; }
 
 		.success { background-color: #8CC152; color: white; padding: 10px 20px; font-size: 12px; text-align: center; line-height: 14px; }
+		.errors { background-color: red; color: white; padding: 10px 20px; font-size: 12px; text-align: center; line-height: 14px; }
 		.success .fa { margin-right: 8px; }
 
 		.color { color : var(--color) }
@@ -79,6 +80,7 @@
 		@{else}
 		<h1><i class="fa fa-lock"></i>@{CONF.name}</h1>
 		@{fi}
+		<div data-bind="errors.message" class="errors hidden"></div>
 		<div data-bind="password.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(We sent you email with instructions for resetting of your password.)</div>
 		<div data-bind="signin_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5">@(Nous avons envoyé un code de vérification)</i></div>
 		<div data-bind="signup_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(Nous avons envoyé un code de vérification)</div>
@@ -106,7 +108,6 @@
 					</div>
 				</form>
 			</div>
-
 			<div data-bind="common.type__show:value === 'signin_otp'" class="hidden">
 				<div class="center">
 					<div class="help">@(Entrer le code de confirmation récu sur votre numéro)</div>
@@ -182,6 +183,7 @@
 		$(document).on('keyup', 'input', function(e) {
 			e.which === 13 && $('button').trigger('click');
 		}).on('click', 'button', function() {
+			RESET('errors.*');
 			RESET('loginform.*');
 			RESET('signupform.*');
 			RESET('signin_otp.*');
@@ -204,7 +206,9 @@
 				AJAX('POST /api/users/', signup_otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signup_otp.passcode');
-						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
+						SETTER('message/warning', response[0].error,function(){
+							return;
+						});
 					} else {
 						SET('signup_otp.response', response);
 						response.success && location.reload(true);
@@ -219,7 +223,7 @@
 					}
 				});
 			}else if (common.type === 'login') {
-				AJAX('POST /api/login/', loginform, ASETTER('message/response', function(response) {
+				AJAX('POST /api/login/', loginform, function(response) {
 					if (response.value === 'otp') {
 						SET('signin_otp.response',{success : true});
 						SET('common.type', 'signin_otp');
@@ -236,7 +240,7 @@
 						SET('form.response', response);
 						response.success && location.reload(true);
 					}
-				}));
+				});
 			} 
 		});
 

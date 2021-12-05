@@ -11,7 +11,6 @@ NEWSCHEMA('User',function(schema) {
 	schema.define('blocked', Boolean);
 	schema.define('notifications', Boolean);
 	schema.define('sa', Boolean);
-
 	schema.setSave(function($,model) {
 		var get_user = MAIN.newusers.findItem('phone',model.phone);
         if(get_user){
@@ -54,7 +53,6 @@ NEWSCHEMA('User',function(schema) {
 			tmp.theme = 'dark';
 			MAIN.users.push(tmp);
 		}
-
 		!tmp.linker && (tmp.linker = U.GUID(10));
 		var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
 		index !== -1 && (tmp.linker += U.GUID(3));
