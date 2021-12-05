@@ -1,6 +1,3 @@
-const { EMPTYOBJECT } = require("total4");
-
-const NEW_USERS = EMPTYOBJECT
 NEWSCHEMA('User',function(schema) {
 
 	schema.define('id', 'UID');
@@ -15,14 +12,15 @@ NEWSCHEMA('User',function(schema) {
 	schema.define('sa', Boolean);
 
 	schema.setSave(function($,model) {
-        if(MAIN.newusers[model.phone]){
-			var otp = MAIN.newusers[model.phone].otp;
+		var get_user = MAIN.newusers.findItem('phone',model.phone);
+        if(get_user){
+			var otp = get_user.otp;
 			if(otp !== model.otp){
 				$.invalid('error','Code de Confirmation incorrect');
 			}else{
 				var tmp;
 		if (model.id) {
-			tmp = F.global.users.findItem('id', model.id);
+			tmp = MAIN.users.findItem('id', model.id);
 			tmp.name = model.name;
 			tmp.phone = model.phone;
 			tmp.picture = model.picture;
@@ -56,7 +54,7 @@ NEWSCHEMA('User',function(schema) {
 		MAIN.refresh && MAIN.refresh();
 		OPERATION('users.save', NOOP);
 		$.callback(SUCCESS(true));
-			}
+		}
 		}else{
 			
 		}
@@ -73,14 +71,11 @@ NEWSCHEMA('User',function(schema) {
 		!item && error.push('error-user-404');
 		callback(item);
 	});
-
 	schema.setRemove(function(error, options, callback, controller) {
-
 		if (!controller.user.sa) {
 			error.push('error-user-privileges');
 			return callback();
 		}
-
 		F.global.users = F.global.users.remove('id', controller.id);
 		F.global.refresh && F.global.refresh();
 		OPERATION('users.save', NOOP);
@@ -88,16 +83,16 @@ NEWSCHEMA('User',function(schema) {
 	});
 
 	schema.addWorkflow('otp',function($,model){
-		var user = MAIN.newusers[model.phone];
+		var user = MAIN.newusers.findItem('phone', model.phone);
 		if(user){
-			var new_otp = GUID(6);
-		    MAIN.newusers[model.phone].otp = new_otp;
+			var new_otp = U.random_number(6);
+		    user.otp = new_otp;
 			//resend otp confirmation code
 			$.callback({otp : new_otp});
 		}
-        var otp = GUID(6);
+        var otp = U.random_number(6);
 		var new_user ={name : model.name, phone : model.phone,otp : otp};
-		MAIN.newusers[model.phone] = new_user;
+		MAIN.newusers.push(new_user);
 		console.log(MAIN.newusers);
 		$.callback(new_user);
 	});

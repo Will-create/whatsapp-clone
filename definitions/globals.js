@@ -1,3 +1,3 @@
-MAIN.users = EMPTYARRAY;
-MAIN.channels = EMPTYARRAY;
-MAIN.newusers = EMPTYOBJECT;
+MAIN.users = [];
+MAIN.channels = [];
+MAIN.newusers = [];
