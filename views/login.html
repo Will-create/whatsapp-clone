@@ -43,6 +43,7 @@
 
 		.success { background-color: #8CC152; color: white; padding: 10px 20px; font-size: 12px; text-align: center; line-height: 14px; }
 		.errors { background-color: red; color: white; padding: 10px 20px; font-size: 12px; text-align: center; line-height: 14px; }
+		.warnings { background-color: #856404; color: white; padding: 10px 20px; font-size: 12px; text-align: center; line-height: 14px; }
 		.success .fa { margin-right: 8px; }
 
 		.color { color : var(--color) }
@@ -80,7 +81,9 @@
 		@{else}
 		<h1><i class="fa fa-lock"></i>@{CONF.name}</h1>
 		@{fi}
-		<div data-bind="errors.message" class="errors hidden"></div>
+		<div data-bind="errors.message__show:value && value.error" class="errors hidden"><i class="fa fa-warning mr5"></i>@(Code de confirmation incorrect.)</div>
+		<div data-bind="errors.exist__show:value && value.error" class="warnings hidden"><i class="fa fa-warning mr5"></i>@(Ce numéro de téléphone est déjà un compte. Veuillez plutôt vous connecter)</div>
+		<div data-bind="errors.exist2__show:value && value.error" class="warnings hidden"><i class="fa fa-warning mr5"></i>@(Ce numéro de téléphone n'est pas un compte. Veuillez plutôt vous inscrire)</div>
 		<div data-bind="password.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(We sent you email with instructions for resetting of your password.)</div>
 		<div data-bind="signin_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5">@(Nous avons envoyé un code de vérification)</i></div>
 		<div data-bind="signup_otp.response__show:value && value.success === true" class="success hidden"><i class="fa fa-check-circle mr5"></i>@(Nous avons envoyé un code de vérification)</div>
@@ -89,7 +92,7 @@
 				<form method="POST" action="/" id="login">
 					<div class="m" data---="input__loginform.phone__icon2:user;required:1;type:phone;autofocus:1;autofill:1;">@(Numéro de téléphone)</div>
 					<div class="m fs12">
-					<span class="link exec" data-exec="togglesignup"><i class="fa fa-angle-right mr5"></i>@(Je n'ai pas de compte)</span>
+					<span class="link exec" data-exec="togglesignup"><i class="fa fa-angle-right mr5"></i>@(S'inscrire)</span>
 					</div>
 					<div data---="validation__loginform">
 						<button type="submit" class="b" name="submit" disabled="disabled"><i class="fa fa-lock"></i>@(Connexion)</button>
@@ -101,7 +104,7 @@
 					<div class="m" data---="input__signupform.name__icon2:user;required:1;autofocus:1;autofill:1;$id:formname">@(Nom d'utilisateur)</div>
 					<div class="m" data---="input__signupform.phone__icon2:user;required:1;autofocus:1;autofill:1;$id:formname">@(Numéro de téléphone)</div>
 					<div class="m fs12">
-					<span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(J'ai déja un compte)</span>
+					<span class="link exec" data-exec="togglesignin"><i class="fa fa-angle-right mr5"></i>@(Se connecter)</span>
 					</div>
 					<div data---="validation__signupform">
 						<button type="submit" class="b" name="submit" disabled="disabled"><i class="fa fa-lock"></i>@(Créer un compte)</button>
@@ -190,27 +193,22 @@
 			RESET('signup_otp.*');
 
 		if (common.type === 'signin_otp') {
-				signin_otp.phone = loginform.name;
-				console.log(signin_otp);
-				AJAX('signin_otp', signin_otp, function(response) {
-					if (response instanceof Array) {
-						NUL('signin_otp.passcode');
-						SETTER('message/warning', response[0].error, ASETTER('pin/focus'));
-					} else {
-						SET('signin_otp.response', response);
-						response.success && location.reload(true);
-					}
-				});
+			console.log(signin_otp);
+			AJAX('POST /api/login/', signin_otp, function(response) {
+				if (response instanceof Array) {
+					NUL('signin_otp.passcode');
+					SET('errors.message', response[0]);
+				} else {
+					response.success && location.reload(true);
+				}
+			});
 			}else if (common.type === 'signup_otp') {
 				console.log(signup_otp);
 				AJAX('POST /api/users/', signup_otp, function(response) {
 					if (response instanceof Array) {
 						NUL('signup_otp.passcode');
-						SETTER('message/warning', response[0].error,function(){
-							return;
-						});
+						SET('errors.message', response[0]);
 					} else {
-						SET('signup_otp.response', response);
 						response.success && location.reload(true);
 					}
 				});
@@ -220,25 +218,21 @@
 						console.log(response.otp);
 						SET('signup_otp',response);
 						togglesignup_otp();
+					}else{
+						SET('errors.exist',{error : "user exists"})
+
 					}
 				});
 			}else if (common.type === 'login') {
-				AJAX('POST /api/login/', loginform, function(response) {
-					if (response.value === 'otp') {
-						SET('signin_otp.response',{success : true});
-						SET('common.type', 'signin_otp');
-						$('#login').submit();
-						setTimeout(function() {
-							$('.ui-pin-input:first-child').find('input').focus();
-						}, 200);
-					} else {
-						// Possible redirect
-						if (response.value && response.value.indexOf('/') !== -1) {
-							location.href = response.value;
-							return;
-						}
-						SET('form.response', response);
-						response.success && location.reload(true);
+				AJAX('POST /api/users/otp2/',loginform, function(response) {
+					console.log(response);
+					if (response.otp) {
+						console.log(response.otp);
+						SET('signin_otp',response);
+						togglesignin_otp();
+					}else{
+						SET('errors.exist2',{error : "user exists"})
+
 					}
 				});
 			} 

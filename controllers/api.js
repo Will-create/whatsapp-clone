@@ -32,6 +32,7 @@ exports.install = function() {
 	ROUTE('GET      /api/users/        *User     --> query');
 	ROUTE('-POST     /api/users/        *User     --> save');
 	ROUTE('-POST     /api/users/otp/    *User     --> otp');
+	ROUTE('-POST     /api/users/otp2/    *User     --> otp2');
 	ROUTE('GET      /api/users/{id}/   *User     --> read');
 	ROUTE('DELETE   /api/users/{id}/   *User     --> remove');
 };

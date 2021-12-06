@@ -1,7 +1,7 @@
 NEWSCHEMA('User',function(schema) {
 
 	schema.define('id', 'UID');
-	schema.define('name', 'String(50)', true);
+	schema.define('name', 'String(50)');
 	schema.define('phone', 'Phone', true);
 	schema.define('status', 'Object');
 	schema.define('passcode', 'String(50)');
@@ -36,9 +36,21 @@ NEWSCHEMA('User',function(schema) {
 			tmp.notifications = model.notifications;
 			tmp.channels && MAIN.channels.forEach(n => tmp.unread[n.id] && (delete tmp.unread[n.id]));
 			tmp.sa = model.sa;
+			!tmp.linker && (tmp.linker = U.GUID(10));
+			var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
+			index !== -1 && (tmp.linker += U.GUID(3));
+			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + F.datetime.getTime()), '1 month');
+			MAIN.users.quicksort('name');
+			MAIN.refresh && MAIN.refresh();
+			OPERATION('users.save', NOOP);
+			//delelte otp data;
+			var index = MAIN.newusers.findIndex('phone', tmp.phone);
+				delete MAIN.newusers[index];
+				console.log(MAIN.newusers);
+			$.callback(SUCCESS(true));
 		} else {
 			tmp = model;
-			tmp.id = UID();
+			tmp.id = id;
 			tmp.dtcreated = F.datetime;
 			tmp.unread = {};
 			tmp.passcode = '';
@@ -52,14 +64,21 @@ NEWSCHEMA('User',function(schema) {
 			tmp.sa = model.sa;
 			tmp.theme = 'dark';
 			MAIN.users.push(tmp);
+			!tmp.linker && (tmp.linker = U.GUID(10));
+			var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
+			index !== -1 && (tmp.linker += U.GUID(3));
+			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + F.datetime.getTime()), '1 month');
+			MAIN.users.quicksort('name');
+			MAIN.refresh && MAIN.refresh();
+			OPERATION('users.save', NOOP);
+			//delelte otp data;
+			var index = MAIN.newusers.findIndex('phone', tmp.phone);
+			delete MAIN.newusers[index];
+			console.log(MAIN.newusers);
+			$.callback(SUCCESS(true));
+			
 		}
-		!tmp.linker && (tmp.linker = U.GUID(10));
-		var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
-		index !== -1 && (tmp.linker += U.GUID(3));
-		MAIN.users.quicksort('name');
-		MAIN.refresh && MAIN.refresh();
-		OPERATION('users.save', NOOP);
-		$.callback(SUCCESS(true));
+		
 		}
 		}else{
 			
@@ -90,16 +109,51 @@ NEWSCHEMA('User',function(schema) {
 	schema.addWorkflow('otp',function($,model){
 		var user = MAIN.newusers.findItem('phone', model.phone);
 		if(user){
+			var index = MAIN.newusers.findIndex('phone', model.phone);
+			delete MAIN.newusers[index];
 			var new_otp = U.random_number(6);
 		    user.otp = new_otp;
+
 			//resend otp confirmation code
 			$.callback(user);
 		}
-        var otp = U.random_number(6);
-		var new_user ={name : model.name, phone : model.phone,otp : otp};
-		MAIN.newusers.push(new_user);
-		console.log(MAIN.newusers);
-		$.callback(new_user);
+		FUNC.appuser(model.phone,function (id) {  
+			if(id === 0){
+				$.invalid('exist','Ce numéro est déja un compte');
+				return;
+			}
+			var otp = U.random_number(6);
+			var new_user ={name : model.name, phone : model.phone,otp : otp};
+			MAIN.newusers.push(new_user);
+			console.log(MAIN.newusers);
+			$.callback(new_user);
+		});
+        
+	});
+
+	schema.addWorkflow('otp2',function($,model){
+		var user = MAIN.logusers.findItem('phone', model.phone);
+		if(user){
+			var index = MAIN.logusers.findIndex('phone', model.phone);
+			delete MAIN.logusers[index];
+			var new_otp = U.random_number(6);
+		    user.otp = new_otp;
+
+			//resend otp confirmation code
+			$.callback(user);
+		}
+		FUNC.appuser2(model.phone,function (id) {  
+			if(id === 0){
+				$.invalid('exist','Ce numéro n\'est pas un compte');
+				return;
+			}
+			var otp = U.random_number(6);
+			var new_user ={name : model.name, phone : model.phone,otp : otp};
+			MAIN.logusers.push(new_user);
+			console.log(MAIN.logusers);
+			$.callback(new_user);
+		});
+        
 	});
 
 });

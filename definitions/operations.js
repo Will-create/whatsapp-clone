@@ -11,36 +11,42 @@ const Fs = require('fs');
 NEWOPERATION('users.save',function($){
 $.callback(SUCCESS(true));
 setTimeout2('users.save', function() {
-	Fs.writeFile(PATH.databases('users.json'),JSON.stringify(MAIN.users),F.error);
+	MAIN.users.forEach(function(user){
+		NOSQL('users').insert(user,true).where('phone',user.phone).callback(F.error);
+	})
 }, 500, 20);
 })
 NEWOPERATION('users.load', function($) {
-	Fs.readFile(F.path.databases('users.json'), function(err, data) {
-		if (err)
-			MAIN.users = [];
-		else
-			MAIN.users = data.toString('utf8').parseJSON(true);
-		for (var i = 0, length = MAIN.users.length; i < length; i++) {
-			var user = MAIN.users[i];
-			user.online = false;
-			if (!user.department)
-				user.department = 'Members';
-			!user.lastmessages && (user.lastmessages = {});
-			!user.blacklist && (user.blacklist = {});
-			!user.theme && (user.theme = 'dark');
-			// Cleaner for unhandled assignment
-			delete user.recent[''];
-			delete user.recent[user.id];
-			delete user.unread[user.id];
-			delete user.unread[''];
-			delete user.lastmessages[''];
-			delete user.lastmessages[user.id];
-			delete user.recent['undefined'];
-			delete user.unread['undefined'];
-			delete user.lastmessages['undefined'];
-		}
-		$.callback(SUCCESS(true));
-	});
+	MAIN.users = [];
+	NOSQL('users').find().callback(function(users){
+				//Load users from database into memory
+			if(!users){
+				return;
+			}
+			MAIN.users = users;
+			length = MAIN.users.length
+				// loop on all data to set init config and clean unhandled assignment
+			for (var i = 0; i < length; i++) {
+					var user = MAIN.users[i];
+					 user.online = false;
+					!user.lastmessages && (user.lastmessages = {});
+					!user.blacklist && (user.blacklist = {});
+					!user.theme && (user.theme = 'dark');
+					// Cleaner for unhandled assignment
+
+					delete user.recent[''];
+					delete user.recent[user.id];
+					delete user.unread[user.id];
+					delete user.unread[''];
+					delete user.lastmessages[''];
+					delete user.lastmessages[user.id];
+					delete user.recent['undefined'];
+					delete user.unread['undefined'];
+					delete user.lastmessages['undefined'];
+				}
+				$.callback(SUCCESS(true));
+			})
+		
 });
 // Performs notifications for unread messages
 NEWOPERATION('users.notify', function($) {

@@ -1,19 +1,16 @@
-
 var DDOS = {};
 const SESSION = {};
 AUTH(function($) {
-
 	// if (DDOS[$.ip] && DDOS[$.ip] > 5) {
 	// 	$.invalid();
 	// 	return;
 	// }
-
     var cookie = $.cookie(CONF.cookie);
     if (!cookie){
         $.invalid();
         return;
     }
-     var id = F.decrypt(cookie,false);
+     var id = DECRYPT(cookie,false);
      id && (id = id.substring(0,id.indexOf('|')));
 
     if (!id){

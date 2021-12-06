@@ -1,6 +1,5 @@
 @{layout('')}
 @{title(config.name)}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +10,12 @@
 	<meta name="robots" content="all,follow" />
 	@{import('meta', 'head','default.js','style.css','sidebar.css','chat.css','spa.min@18.js','spa.min@18.css','ui.css','ui.js')}
 	<script src="/js/livereload.js" data-url="ws://127.0.0.1:35729" ></script>
-	<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-	<script>
-
-		// Enable pusher logging - don't include this in production
-		Pusher.logToConsole = true;
-	
-		var pusher = new Pusher('d8dd33fb0ca5daf6d733', {
-		  cluster: 'eu'
-		});
-	
-	
-	  </script>
 </head>
 <body>
 	<div data---="websocket__message__url:/;encoder:false"></div>
 	<div data---="loading" class="hidden"></div>
 	<div data---="notify"></div>
 	<div data---="sounds__common.volume"></div>
-
 <div class="app">
 	<div class="app_body">
 		<div class="sidebar">
@@ -64,6 +50,9 @@
 					<i class="fa fa-search"></i>
 					<i class="fa fa-paperclip"></i>
 					<i class="fa fa-ellipsis-v"></i>
+					<a href="/logoff/">
+						Logout
+					</a>
 				</div>
 			</div>
 			<div data---="chatbody__common.messages" class="chat_body"></div>
@@ -119,12 +108,8 @@
 		function initUsers(){
 			SETTER('loading','hide',1000);
 		}	
-		var channel = pusher.subscribe('my-channel');
-		channel.bind('my-event', function(data) {
-		console.log(data);
-		SETTER('sounds','play','success');
-		SETTER('notify/success',data.message);
-		});
+		
+	
    initUsers();
 	</script>
 </body>
