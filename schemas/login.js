@@ -6,11 +6,16 @@ NEWSCHEMA('Login',function(schema) {
 	schema.addWorkflow('exec', function($,model) {
         console.log('Model :',model);
 		var user = MAIN.users.findItem('phone', model.phone);
+		
 		if(!user){
-			$.invalid('error','User not found');
+			$.invalid('error','Compte inexistant!');
 			return ;
 		}
 		var code = MAIN.logusers.findItem('phone',model.phone);
+		if(code.expired){
+			$.invalid('error','Code expiré');
+			return;
+		}
 		code = code.otp;
         console.log('Code :',code);
 		if(model.passcode != code){

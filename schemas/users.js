@@ -16,6 +16,10 @@ NEWSCHEMA('User',function(schema) {
 	schema.setSave(function($,model) {
 		var get_user = MAIN.newusers.findItem('phone',model.phone);
         if(get_user){
+			if(get_user.expired){
+				$.invalid('error','Code expired');
+				return;
+			}
 			var otp = get_user.otp;
 			console.log(otp);
 			console.log(model);
@@ -141,6 +145,7 @@ NEWSCHEMA('User',function(schema) {
 			var new_otp = U.random_number(6);
 		    user.otp = new_otp;
 		    user.ticks = new Date().getTime();
+			user.expired = false;
 
 			//resend otp confirmation code
 			$.callback(user);
@@ -151,7 +156,7 @@ NEWSCHEMA('User',function(schema) {
 				return;
 			}
 			var otp = U.random_number(6);
-			var new_user ={name : model.name, phone : model.phone,otp : otp,ticks : new Date().getTime()};
+			var new_user ={name : model.name,expired : false, phone : model.phone,otp : otp,ticks : new Date().getTime()};
 			MAIN.logusers.push(new_user);
 			console.log(MAIN.logusers);
 			$.callback(new_user);
