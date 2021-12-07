@@ -21,7 +21,7 @@ NEWSCHEMA('User',function(schema) {
 				$.invalid('error','Code de Confirmation incorrect');
 			}else{
 				var tmp;
-		if(model.id) {
+			if(model.id) {
 			tmp = MAIN.users.findItem('id', model.id);
 			tmp.name = model.name;
 			tmp.phone = model.phone;

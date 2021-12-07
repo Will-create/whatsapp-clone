@@ -18,8 +18,9 @@ setTimeout2('users.save', function() {
 })
 NEWOPERATION('users.load', function($) {
 	MAIN.users = [];
-	NOSQL('users').find().callback(function(users){
+	NOSQL('users').find().callback(function(err,users){
 				//Load users from database into memory
+				console.log('Loading users from DB:',users)
 			if(!users){
 				return;
 			}
