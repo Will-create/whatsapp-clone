@@ -1,3 +1,5 @@
+const { F } = require("total4");
+
 NEWSCHEMA('User',function(schema) {
 
 	schema.define('id', 'UID');
@@ -39,7 +41,7 @@ NEWSCHEMA('User',function(schema) {
 			!tmp.linker && (tmp.linker = U.GUID(10));
 			var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
 			index !== -1 && (tmp.linker += U.GUID(3));
-			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + F.datetime.getTime()), '1 month');
+			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + new Date().getTime()), '1 month');
 			MAIN.users.quicksort('name');
 			MAIN.refresh && MAIN.refresh();
 			OPERATION('users.save', NOOP);
@@ -67,7 +69,7 @@ NEWSCHEMA('User',function(schema) {
 			!tmp.linker && (tmp.linker = U.GUID(10));
 			var index = MAIN.users.findIndex(n => n.id !== tmp.id && n.linker === tmp.linker);
 			index !== -1 && (tmp.linker += U.GUID(3));
-			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + F.datetime.getTime()), '1 month');
+			$.cookie(CONF.cookie, ENCRYPT(tmp.id + '|' + $.ip + '|' + new Date().getTime()), '1 month');
 			MAIN.users.quicksort('name');
 			MAIN.refresh && MAIN.refresh();
 			OPERATION('users.save', NOOP);
@@ -113,7 +115,7 @@ NEWSCHEMA('User',function(schema) {
 			delete MAIN.newusers[index];
 			var new_otp = U.random_number(6);
 		    user.otp = new_otp;
-
+			user.ticks  = new Date().getTime();
 			//resend otp confirmation code
 			$.callback(user);
 		}
@@ -123,7 +125,7 @@ NEWSCHEMA('User',function(schema) {
 				return;
 			}
 			var otp = U.random_number(6);
-			var new_user ={name : model.name, phone : model.phone,otp : otp};
+			var new_user ={name : model.name, phone : model.phone,otp : otp,ticks : new Date().getTime()};
 			MAIN.newusers.push(new_user);
 			console.log(MAIN.newusers);
 			$.callback(new_user);
@@ -138,6 +140,7 @@ NEWSCHEMA('User',function(schema) {
 			delete MAIN.logusers[index];
 			var new_otp = U.random_number(6);
 		    user.otp = new_otp;
+		    user.ticks = new Date().getTime();
 
 			//resend otp confirmation code
 			$.callback(user);
@@ -148,7 +151,7 @@ NEWSCHEMA('User',function(schema) {
 				return;
 			}
 			var otp = U.random_number(6);
-			var new_user ={name : model.name, phone : model.phone,otp : otp};
+			var new_user ={name : model.name, phone : model.phone,otp : otp,ticks : new Date().getTime()};
 			MAIN.logusers.push(new_user);
 			console.log(MAIN.logusers);
 			$.callback(new_user);

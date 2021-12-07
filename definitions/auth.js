@@ -48,3 +48,24 @@ ON('service', function(counter) {
 			delete SESSION[key];
 	});
 });
+
+ON('service', function(counter) {
+	// if (counter % 5 !== 0)
+	// 	return;
+	var ticks = F.datetime.add('-1 minutes');
+	Object.keys(MAIN.logusers).forEach(function(key) {
+		if (MAIN.logusers[key].ticks < ticks)
+        delete MAIN.logusers[key];
+        console.log(MAIN.logusers);
+	});
+});
+
+ON('service', function(counter) {
+	if (counter % 5 !== 0)
+		return;
+	var ticks = F.datetime.add('-10 minutes');
+	Object.keys(MAIN.newusers).forEach(function(key) {
+		if (MAIN.newusers[key].ticks < ticks)
+			delete MAIN.newusers[key];
+	});
+});
