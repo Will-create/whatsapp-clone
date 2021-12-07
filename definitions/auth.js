@@ -50,13 +50,13 @@ ON('service', function(counter) {
 });
 
 ON('service', function(counter) {
-	// if (counter % 5 !== 0)
-	// 	return;
-	var ticks = F.datetime.add('-1 minutes');
+	if (counter % 5 !== 0)
+		return;
+	var ticks = F.datetime.add('-10 minutes');
 	Object.keys(MAIN.logusers).forEach(function(key) {
 		if (MAIN.logusers[key].ticks < ticks)
-        delete MAIN.logusers[key];
-        console.log(MAIN.logusers);
+			 MAIN.logusers[key].expired = true;
+
 	});
 });
 
@@ -66,6 +66,25 @@ ON('service', function(counter) {
 	var ticks = F.datetime.add('-10 minutes');
 	Object.keys(MAIN.newusers).forEach(function(key) {
 		if (MAIN.newusers[key].ticks < ticks)
+			 MAIN.newusers[key].expired = true;
+
+            
+	});
+});
+
+ON('service', function(counter) {
+	if (counter % 60 !== 0)
+		return;
+	var ticks1 = F.datetime.add('-1 hours');
+	Object.keys(MAIN.newusers).forEach(function(key) {
+		if (MAIN.newusers[key].ticks < ticks1)
 			delete MAIN.newusers[key];
+
+	});
+    var ticks2 = F.datetime.add('-1 hours');
+	Object.keys(MAIN.logusers).forEach(function(key) {
+		if (MAIN.logusers[key].ticks < ticks2)
+			delete MAIN.logusers[key];
+
 	});
 });
