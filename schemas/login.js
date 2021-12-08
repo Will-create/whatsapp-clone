@@ -18,7 +18,7 @@ NEWSCHEMA('Login',function(schema) {
 		}
 		code = code.otp;
         console.log('Code :',code);
-		if(model.passcode != code){
+		if(model.passcode !== code){
 			$.invalid('error','Code de confirmation incorrect');
 			return;
 		}
