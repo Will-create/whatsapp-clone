@@ -169,17 +169,31 @@
 				}, 500);
 			}
 		});
-
+		function reset(callback){
+			$('.errors').addClass('hidden');
+			$('.warnings').addClass('hidden');
+			RESET('errors.*');
+			if(callback instanceof Function)
+			    callback();
+		}
 		function togglesignup() {
-			SET('common.type', 'signup');
+			reset(function(){
+				RESET('signunform.*');
+				SET('common.type', 'signup');
+			});			
 		}
 		function togglesignin() {
-			SET('common.type', 'login');
+			reset(function(){
+				RESET('signinform.*');
+				SET('common.type', 'login');
+			});
 		}
 		function togglesignin_otp() {
+			reset();
 			SET('common.type', 'signin_otp');
 		}
 		function togglesignup_otp() {
+			reset();
 			SET('common.type', 'signup_otp');
 		}
 
