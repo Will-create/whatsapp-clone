@@ -156,6 +156,4 @@ COMPONENT('chatbody',  function(self) {
 		self.items[obj.id] = obj;
 		self.element.append(self.template(obj));
 	};
-
-	
 });

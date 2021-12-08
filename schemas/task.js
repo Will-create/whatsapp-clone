@@ -1,7 +1,5 @@
 NEWSCHEMA('Task',function(schema) {
-
 	schema.define('body', 'String(200)', true);
-
 	schema.setQuery(function(error, options, callback, controller) {
 		NOSQL('tasks').find().where('iduser', controller.user.id).callback((err, response) => callback(response));
 	});

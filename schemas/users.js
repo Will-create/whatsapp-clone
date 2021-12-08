@@ -1,7 +1,6 @@
 const { F } = require("total4");
 
 NEWSCHEMA('User',function(schema) {
-
 	schema.define('id', 'UID');
 	schema.define('name', 'String(50)');
 	schema.define('phone', 'Phone', true);
