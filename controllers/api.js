@@ -1,5 +1,7 @@
+
 const BASE64 = { width: 0, height: 0 };
 exports.install = function() {
+	ROUTE('GET /api/profile/',profile);
     ROUTE('-POST     /api/login/ *Login --> exec');
 		// Common
 	ROUTE('+GET      /logoff/', logoff);
@@ -39,12 +41,43 @@ exports.install = function() {
 
 function profile(){
     var self = this;
+	console.log(main);
     var profile = {
         "id" : 1, 
         "firstname" : "Louis",
         "lastname" : "Bertson",
         "email" : "louisbertson@gmail.com",
-        "image" : "/img/bugatti.jpg"
+        "image" : "/img/bugatti.jpg",
+		"name"  : "Louis Bertson",	
+		"email" : "louisbertson@gmail.com",
+		"notifications" : true,
+		"notificationsemail" : true,
+		"notificationsphone" : false,
+		"password" : "ssjfhzfsufsslfjhrogjzrgoj",
+		"status"  : "availlable",
+		"photo"     : "/img/bugatti.jpg",
+		"phone"   : "+22652133010",
+		"sounds" : true,
+		"darkmode" : false,
+		"dateformat" : ['yyyy-MM-dd', 'dd.MM.yyyy', 'MM.dd.yyyy'],
+		"timeformat" : [12, 24],
+		"numberformat" : [1, 2, 3, 4],
+		"volume" :      4,
+		"desktop" : [1,2,3],
+		"otp" : false,
+		"otpsecret" : "louisbertson",
+		"language" : "en",
+		"pin"      : "1234",
+		"locking"   : 1,
+		"colorscheme" : "blueviolet",
+		"background"  : "",
+		"supervisorid" : null,
+		"here" : "there",
+		"deputyid" : null
+		
+
+  
+
     }
     self.json(profile);
 };
