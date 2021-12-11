@@ -15,7 +15,7 @@
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
-			"date": "2021-12-11T05:49:39.360Z",
+			"date": "2021-12-11T05:53:39.367Z",
 			"textdb": {
 				"size": 0,
 				"pendingwrite": 0,
@@ -25,7 +25,7 @@
 				"reading": 0,
 				"writing": 0
 			},
-			"memory": 14.29,
+			"memory": 14.47,
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -46,7 +46,7 @@
 			"errors": 0,
 			"timeouts": 0,
 			"online": 0,
-			"uptime": 4,
+			"uptime": 8,
 			"download": 0,
 			"upload": 0.041
 		}
