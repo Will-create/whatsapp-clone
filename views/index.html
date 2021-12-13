@@ -40,19 +40,16 @@
 	<div data-jc="nativenotifications" data-jc-path="common.notifications"></div>
 	<div data---="notifications__null__date:dd.MM.yyyy HH:mm;native:true"></div>
 	<div data---="websocket__message__url:/;encoder:false"></div>
-	
 	<section class="panel">
-
 		<div class="user">
 			<div class="user-name singleline"><img src="/photos/@{user.picture}.jpg" height="30" alt="@{user.name}" />@{user.name}</div>
-			<div class="user-stats"><i class="fa fa-circle online mr5" data-b="common.online" data-b-class="n => n ? '+online -offline' : '-online +offline'"></i>@(Online:)<span data-b="current.online" data-b-html="n => n + 1" class="b ml5"></span> / <span data-b="current.users.length" data-b-html="n => Tangular.helpers.pluralize(n, @('# users', '# user', '# users', '# users'))"></span></div>
+			<div class="user-stats"><i class="fa fa-circle online mr5" data-bind="common.online__.class:n => n ? '+online -offline' : '-online +offline'"></i>@(Online:)<span data-bind="current.online__html:n => n + 1" class="b ml5"></span> / <span data-b="current.users.length__html:n => Tangular.helpers.pluralize(n, @('# users', '# user', '# users', '# users'))"></span></div>
 			<div class="user-settings">
 				<i class="fa fa-volume-up exec" data-path="common.sounds" data-value="!common.sounds" data-b="common.sounds" data-b-class="n => n ? '+fa-volume-up -off -fa-volume-off' : '-fa-volume-up +off +fa-volume-off'"></i>
 				<i class="fa fa-bell exec" data-path="common.notifications" data-value="!common.notifications" data-b="common.notifications" data-b-class="n => n ? '+fa-bell -off -fa-bell-slash-o' : '-fa-bell +off +fa-bell-slash-o'"></i>
 			</div>
 			<div class="clearfix"></div>
 		</div>
-
 		<div data-jc="searchbox" data-jc-path="panel.search" data-placeholder="@(Search in the panel)"></div>
 		<hr class="nmt nmb" />
 		<div id="panel">
