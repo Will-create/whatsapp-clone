@@ -1,19 +1,17 @@
 @{layout('')}
-@{title(config.name)}
+@{title(user.name)}
 
 <!DOCTYPE html>
-<html class="noscroll windowed">
+<html>
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=10" />
 	<meta name="format-detection" content="telephone=no" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="robots" content="all,follow" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-title" content="@{'%name'}" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/icon.png" />
-	<link rel="manifest" href="/manifest.json" />
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,700&subset=latin,latin-ext" />
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/codemirror.min.css" />
@@ -26,30 +24,31 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/favico.js/0.3.10/favico.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
-	@{import('meta', 'head', 'spa.min@18.js','spa.min@18.css','default.css','default.js','favicon.ico')}
-	<script>var user = EMPTYOBJECT</script>
+	@{import('meta', 'default.css', 'default.js', 'favicon.ico', 'head')}
 </head>
-<body data---="exec" class="theme-@{user.theme}@{if user.sa} sa@{fi}">
-	<div data---="sounds__common.volume"></div>
-	<div data---="calendar__null__today:@(Set today);firstday:0"></div>
-	<div data---="clipboardimage__null__quality:90"></div>
-	<div data---="confirm"></div>
-	<div data---="fontawesomebox__fa__search:@(Search icons ...)" class="hidden" ></div>
-	<div data---="loading" class="ui-loading hidden"></div>
-	<div data---="message__null__style:1"></div>
+<body data-jc="exec,binder" class="theme-@{user.theme}@{if user.sa} sa@{fi}">
+	<div data-jc="audio" data-jc-path="common.volume"></div>
+	<div data-jc="calendar" data-days="@(SU,MO,TU,WE,TH,FR,SO)" data-months="@(January,February,March,April,May,June,July,August,September,October,November,December)" data-today="@(Set today)" data-firstday="0"></div>
+	<div data-jc="clipboardimage"></div>
+	<div data-jc="confirm"></div>
+	<div data-jc="fontawesome" data-search="@(Search icons ...)"></div>
+	<div data-jc="loading" class="ui-loading"></div>
+	<div data-jc="message" data-button="@(Close)"></div>
 	<div data-jc="nativenotifications" data-jc-path="common.notifications"></div>
-	<div data---="notifications__null__date:dd.MM.yyyy HH:mm;native:true"></div>
-	<div data---="websocket__message__url:/;encoder:false"></div>
+	<div data-jc="websocket" data-jc-id="websocket" data-url="/"></div>
+
 	<section class="panel">
+
 		<div class="user">
 			<div class="user-name singleline"><img src="/photos/@{user.picture}.jpg" height="30" alt="@{user.name}" />@{user.name}</div>
-			<div class="user-stats"><i class="fa fa-circle online mr5" data-bind="common.online__.class:n => n ? '+online -offline' : '-online +offline'"></i>@(Online:)<span data-bind="current.online__html:n => n + 1" class="b ml5"></span> / <span data-b="current.users.length__html:n => Tangular.helpers.pluralize(n, @('# users', '# user', '# users', '# users'))"></span></div>
+			<div class="user-stats"><i class="fa fa-circle online mr5" data-b="common.online" data-b-class="n => n ? '+online -offline' : '-online +offline'"></i>@(Online:)<span data-b="current.online" data-b-html="n => n + 1" class="b ml5"></span> / <span data-b="current.users.length" data-b-html="n => Tangular.helpers.pluralize(n, @('# users', '# user', '# users', '# users'))"></span></div>
 			<div class="user-settings">
 				<i class="fa fa-volume-up exec" data-path="common.sounds" data-value="!common.sounds" data-b="common.sounds" data-b-class="n => n ? '+fa-volume-up -off -fa-volume-off' : '-fa-volume-up +off +fa-volume-off'"></i>
 				<i class="fa fa-bell exec" data-path="common.notifications" data-value="!common.notifications" data-b="common.notifications" data-b-class="n => n ? '+fa-bell -off -fa-bell-slash-o' : '-fa-bell +off +fa-bell-slash-o'"></i>
 			</div>
 			<div class="clearfix"></div>
 		</div>
+
 		<div data-jc="searchbox" data-jc-path="panel.search" data-placeholder="@(Search in the panel)"></div>
 		<hr class="nmt nmb" />
 		<div id="panel">
