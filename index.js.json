@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
 	"pid": 382358,
 	"date": "2021-12-08T12:09:41.629Z",
+=======
+	"pid": 228718,
+	"date": "2021-12-11T05:46:39.303Z",
+>>>>>>> d06432776d9f455569482aa7d2836be01429a24b
 	"port": 8000,
 	"ip": "0.0.0.0",
 	"stats": [
@@ -11,11 +16,19 @@
 				"total": "4",
 				"app": "1.0.0"
 			},
+<<<<<<< HEAD
 			"pid": 382358,
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
 			"date": "2021-12-08T13:23:53.053Z",
+=======
+			"pid": 228718,
+			"thread": "",
+			"mode": "debug",
+			"overload": 0,
+			"date": "2021-12-11T19:07:35.161Z",
+>>>>>>> d06432776d9f455569482aa7d2836be01429a24b
 			"textdb": {
 				"size": 0,
 				"pendingwrite": 0,
@@ -25,7 +38,11 @@
 				"reading": 0,
 				"writing": 0
 			},
+<<<<<<< HEAD
 			"memory": 12.27,
+=======
+			"memory": 12.77,
+>>>>>>> d06432776d9f455569482aa7d2836be01429a24b
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -40,15 +57,26 @@
 			"dbrm": 0,
 			"dbwm": 0,
 			"usage": 0,
+<<<<<<< HEAD
 			"requests": 143,
+=======
+			"requests": 149,
+>>>>>>> d06432776d9f455569482aa7d2836be01429a24b
 			"pending": 0,
 			"external": 0,
-			"errors": 0,
+			"errors": 6,
 			"timeouts": 0,
 			"online": 1,
+<<<<<<< HEAD
 			"uptime": 75,
 			"download": 0,
 			"upload": 0.079
+=======
+			"uptime": 176,
+			"download": 0,
+			"upload": 0.201,
+			"lasterror": "2021-12-11T10:06:54.210Z api - TypeError: Cannot read properties of undefined (reading 'user')\n    at SchemaBuilderEntity.onQuery (/home/louisb/Desktop/Total4/ws/schemas/task.js:6:52)\n    at SchemaBuilderEntityProto.perform (/home/louisb/Desktop/Total4/ws/node_modules/total4/builders.js:2564:9)\n    at SchemaBuilderEntityProto.exec (/home/louisb/Desktop/Total4/ws/node_modules/total4/builders.js:2496:7)\n    at Controller.controller_json_workflow (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:18862:11)\n    at IncomingMessage.PROTO.$total_execute2 (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16519:31)\n    at IncomingMessage.PROTO.$total_execute (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16484:9)\n    at IncomingMessage.PROTO.$total_authorize (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16613:9)\n    at AuthOptions.req_authorizetotal [as $callback] (/home/louisb/Desktop/Total4/ws/node_modules/total4/index.js:16054:6)\n    at AuthOptionsProto.next.AuthOptionsProto.callback (/home/louisb/Desktop/Total4/ws/node_modules/total4/builders.js:5518:7)\n    at AuthOptionsProto.success (/home/louisb/Desktop/Total4/ws/node_modules/total4/builders.js:5489:7)"
+>>>>>>> d06432776d9f455569482aa7d2836be01429a24b
 		}
 	]
 }

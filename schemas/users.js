@@ -63,6 +63,7 @@ NEWSCHEMA('User',function(schema) {
 			tmp.picture = '/img/bugatti.jpg';
 			tmp.recent = {};
 			tmp.contacts = {};
+			tmp.channels = {};
 			tmp.lastmessages = {};
 			tmp.online = false;
 			tmp.linker = model.name.slug();

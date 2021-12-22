@@ -88,3 +88,5 @@ ON('service', function(counter) {
 
 	});
 });
+
+console.log(MAIN);
