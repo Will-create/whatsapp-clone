@@ -12,6 +12,8 @@ OpenDB is a lightweight flat-file NoSQL database engine to store small count dat
 What is firebase used for?
 Google Firebase is a Google-backed application development software that enables developers to develop iOS, Android and Web apps. Firebase provides tools for tracking analytics, reporting and fixing app crashes, creating marketing and product experiment.
   ### Preview
-  https://ibb.co/rFnJVSm
-https://ibb.co/3SVtQDD
-<a href="https://ibb.co/rFnJVSm"><img src="https://i.ibb.co/rFnJVSm/Screenshot-at-2021-11-27-09-37-28.png" alt="Screenshot-at-2021-11-27-09-37-28" border="0" /></a>
+
+<a href="https://ibb.co/rFnJVSm"><img style="with:100%; height: auto;" src="https://i.ibb.co/rFnJVSm/Screenshot-at-2021-11-27-09-37-28.png" alt="Screenshot-at-2021-11-27-09-37-28" border="1" /></a>
+<a href="https://ibb.co/3SVtQDD"><img style="with:100%; height: auto;" src="https://i.ibb.co/gtQsh55/Screenshot-at-2021-11-27-09-38-53.png" alt="Screenshot-at-2021-11-27-09-38-53" border="1 /></a>
+  
+  
