@@ -14,7 +14,5 @@ Google Firebase is a Google-backed application development software that enables
   ### Preview
 <a href="https://ibb.co/jHHCMTq"><img src="https://i.ibb.co/q7bwvfd/Screenshot-at-2021-11-27-09-37-28.png" alt="Screenshot-at-2021-11-26-15-33-11" border="0"></a>
 
-<a href="https://ibb.co/jHHCMTq"><img src="https://i.ibb.co/q7bwvfd/Screenshot-at-2021-11-27-09-37-28.png" alt="Screenshot-at-2021-11-26-15-33-11" border="0"></a>
+<a href="https://ibb.co/jHHCMTq"><img src="https://i.ibb.co/ygKL7ww/Screenshot-at-2021-11-27-09-38-53.png" alt="Screenshot-at-2021-11-26-15-33-11" border="0"></a>
 
-  
-  
