@@ -1,6 +1,6 @@
 
 exports.install = function() {
-	ROUTE('+GET /*');
+	ROUTE('+GET /*',home);
 	ROUTE('-GET /*',login);
 	ROUTE('GET /test/',test);
 	ROUTE('FILE /j-*.html',cdn);
@@ -13,7 +13,10 @@ function login(){
 	self.view('login');
 }
 
-
+function home(){
+	var self = this;
+	self.view('index');
+}
 
 async function test (){
 	var self  = this;

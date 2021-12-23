@@ -1,0 +1,53 @@
+
+<div data-scope="home">
+	<div data---="viewbox__null__scrollbar:1;parent:window;scrollbarshadow:1">
+		
+	<h1>Home page</h1>
+	</div>
+</div>
+
+
+<script>
+	PLUGIN('home', function(exports) {
+    
+		// You can define your custom functions or properties
+		exports.reload = function() {
+			SET('current.title', '@( Home )' + ' ' + user.name);
+			SET('current.description', '@(Private to-do tasks)');
+			$('#messagebox').addClass('hidden');
+			EMIT('resize');
+			AJAX('GET /api/tasks/', 'tasks.items');
+			WAIT(function() {
+				return current.users !== EMPTYARRAY;
+			});
+			SET('common.stats', null);
+		};
+		
+		exports.myfunction_2 = function() {
+			console.log('something');
+		};    
+		
+		exports.myfunction_N = function() {
+			console.log('something');        
+		};
+		
+		// 2 way data-binding watcher
+		// "?" will be replaced for the name of plugin
+		WATCH('?.path', function(path, value) {
+			// ...
+		});
+	
+		// 2 way data-binding watcher
+		// Path will be to targeted to "window.absolute.path.to.variable"
+		WATCH('absolute.path.to.variable', function(path, value) {
+			// ...
+		});
+		
+		// Events
+		ON('some.event', function(req) {
+			// ...
+		});
+	
+	});
+
+</script>

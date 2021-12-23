@@ -30,8 +30,9 @@ NEWSCHEMA('Login',function(schema) {
 		$.cookie(CONF.cookie, ENCRYPT(user.id + '|' + $.ip + '|' + F.datetime.getTime()), '1 month');
 		var index = MAIN.logusers.findIndex('phone', user.phone);
 		delete MAIN.logusers[index];
-		console.log(MAIN.logusers);
-		// NOSQL('users').counter.hit('all').hit(user.id);
+	
+	    //NOSQL('users').counter.hit('all').hit(user.id);
+		$.user = user;
 		$.callback(SUCCESS(true));
 	});
 });

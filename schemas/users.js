@@ -60,7 +60,7 @@ NEWSCHEMA('User',function(schema) {
 			tmp.unread = {};
 			tmp.passcode = '';
 			tmp.status = {};
-			tmp.picture = '/img/bugatti.jpg';
+			tmp.picture = '/img/profiles/bugatti.jpg';
 			tmp.recent = {};
 			tmp.contacts = {};
 			tmp.channels = {};

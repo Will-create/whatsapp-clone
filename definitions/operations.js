@@ -34,7 +34,7 @@ NEWOPERATION('users.load', function($) {
 					!user.blacklist && (user.blacklist = {});
 					!user.theme && (user.theme = 'dark');
 					// Cleaner for unhandled assignment
-
+					
 					delete user.recent[''];
 					delete user.recent[user.id];
 					delete user.unread[user.id];

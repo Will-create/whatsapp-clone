@@ -19,7 +19,7 @@ AUTH(function($) {
     }
     if(SESSION[id] && !SESSION[id].blocked){
         SESSION[id].ticks = NOW;
-        $.success(true,SESSION[id]);
+        $.success(SESSION[id]);
     }
     var user = MAIN.users.findItem('id',id);
     if(user && !user.blocked){
@@ -27,7 +27,7 @@ AUTH(function($) {
         user.dtlogged = NOW;
         OPERATION('users.save',NOOP)
         SESSION[id] = user;
-        $.success(true,SESSION[id]);
+        $.success(SESSION[id]);
         return ;
     }
 
