@@ -145,7 +145,6 @@ body{
     box-sizing: border-box;
     padding-bottom: 49px;
     background-color: white;
-    overflow: hidden;
 }
 
 .single_chat{
@@ -191,7 +190,6 @@ body{
     display: flex;
     align-items: center;
     height: 100%;
-    background-color: green;
 }
 
 .content_container_inner{
@@ -200,8 +198,7 @@ body{
     margin-left: 20px;
     box-sizing: border-box;
     width: 100%;
-    background-color: green;
-}
+    }
 
 .user_name{
     font-family: 'Helvetica Neue Bold';
@@ -227,4 +224,16 @@ body{
     font-size: 18px;
     vertical-align: -3px;
     line-height: 19px;
+}
+.user_name span, .read{
+    color: #00d260;
+    font-family : 'Helvetica Neue Medium';
+    font-size: 16px;
+    float: right;
+}
+
+
+.read{
+    color: rgba(165,165,165,0.8)!important;
+
 }
