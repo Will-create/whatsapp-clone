@@ -37,7 +37,7 @@
 				<div class="single_tab">CALLS</div>
 			</div>
         </div>
-		<div data---="viewbox__null__scrollbar:1;parent:.messages_section;scrollbarshadow:1" class="messages_section dragscroll">
+		<div  class="messages_section dragscroll">
 			<div class="single_chat">
 				<div class="image_container">
 					<img src="/img/profiles/agape.jpg">
@@ -168,11 +168,33 @@
 		]
 	};
 
-	common.timer = 1;
+	$('document').ready(function(){
 
-	setInterval(function() {
-		INC('common.timer');
-	}, 1000);
+
+		(function(){
+			var previousScroll = 0;
+	
+			$('.messages_section').scroll(function(){
+				var currentScroll = $('.messages_section').scrollTop();
+				if(currentScroll > previousScroll){
+					if(currentScroll > 0 && currentScroll <= 90){
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+					}else{
+						$('.title_bar').css('margin-top', '-90px');
+					}
+				}else{
+					if( currentScroll <= 90){
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+					}else{
+						$('.title_bar').css('margin-top', '-90px');
+					}
+				}
+	
+				previousScroll = currentScroll;
+			});
+	
+		})();
+	});
 	</script>
 </body>
 </html>
