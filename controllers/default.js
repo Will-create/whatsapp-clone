@@ -12,12 +12,10 @@ function login(){
 	var self = this;
 	self.view('login');
 }
-
 function home(){
 	var self = this;
 	self.view('index');
 }
-
 async function test (){
 	var self  = this;
 	var data = {id : 'jjdjdjdjkdkdkdkdjdjd', name : "LOuis", email : "louisbertson@gmail.com"};

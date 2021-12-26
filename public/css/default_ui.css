@@ -35,22 +35,20 @@ body{
     src: url('/fonts/HelveticaNeueBold.ttf');
 }
 .container{
-    width: 506px;
-    height: 900px;
-    display: block;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
-    border-top: solid 35px #054d44;
-    background-color: black;
+    background-color: blueviolet;
     overflow: hidden;
-    margin: 50px auto;
+    margin: 0;
     position: relative;
     padding: 0px;
-    
-
 }
 
 .title_bar{
-    background-color: #075e54;
+    background-color: blueviolet;
     width: 100%;
     height: 150px;
 
@@ -59,16 +57,26 @@ body{
     overflow: hidden;
     width: 100%;
     display: block;
+    
     margin: 0 auto; 
     height: 90px;
 }
-.tab_menu{
+.botomtab_menu{
     width: 100%;
     overflow: hidden;
     height: 60px;
+  
 
 }
+.toptab_menu{
+    width: 100%;
+    overflow: hidden;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    
 
+}
 .title_container{
     font-family:'Helvetica Neue Light' ;
     color : white;
@@ -83,17 +91,18 @@ body{
 }
 
 .single_tab{
-    width: 25%;
+    width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     box-sizing : border-box;
     float: left;
     font-family: 'Helvetica Neue Medium';
     letter-spacing: 1.3px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 12px;
     border-bottom: solid 3px transparent;
     color: rgba(165,165,165,0.8);
 }       
@@ -141,16 +150,17 @@ body{
 
 .messages_section{
     width: 100%;
-    height: calc(100% - 80px);
+    height: calc(100% - 120px);
     box-sizing: border-box;
     padding-bottom: 49px;
     background-color: white;
     overflow: scroll;
+    border-radius: 30px;
 }
 
 .single_chat{
     width: 100%;
-    height: 110px;
+    height: 80px;
     position: relative;
     box-sizing: border-box;
     padding: 10px 30px;
@@ -175,7 +185,7 @@ body{
 
 .image_container{
     height: 100%;
-    width: 80px;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,8 +213,8 @@ body{
 
 .user_name{
     font-family: 'Helvetica Neue Bold';
-    color: black;
-    font-size: 22px;
+    color: blueviolet;
+    font-size: 12px;
     width: 100%;
     display: block;
     letter-spacing: 1.1px;
@@ -222,14 +232,14 @@ body{
     text-align: center;
     color: white;
     font-family: "Helvetica Neue Bold";
-    font-size: 18px;
+    font-size: 12px;
     vertical-align: -3px;
     line-height: 19px;
 }
 .user_name span, .read{
     color: #00d260;
     font-family : 'Helvetica Neue Medium';
-    font-size: 16px;
+    font-size: 12px;
     float: right;
 }
 
@@ -237,4 +247,121 @@ body{
 .read{
     color: rgba(165,165,165,0.8)!important;
 
+}
+
+.android_controls{
+    width: 100%;
+    height: 70px;
+   
+    background-color: blueviolet;
+
+}
+
+.controls_inner{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+
+}
+.controls_inner div{
+    width: 33.3333333%;
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.controls_inner div i{
+    font-size: 30px;
+}
+
+.lightbox{
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999999999999;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: rgba(16,16,16,0.6);
+    display: none;
+}
+.lightbox_container{
+    width: 60vw;
+    height: 80vh;
+    background-color:white;
+    position: relative;
+    display: block;
+}
+
+.lightbox_name{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    letter-spacing: 1.1px;
+    left: 0;
+    padding: 7px 7px;
+    font-family: 'Helvetica Neue Light';
+    font-size: 22px;
+    color: white;
+    background-color: rgba(16,16,16,0.5);
+}
+
+.lightbox_image{
+    width: 100%;
+    height: 80%;
+}
+.lightbox_image img{
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width:900px) {
+    .lightbox_container{
+        width: 80vw;
+        height: 60vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+}
+
+@media (max-width:700px) {
+    .lightbox_container{
+        width: 80vw;
+        height: 80vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+}
+@media (max-width:500px) {
+    .lightbox_container{
+        width: 80vw;
+        height: 60vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+}
+
+.lightbox_controls{
+    width: 100%;
+    height: 20%;
+    background-color: white;
+}
+.one_control{
+    width: 25%;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one_control i{
+    color: blueviolet;
 }

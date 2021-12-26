@@ -15,9 +15,23 @@
 	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css','default_ui.js', 'default_ui.css', 'manifest')}
 </head>
 <body>
-
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
+		<div class="lightbox">
+			<div class="lightbox_container">
+				<div class="lightbox_name">Louis Bertson</div>
+
+				<div class="lightbox_image">
+					<img src="/img/profiles/bugatti.jpg" alt="Bugatti car">
+				</div>
+				<div class="lightbox_controls">
+					<div class="one_control"><i class="fa fa-comment-dots" ></i></div>
+					<div class="one_control"><i class="fa fa-phone" ></i></div>
+					<div class="one_control"><i class="fa fa-video" ></i></div>
+					<div class="one_control"><i class="fa fa-info" ></i></div>
+				</div>
+			</div>
+		</div>
         <div class="title_bar">
             <div class="title_top">
                 <div class="title_container">
@@ -30,23 +44,20 @@
 					</div>
 				</div>
             </div>
-			<div class="tab_menu">
-				<div class="single_tab active">CHATS</div>
-				<div class="single_tab">GROUPS</div>
-				<div class="single_tab">STATUS</div>
-				<div class="single_tab">CALLS</div>
+			<div class="toptab_menu">
+				<div class="single_tab"><i class="fa fa-circle-notch"></i>Status</div>
+				<div class="single_tab"><i class="fa fa-phone"></i>Calls</div>
 			</div>
         </div>
 		<div  class="messages_section dragscroll">
 			<div class="single_chat">
 				<div class="image_container">
 					<img src="/img/profiles/agape.jpg">
-				</div>
+					</div>
 				<div class="content_container">
 					<div class="content_container_inner">
 						<p class="user_name"> <name>Agape Raston</name> <span> 08:56 AM</span> </p>
 						<p class="chat_content">I have understand You <span>99</span> </p>
-
 			   </div>
 				</div>
 			</div>
@@ -58,7 +69,6 @@
 					<div class="content_container_inner">
 						<p class="user_name"> <name>Chris</name> <span>11:56 AM</span> </p>
 						<p class="chat_content">Where is your Bugatti?<span>87</span> </p>
-
 			   </div>
 				</div>
 			</div>
@@ -70,7 +80,6 @@
 					<div class="content_container_inner">
 						<p class="user_name"> <name>Dear maman</name> <span>02:56 PM</span> </p>
 						<p class="chat_content">Courage...<span>1</span> </p>
-
 			   </div>
 				</div>
 			</div>
@@ -82,7 +91,6 @@
 					<div class="content_container_inner">
 						<p class="user_name"> <name>Peter Sirka</name> <span>01:56 AM</span> </p>
 						<p class="chat_content">It depends on you<span>56</span> </p>
-
 			   </div>
 				</div>
 			</div>
@@ -94,7 +102,6 @@
 					<div class="content_container_inner">
 						<p class="user_name"> <name>Elon Musk</name> <span>02:56 AM</span> </p>
 						<p class="chat_content">These 6 months can change your life... <span>65</span> </p>
-
 			   </div>
 				</div>
 			</div>
@@ -104,9 +111,8 @@
 				</div>
 				<div class="content_container">
 					<div class="content_container_inner">
-						<p class="user_name"> <name>Sonny Court</name> <span>12:56 AM</span> </p>
-						<p class="chat_content">Reveille le Goggins qui dors en toi ... <span>37</span> </p>
-
+						<p class="user_name"> <name>Sonny Court</name> <span class="read">YESTERDAY</span> </p>
+						<p class="chat_content">Reveille le Goggins qui dors en toi ...	</p>
 			   </div>
 				</div>
 			</div>
@@ -116,9 +122,8 @@
 				</div>
 				<div class="content_container">
 					<div class="content_container_inner">
-						<p class="user_name"> <name>Dear Brother</name> <span>00:56 AM</span> </p>
-						<p class="chat_content">C'est bien<span>3</span> </p>
-
+						<p class="user_name"> <name>Dear Brother</name> <span class="read">WEDNESDAY</span> </p>
+						<p class="chat_content">C'est bien</p>
 			   </div>
 				</div>
 			</div>
@@ -128,16 +133,22 @@
 				</div>
 				<div class="content_container">
 					<div class="content_container_inner">
-						<p class="user_name"> <name>Edith</name> <span>07:56 AM</span> </p>
-						<p class="chat_content">cc <span>13</span> </p>
-
+						<p class="user_name"> <name>Edith</name> <span class="read">SATURDAY</span> </p>
+						<p class="chat_content">cc, comment tu vas? </p>
 			   </div>
 				</div>
 			</div>
-	
+		</div>
+		<div  class="android_controls">
+			<div class="botomtab_menu">
+				<div class="single_tab "><i class="fa fa-camera"></i>Camera</div>
+				<div class="single_tab "><i class="fa fa-comment-dots"></i>Chats</div>
+				<div class="single_tab"><i class="fa fa-users"></i>Groups</div>
+				<div class="single_tab"><i class="fa fa-circle-notch"></i>Status</div>
+				<div class="single_tab"><i class="fa fa-phone"></i>Calls</div>
+			</div>
 		</div>
 	</div>
-
 	<script>
 	var common = {};
 	common.version = '1.67';
@@ -167,10 +178,7 @@
 			'/img/icon.png'
 		]
 	};
-
 	$('document').ready(function(){
-
-
 		(function(){
 			var previousScroll = 0;
 	
@@ -194,6 +202,34 @@
 			});
 	
 		})();
+		//
+		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
+		//
+		$('.image_container').click(function(){
+			var image = $(this).children('img').attr('src');
+			var name = $(this).parent().find('.user_name name').text(); 
+			$('.lightbox_name').text(name);
+			$('.lightbox_image img').attr('src',image);
+			$('.lightbox').css('display','flex');
+			$('.lightbox').animate({opacity : 1},600);
+			$('.lightbox_container').show();
+		});
+		//hide lightbox
+		$('.lightbox').click(function(e){
+			console.log('clicked');
+			var q = $(this);
+			if($(e.target).attr('class') == 'lightbox'){
+				 q.animate({opacity : 0},600);
+
+				 $('.lightbox_container').hide('slow');
+
+				 setTimeout(function(){
+					q.css('display','none');
+				 },400);
+			}
+		});
+
+		
 	});
 	</script>
 </body>
