@@ -365,3 +365,18 @@ body{
 .one_control i{
     color: blueviolet;
 }
+
+
+.search_bar{
+    width: 100%;
+    position: absolute;
+    height: 60px;
+    box-shadow: -1px -10px 13px 10px #101010;
+    border: none;
+    font-family: 'Helvetica Neue Light';
+    font-size: 24px;
+    color: #101010;
+    text-decoration: underline;
+    padding: 0px 10px 0px 70px;
+    
+}
