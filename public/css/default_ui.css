@@ -104,7 +104,7 @@ body{
     font-weight: 600;
     font-size: 12px;
     border-bottom: solid 3px transparent;
-    color: rgba(165,165,165,0.8);
+    color: white
 }       
 .single_tab:hover, .active{
     color: white;
@@ -176,7 +176,7 @@ body{
     width: 50%;
     height: 1px;
     content: "";
-    background-color: rgba(165,165,165,0.8);
+    background-color: white
     left: 50%;
     transform: translate(-50%,0);
     position: absolute;
@@ -290,7 +290,7 @@ body{
 }
 .lightbox_container{
     width: 60vw;
-    height: 80vh;
+    height: 70vh;
     background-color:white;
     position: relative;
     display: block;
@@ -322,7 +322,7 @@ body{
 @media (max-width:900px) {
     .lightbox_container{
         width: 80vw;
-        height: 60vh;
+        height: 50vh;
         background-color:white;
         position: relative;
         display: block;
@@ -332,7 +332,7 @@ body{
 @media (max-width:700px) {
     .lightbox_container{
         width: 80vw;
-        height: 80vh;
+        height: 60vh;
         background-color:white;
         position: relative;
         display: block;
@@ -341,7 +341,7 @@ body{
 @media (max-width:500px) {
     .lightbox_container{
         width: 80vw;
-        height: 60vh;
+        height: 50vh;
         background-color:white;
         position: relative;
         display: block;
@@ -379,4 +379,22 @@ body{
     text-decoration: underline;
     padding: 0px 10px 0px 70px;
     
+}
+
+
+textarea:focus, input:focus{
+    outline: none;
+}
+.back_trigger{
+    width: 34px;
+    height: 39px;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 999;
+}
+.back_trigger i{
+  color: blueviolet;
 }
