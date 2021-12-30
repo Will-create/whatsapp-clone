@@ -143,9 +143,10 @@ body{
 
 }
 
-.icon_container .fa{
+.icon_container div i{
+    width: 30px;
     height: 30px;
-    padding: 10px;
+    padding: 18px;
 }
 
 .messages_section{
@@ -176,7 +177,7 @@ body{
     width: 50%;
     height: 1px;
     content: "";
-    background-color: white
+    background-color: white;
     left: 50%;
     transform: translate(-50%,0);
     position: absolute;
@@ -264,6 +265,7 @@ body{
     display: block;
 
 }
+
 .controls_inner div{
     width: 33.3333333%;
     height: 100%; 
@@ -398,4 +400,31 @@ textarea:focus, input:focus{
 }
 .back_trigger i{
   color: blueviolet;
+}
+
+.dropdown_menu{
+    width: 150px;
+    height: auto;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(16,16,16,0.5);
+    position: absolute;
+    opacity: 0;
+    right: 20px;
+    top: 40px;
+    z-index: 999;
+}
+
+.dropdown_item{
+    width: 100%;
+    font-family: 'Helvetica Neue Light';
+    box-sizing: border-box;
+    padding: 12px 20px;
+    font-size: 22px;
+    background-color: white;
+}
+
+.dropdown_item:hover{
+    cursor: pointer;
+    color : white;
+    background-color: rgb(165,165,165);
 }

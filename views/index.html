@@ -17,7 +17,13 @@
 <body>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
-
+		<div class="dropdown_menu">
+			<div class="dropdown_item">New Group</div>
+			<div class="dropdown_item">New broadcast</div>
+			<div class="dropdown_item">Whatsapp Web</div>
+			<div class="dropdown_item">Starred Messages</div>
+			<div class="dropdown_item">Settings</div>
+		</div>
 
 		<div class="back_trigger"> <i class="fa fa-arrow-left" ></i> </div>
 		<input type="text" class="search_bar">
@@ -39,7 +45,7 @@
         <div class="title_bar">
             <div class="title_top">
                 <div class="title_container">
-                    <p>SendMe</p>
+                    <p>Whatsapp</p>
                 </div>
 				<div class="icon_container">
 					<div>
@@ -154,34 +160,7 @@
 		</div>
 	</div>
 	<script>
-	var common = {};
-	common.version = '1.67';
-	common.serviceversion = {
-		version: common.version,
-		fallback: '/',
-		assets: [
-			'/manifest.json',
-			'https://cdn.componentator.com/spa.min@18.css',
-			'https://cdn.componentator.com/spa.min@18.js',
-			'https://cdn.componentator.com/fonts/fa-brands-400.eot',
-			'https://cdn.componentator.com/fonts/fa-brands-400.woff2',
-			'https://cdn.componentator.com/fonts/fa-brands-400.woff',
-			'https://cdn.componentator.com/fonts/fa-brands-400.ttf',
-			'https://cdn.componentator.com/fonts/fa-regular-400.eot',
-			'https://cdn.componentator.com/fonts/fa-regular-400.woff2',
-			'https://cdn.componentator.com/fonts/fa-regular-400.woff',
-			'https://cdn.componentator.com/fonts/fa-regular-400.ttf',
-			'https://cdn.componentator.com/fonts/fa-solid-900.eot',
-			'https://cdn.componentator.com/fonts/fa-solid-900.woff2',
-			'https://cdn.componentator.com/fonts/fa-solid-900.woff',
-			'https://cdn.componentator.com/fonts/fa-solid-900.ttf',
-			'/js/default.js',
-			'/css/default.css',
-			'/js/ui.js',
-			'/css/ui.css',
-			'/img/icon.png'
-		]
-	};
+	
 	$('document').ready(function(){
 		(function(){
 			var previousScroll = 0;
@@ -206,6 +185,13 @@
 			});
 	
 		})();
+
+
+		$('.icon_container div i:nth-child(2)').click(function(){	
+			
+			$('.dropdown_menu').animate({width : '300px', height : 'auto',opacity :1 },200);
+		});
+
 		//
 		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
 		//
@@ -215,7 +201,7 @@
 			$('.lightbox_name').text(name);
 			$('.lightbox_image img').attr('src',image);
 			$('.lightbox').css('display','flex');
-			$('.lightbox').animate({opacity : 1},600);
+			$('.lightbox').animate({opacity : 1},200);
 			$('.lightbox_container').show();
 		});
 		//hide lightbox
@@ -223,13 +209,13 @@
 			console.log('clicked');
 			var q = $(this);
 			if($(e.target).attr('class') == 'lightbox'){
-				 q.animate({opacity : 0},600);
-
+				 q.animate({opacity : 0},200);
 				 $('.lightbox_container').hide('slow');
+				 $('.lightbox_image img').attr('src','');
 
 				 setTimeout(function(){
 					q.css('display','none');
-				 },400);
+				 },200);
 			}
 		});
 		// On the change of the search bar input
@@ -242,7 +228,7 @@
 			$('.search_bar').css('display','block');
 			$('.back_trigger').css('display','block');
 			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
-			$('.title_bar').animate({marginTop : '-90px'},600);
+			$('.title_bar').animate({marginTop : '-90px'},200);
 			$('.search_bar').focus();
 		});
 		
@@ -252,8 +238,6 @@
 			$('.single_chat').each(	function () {
 				var thisChat = $(this);
 				var username  = $(this).find('.user_name name').text().toLowerCase();
-
-
 				if(username.indexOf(thisValue) < 0){
 					thisChat.hide();
 				}else{
@@ -264,17 +248,24 @@
 		 $('.back_trigger').click(function(){
 			$('.search_bar').val('');
 			$('.search_bar').keyup();
-			$('.search_bar').animate({opacity : 0},600);
-			$('.title_bar').animate({marginTop : '0px'},600);
+			$('.search_bar').animate({opacity : 0},200);
+			$('.title_bar').animate({marginTop : '0px'},200);
 			$('.back_trigger').css('display','none');
-
 			setTimeout(function(){
 				$('.search_bar').css('display','none');
-
 			},600);
-
 		});
-		 
+		$('*').click(function(e){
+			if($(e.target).width() > 100){
+				if($(e.target).attr('class') != 'dropdown_menu' || $(e.target).attr('class') !== 'dropdown_item'){
+			
+					$('.dropdown_menu').animate({width : '0px', height : 'auto',opacity :0 },200);
+	
+				}
+			}
+			
+		})
+
 	});
 	</script>
 </body>
