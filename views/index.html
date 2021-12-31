@@ -12,7 +12,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#FFF" />
 	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/img/icon.png" />
-	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css','default_ui.js', 'default_ui.css', 'manifest')}
+	
+	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'ui.js','default_ui.js', 'default_ui.css', 'manifest')}
 </head>
 <body>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
@@ -24,7 +25,6 @@
 			<div class="dropdown_item">Starred Messages</div>
 			<div class="dropdown_item">Settings</div>
 		</div>
-
 		<div class="back_trigger"> <i class="fa fa-arrow-left" ></i> </div>
 		<input type="text" class="search_bar">
 		<div class="lightbox">
@@ -59,96 +59,22 @@
 				<div class="single_tab"><i class="fa fa-phone"></i>Calls</div>
 			</div>
         </div>
-		<div  class="messages_section dragscroll">
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/agape.jpg">
+		<div  data---="repeater__common.chats" class="messages_section">
+				<script type="text/html">
+					<div data-id="{{ id }}" class="single_chat">
+						<div class="image_container">
+							<img src="{{ img }}">
+							</div>
+						<div class="content_container">
+							<div class="content_container_inner">
+								<p class="user_name"> <name>{{ username }}</name> <span> {{ last_update }}</span> </p>
+								<p class="chat_content">{{ last_message }}<span>{{ message_count }}</span> </p>
+					   </div>
+						</div>
 					</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Agape Raston</name> <span> 08:56 AM</span> </p>
-						<p class="chat_content">I have understand You <span>99</span> </p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/chris.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Chris</name> <span>11:56 AM</span> </p>
-						<p class="chat_content">Where is your Bugatti?<span>87</span> </p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/maman.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Dear maman</name> <span>02:56 PM</span> </p>
-						<p class="chat_content">Courage...<span>1</span> </p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/peter.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Peter Sirka</name> <span>01:56 AM</span> </p>
-						<p class="chat_content">It depends on you<span>56</span> </p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/elon.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Elon Musk</name> <span>02:56 AM</span> </p>
-						<p class="chat_content">These 6 months can change your life... <span>65</span> </p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/sonny.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Sonny Court</name> <span class="read">YESTERDAY</span> </p>
-						<p class="chat_content">Reveille le Goggins qui dors en toi ...	</p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/bro.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Dear Brother</name> <span class="read">WEDNESDAY</span> </p>
-						<p class="chat_content">C'est bien</p>
-			   </div>
-				</div>
-			</div>
-			<div class="single_chat">
-				<div class="image_container">
-					<img src="/img/profiles/edith.jpg">
-				</div>
-				<div class="content_container">
-					<div class="content_container_inner">
-						<p class="user_name"> <name>Edith</name> <span class="read">SATURDAY</span> </p>
-						<p class="chat_content">cc, comment tu vas? </p>
-			   </div>
-				</div>
-			</div>
-		</div>
+				</script>
+		</div> 
+
 		<div  class="android_controls">
 			<div class="botomtab_menu">
 				<div class="single_tab "><i class="fa fa-camera"></i>Camera</div>
@@ -160,6 +86,34 @@
 		</div>
 	</div>
 	<script>
+		var common = {};
+		common.messages = [];
+		common.chats = [];
+		common.volume = 80;
+		function sendMessage(){
+			this.preventDefault();
+		}
+		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true});
+		common.messages.push({ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false});
+		common.messages.push({ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true});
+		common.chats.push({ id: 1 , img: '/img/profiles/agape.jpg',message_count:'3',last_updat:'12:09 PM',last_message: 'I have understand you...', username: 'Agape Raston'});
+		common.chats.push({ id: 2 , img: '/img/profiles/chris.jpg',message_count:'2',last_updat:'02:09 AM',last_message: 'Where is your Bugatti????', username: 'Kinda Christian'});
+		common.chats.push({ id: 3 , img: '/img/profiles/maman.jpg',message_count:'5',last_updat:'05:09 AM',last_message: 'Du courage...', username: 'Dear Maman'});
+		common.chats.push({ id: 6 , img: '/img/profiles/peter.jpg',message_count:'1',last_updat:'06:09 AM',last_message: 'It depends on you', username: 'Peter Sirka'});
+		common.chats.push({ id: 8 , img: '/img/profiles/elon.jpg',message_count:'6',last_updat:'Yesterday',last_message: 'That 6 months can change your life...', username: 'Elon Musk'});
+		common.chats.push({ id: 7 , img: '/img/profiles/sonny.jpg',message_count:'8',last_updat:'Monday',last_message: 'Reveille le lion qui dors en toi...', username: 'Sonny Court'});
+		common.chats.push({ id: 4 , img: '/img/profiles/edith.jpg',message_count:'9',last_updat:'Last Week',last_message: 'Ce n\'est pas un probleme', username: 'Edith'});
+		common.chats.push({ id: 5 , img: '/img/profiles/bro.jpg',message_count:'5',last_updat:'Last Month',last_message: 'Tu es au bureau?', username: 'Blood brother'});
 	
 	$('document').ready(function(){
 		(function(){
@@ -267,6 +221,7 @@
 		})
 
 	});
+
 	</script>
 </body>
 </html>
