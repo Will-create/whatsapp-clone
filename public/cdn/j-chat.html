@@ -11,7 +11,8 @@
         self.singleton();
         self.readonly();
         self.nocompile && self.nocompile();
-        self.template = Tangular.compile(`<div data-id="{{ id }}" class="single_chat">
+        self.template = Tangular.compile(`
+        <a href="/chats/{{ linker }}" data-id="{{ id }}" class="single_chat R">
         <div class="image_container">
             <img src="{{ img }}">
             </div>
@@ -21,7 +22,8 @@
                 <p class="chat_content">{{ last_message }}<span>{{ message_count }}</span> </p>
        </div>
         </div>
-    </div>`);
+    </a>
+    `);
         
         self.items = {};
     

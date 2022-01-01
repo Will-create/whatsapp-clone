@@ -13,9 +13,9 @@
 	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/img/icon.png" />
 	
-	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'ui.js','default_ui.js', 'default_ui.css', 'manifest')}
+	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css', 'manifest')}
 </head>
-<body>
+<body data---="exec">
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
 		<div class="dropdown_menu">
@@ -62,16 +62,19 @@
 		<div  data---="repeater__common.chats" class="messages_section">
 				<script type="text/html">
 					<div data-id="{{ id }}" class="single_chat">
-						<div class="image_container">
+						<div class="image_container exec" data-exec="chat">
 							<img src="{{ img }}">
-							</div>
-						<div class="content_container">
-							<div class="content_container_inner">
-								<p class="user_name"> <name>{{ username }}</name> <span> {{ last_update }}</span> </p>
-								<p class="chat_content">{{ last_message }}<span>{{ message_count }}</span> </p>
-					   </div>
 						</div>
-					</div>
+						<a href="/chats/{{ linker }}" class="R">
+						<div class="content_container">
+								<div class="content_container_inner">
+									<p class="user_name"> <name>{{ username }}</name> <span> {{ last_update }}</span> </p>
+									<p class="chat_content">{{ last_message }}<span>{{ message_count }}</span> </p>
+						   </div>
+						</div>
+						</a>
+						</div>
+					
 				</script>
 		</div> 
 
@@ -86,13 +89,22 @@
 		</div>
 	</div>
 	<script>
+		NAV.clientside('.R');
 		var common = {};
 		common.messages = [];
 		common.chats = [];
 		common.volume = 80;
-		function sendMessage(){
-			this.preventDefault();
-		}
+		var chats = [
+			{ id: 9 , img: '/img/profiles/louis.jpg',message_count:'88',last_update:'Now',last_message: 'Bitmart API SECRET KEY?', username: 'Saved Messages'},
+			{ id: 1 , img: '/img/profiles/agape.jpg',message_count:'3',last_update:'12:09 PM',last_message: 'I have understand you...', username: 'Agape Raston'},
+			{ id: 2 , img: '/img/profiles/chris.jpg',message_count:'2',last_update:'02:09 AM',last_message: 'Where is your Bugatti????', username: 'Kinda Christian'},
+			{ id: 3 , img: '/img/profiles/maman.jpg',message_count:'5',last_update:'05:09 AM',last_message: 'Du courage...', username: 'Dear Maman'},
+			{ id: 6 , img: '/img/profiles/peter.jpg',message_count:'1',last_update:'06:09 AM',last_message: 'It depends on you', username: 'Peter Sirka'},
+			{ id: 8 , img: '/img/profiles/elon.jpg',message_count:'6',last_update:'Yesterday',last_message: 'That 6 months can change your life...', username: 'Elon Musk'},
+			{ id: 7 , img: '/img/profiles/sonny.jpg',message_count:'8',last_update:'Monday',last_message: 'Reveille le lion qui dors en toi...', username: 'Sonny Court'},
+			{ id: 4 , img: '/img/profiles/edith.jpg',message_count:'9',last_update:'Last Week',last_message: 'Ce n\'est pas un probleme', username: 'Edith'},
+			{ id: 5 , img: '/img/profiles/bro.jpg',message_count:'5',last_update:'Last Month',last_message: 'Tu es au bureau?', username: 'Blood brother'}
+		];
 		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
 		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
 		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
@@ -106,123 +118,45 @@
 		common.messages.push({ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true});
 		common.messages.push({ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false});
 		common.messages.push({ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true});
-		common.chats.push({ id: 1 , img: '/img/profiles/agape.jpg',message_count:'3',last_updat:'12:09 PM',last_message: 'I have understand you...', username: 'Agape Raston'});
-		common.chats.push({ id: 2 , img: '/img/profiles/chris.jpg',message_count:'2',last_updat:'02:09 AM',last_message: 'Where is your Bugatti????', username: 'Kinda Christian'});
-		common.chats.push({ id: 3 , img: '/img/profiles/maman.jpg',message_count:'5',last_updat:'05:09 AM',last_message: 'Du courage...', username: 'Dear Maman'});
-		common.chats.push({ id: 6 , img: '/img/profiles/peter.jpg',message_count:'1',last_updat:'06:09 AM',last_message: 'It depends on you', username: 'Peter Sirka'});
-		common.chats.push({ id: 8 , img: '/img/profiles/elon.jpg',message_count:'6',last_updat:'Yesterday',last_message: 'That 6 months can change your life...', username: 'Elon Musk'});
-		common.chats.push({ id: 7 , img: '/img/profiles/sonny.jpg',message_count:'8',last_updat:'Monday',last_message: 'Reveille le lion qui dors en toi...', username: 'Sonny Court'});
-		common.chats.push({ id: 4 , img: '/img/profiles/edith.jpg',message_count:'9',last_updat:'Last Week',last_message: 'Ce n\'est pas un probleme', username: 'Edith'});
-		common.chats.push({ id: 5 , img: '/img/profiles/bro.jpg',message_count:'5',last_updat:'Last Month',last_message: 'Tu es au bureau?', username: 'Blood brother'});
 	
-	$('document').ready(function(){
-		(function(){
-			var previousScroll = 0;
-	
-			$('.messages_section').scroll(function(){
-				var currentScroll = $('.messages_section').scrollTop();
-				if(currentScroll > previousScroll){
-					if(currentScroll > 0 && currentScroll <= 90){
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-					}else{
-						$('.title_bar').css('margin-top', '-75px');
-					}
-				}else{
-					if( currentScroll <= 90){
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-					}else{
-						$('.title_bar').css('margin-top', '-75px');
-					}
-				}
-	
-				previousScroll = currentScroll;
-			});
-	
-		})();
 
-
-		$('.icon_container div i:nth-child(2)').click(function(){	
-			
-			$('.dropdown_menu').animate({width : '300px', height : 'auto',opacity :1 },200);
-		});
-
-		//
-		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
-		//
-		$('.image_container').click(function(){
-			var image = $(this).children('img').attr('src');
-			var name = $(this).parent().find('.user_name name').text(); 
+		for( var i = 0, len = chats.length; i < len; i ++){
+			chats[i].linker = chats[i].username.slug();
+			common.chats.push(chats[i]);
+		}
+		function chat(e){
+			console.log($(e));
+			var image = $(e).children('img').attr('src');
+			var name = $(e).parent().find('.user_name name').text(); 
 			$('.lightbox_name').text(name);
 			$('.lightbox_image img').attr('src',image);
 			$('.lightbox').css('display','flex');
-			$('.lightbox').animate({opacity : 1},200);
+			$('.lightbox').animate({opacity : 1},500);
 			$('.lightbox_container').show();
-		});
-		//hide lightbox
-		$('.lightbox').click(function(e){
-			console.log('clicked');
-			var q = $(this);
-			if($(e.target).attr('class') == 'lightbox'){
-				 q.animate({opacity : 0},200);
-				 $('.lightbox_container').hide('slow');
-				 $('.lightbox_image img').attr('src','');
-
-				 setTimeout(function(){
-					q.css('display','none');
-				 },200);
-			}
-		});
-		// On the change of the search bar input
 
 
-		// Code to make search bar work
-	
-	   
-		$('.icon_container div i:nth-child(1)').click(function(){	
-			$('.search_bar').css('display','block');
-			$('.back_trigger').css('display','block');
-			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
-			$('.title_bar').animate({marginTop : '-75px'},200);
-			$('.search_bar').focus();
-		});
+			$('.lightbox').click(function(e){
+				console.log('clicked');
+				var q = $(this);
+				if($(e.target).attr('class') == 'lightbox'){
+					 q.animate({opacity : 0},200);
+					 $('.lightbox_container').hide('slow');
+					 $('.lightbox_image img').attr('src','');
+					 setTimeout(function(){
+						q.css('display','none');
+					 },200);
+				}
+			});
+		}
 		
-		$('body').on('change, keyup','.search_bar',function(){
-			var thisValue = $(this).val().toLowerCase();
-			var thisLength = $(this).val().length;
-			$('.single_chat').each(	function () {
-				var thisChat = $(this);
-				var username  = $(this).find('.user_name name').text().toLowerCase();
-				if(username.indexOf(thisValue) < 0){
-					thisChat.hide();
-				}else{
-					thisChat.show();
-				}
-			  });
-		 });
-		 $('.back_trigger').click(function(){
-			$('.search_bar').val('');
-			$('.search_bar').keyup();
-			$('.search_bar').animate({opacity : 0},200);
-			$('.title_bar').animate({marginTop : '0px'},200);
-			$('.back_trigger').css('display','none');
-			setTimeout(function(){
-				$('.search_bar').css('display','none');
-			},600);
-		});
-		$('*').click(function(e){
-			if($(e.target).width() > 100){
-				if($(e.target).attr('class') != 'dropdown_menu' || $(e.target).attr('class') !== 'dropdown_item'){
-			
-					$('.dropdown_menu').animate({width : '0px', height : 'auto',opacity :0 },200);
-	
-				}
-			}
-			
+		ROUTE('/chats/{ linker }/',function(){
+			var controller = this;
+			console.log(controller);	
 		})
-
-	});
+    
 
 	</script>
+	<script src="/js/default_ui.js"></script>
 </body>
 </html>
 

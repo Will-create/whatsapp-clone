@@ -20,7 +20,7 @@ NEWOPERATION('users.load', function($) {
 	MAIN.users = [];
 	NOSQL('users').find().callback(function(err,users){
 				//Load users from database into memory
-				console.log('Loading users from DB:',users)
+				console.log('Loading users from DB...');
 			if(!users){
 				return;
 			}
@@ -45,6 +45,8 @@ NEWOPERATION('users.load', function($) {
 					delete user.unread['undefined'];
 					delete user.lastmessages['undefined'];
 				}
+				console.log('Users loaded successfully');
+
 				$.callback(SUCCESS(true));
 			})
 		

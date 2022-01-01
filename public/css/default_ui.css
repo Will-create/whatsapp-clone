@@ -158,6 +158,11 @@ body{
     overflow: scroll;
     border-radius: 30px;
 }
+.messages_section a{
+    text-decoration: none;
+    text-transform: none;
+    color: black;
+}
 
 .single_chat{
     width: 100%;
@@ -220,7 +225,15 @@ body{
     display: block;
     letter-spacing: 1.1px;
 }
-
+.chat_content{
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 40px;
+    font-size: 12px;
+    line-height: 22px;
+    font-family: 'Helvetica Neue Bold';
+}
 .chat_content span{
     background-color: #00d260;
     float: right;
