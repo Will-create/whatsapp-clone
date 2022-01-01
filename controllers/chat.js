@@ -7,7 +7,9 @@ const MSG_MUTE = { type: 'mute' };
 const SKIPFIELDS = { email: true, unread: true, recent: true, channels: true, password: true, ticks: true };
 
 exports.install = function() {
-	ROUTE('SOCKET /',msg)
+	ROUTE('SOCKET /',msg);
+	CORS();
+
 };
 function msg(){
     

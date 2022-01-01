@@ -1,0 +1,64 @@
+<div data-scope="chats">
+    <div  data-bind="?.chats__template">
+        <script type="text/html">
+            {{foreach chat in value}}
+            <div data-id="{{ chat.id }}" class="single_chat">
+                <div class="image_container exec" data-exec="?/lightbox">
+                    <img src="{{ chat.img }}">
+                </div>
+                <a href="/chats/{{chat.linker }}" class="R">
+                <div class="content_container">
+                        <div class="content_container_inner">
+                            <p class="user_name"> <name>{{ chat.username }}</name> <span> {{ chat.last_update }}</span> </p>
+                            <p class="chat_content">{{ chat.last_message }}<span>{{ chat.message_count }}</span> </p>
+                   </div>
+                </div>
+                </a>
+                </div>
+            {{ end }}
+        </script>
+</div> 
+
+</div>
+<script>
+    PLUGIN('chats', function(exports) {
+    
+        // You can define your custom functions or properties
+        exports.lightbox = function() {
+                console.log($(e));
+                var image = $(e).children('img').attr('src');
+                var name = $(e).parent().find('.user_name name').text(); 
+                $('.lightbox_name').text(name);
+                $('.lightbox_image img').attr('src',image);
+                $('.lightbox').css('display','flex');
+                $('.lightbox').animate({opacity : 1},500);
+                $('.lightbox_container').show();
+                $('.lightbox').click(function(e){
+                    console.log('clicked');
+                    var q = $(this);
+                    if($(e.target).attr('class') == 'lightbox'){
+                         q.animate({opacity : 0},200);
+                         $('.lightbox_container').hide('slow');
+                         $('.lightbox_image img').attr('src','');
+                         setTimeout(function(){
+                            q.css('display','none');
+                         },200);
+                    }
+                });
+        };
+        
+        exports.reload = function() {
+            console.lo('relaod');
+            AJAX('GET /api/chats/',function(err, res){
+
+                SETTER('?.chats',res);
+            });
+        };
+        
+        exports.refresh = function(){
+
+        }
+    
+    });
+
+</script>

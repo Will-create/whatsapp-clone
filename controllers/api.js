@@ -1,6 +1,7 @@
-
 const BASE64 = { width: 0, height: 0 };
 exports.install = function() {
+
+	ROUTE('GET /api/chats/',chats)
 	ROUTE('GET /api/profile/',profile);
     ROUTE('-POST     /api/login/ *Login --> exec');
 		// Common
@@ -37,8 +38,17 @@ exports.install = function() {
 	ROUTE('-POST     /api/users/otp2/    *User     --> otp2');
 	ROUTE('GET      /api/users/{id}/   *User     --> read');
 	ROUTE('DELETE   /api/users/{id}/   *User     --> remove');
+	CORS();
 };
-
+function chats(){
+	var self = this;
+	NOSQL('chats').find().callback(function(err,res){
+		if(err){
+			return;
+		}; 
+		self.json(res);
+	})
+}
 function profile(){
     var self = this;
 	console.log(main);
