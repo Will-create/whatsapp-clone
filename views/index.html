@@ -110,6 +110,9 @@
 		common.volume = 80;
 		common.chat_list = [
 		];
+		function clear_current(){
+			SET('common.current_chat',{});
+		}
 		MIDDLEWARE('current_chat',function(next){
 			var md = this;
 			var arr = md.href.split('/');
@@ -146,19 +149,25 @@
 				SET('common.page','messages');
 		},'current_chat');
 		ROUTE('/camera',function(){	
+			clear_current();
 			SET('common.page','camera');
 		});
 		ROUTE('/groups',function(){	
+			clear_current();
 			SET('common.page','groups');
 		});
 		ROUTE('/stories',function(){	
+			
+			clear_current();
 			SET('common.page','stories');
 		});
 		ROUTE('/chats',function(){	
 			displayer();
+			clear_current();
 			SET('common.page','chats');
 		});
 		ROUTE('/calls',function(){	
+			clear_current();
 			SET('common.page','calls');
 		});
 		
