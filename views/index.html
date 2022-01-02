@@ -17,7 +17,7 @@
 <body data---="exec">
 	<div data---="animation__null__style:5;together:true;">
 
-	<div data---="splashsc__null__timeout:10000" class="ui-splashscreen">
+	<div data---="splashscreen__null__timeout:10000" class="ui-splashscreen">
         <script type="text/html">
 			<div><i  class="fa fa-comment-dots splash"></i></div>
            <h1>$endMe</h1>
@@ -109,17 +109,33 @@
 		common.chats = [];
 		common.volume = 80;
 		common.chat_list = [
-		];
-		function clear_current(){
-			SET('common.current_chat',{});
+			];
+			
+			function clear_current(){
+				SET('common.current_chat',{});
+		}
+		function fetch_chats(next){
+
+			console.log('fetching user chats');
+            AJAX('GET /api/chats/',function(res){
+                SET('common.chats',res);
+
+				if(!next){
+					return;
+				}
+				next();
+            });
 		}
 		MIDDLEWARE('current_chat',function(next){
 			var md = this;
 			var arr = md.href.split('/');
 			var id = arr[2]+'';
 			var chats = GET('common.chats');
-           	console.log('chats list',chats);
 			var element = chats.findItem('unique',id);
+			if(!element){
+				fetch_chats(next);
+			}
+           	console.log('chats list',chats);
 			console.log(element);
 			var current = {};
 			
