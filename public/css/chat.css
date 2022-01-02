@@ -37,4 +37,4 @@
 .chat_footer > form  > input{flex:1; display: flex; padding:10px;border : none; border-radius: 30px;}
 .chat_footer > form  > input:focus {border: none;border:0px solid transparent;}
 .chat_footer > form  > button {display: none}
-.chat_footer > .fa {padding: 10px; color: grey;}
+.chat_footer > .fa {padding: 10px; color: blueviolet;}

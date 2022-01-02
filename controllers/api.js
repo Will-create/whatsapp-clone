@@ -2,6 +2,7 @@ const BASE64 = { width: 0, height: 0 };
 exports.install = function() {
 
 	ROUTE('GET /api/chats/',chats)
+	ROUTE('GET /api/messages/',messages)
 	ROUTE('GET /api/profile/',profile);
     ROUTE('-POST     /api/login/ *Login --> exec');
 		// Common
@@ -46,6 +47,17 @@ function chats(){
 		if(err){
 			return;
 		}; 
+		res.for
+		self.json(res);
+	})
+}
+function messages(){
+	var self = this;
+	NOSQL('messages').find().callback(function(err,res){
+		if(err){
+			return;
+		}; 
+		res.for
 		self.json(res);
 	})
 }

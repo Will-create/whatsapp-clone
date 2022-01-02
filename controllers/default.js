@@ -1,12 +1,11 @@
 
 exports.install = function() {
-	ROUTE('+GET /*',home);
-	ROUTE('-GET /*',login);
+	ROUTE('GET /*',home);
+	//ROUTE('GET /*',login);
 	ROUTE('GET /test/',test);
 	ROUTE('FILE /j-*.html',cdn);
 	RESIZE('*.jpg',resizer);
 	CORS();
-
 };
 function cdn(req,res){
 	res.file(PATH.public('cdn/'+req.url));

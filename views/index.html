@@ -13,7 +13,7 @@
 	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/img/icon.png" />
 	
-	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css', 'manifest')}
+	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css', 'manifest')}
 </head>
 <body data---="exec">
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
@@ -60,8 +60,9 @@
 			</div>
         </div>
 		<div class="messages_section">
-			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:reload"></div>
-
+			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
+			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+			
 		</div>
 		
 
@@ -85,29 +86,34 @@
 		common.chat_list = [
 			
 		];
-		common.messages.push({ "id": 1 , "author": "Agape Raston", "body":"Hi Louis","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 2 , "author": "Agape Raston", "body":"How are you?","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 3 , "author": "Louis Bertson", "body":"I am Good, how about you?","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 4 , "author": "Agape Raston", "body":"I'm good my friend","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 5 , "author": "Louis Bertson", "body":"Okey fine. tell me","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 6 , "author": "Agape Raston", "body":"i miss you. where are you?","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 7 , "author": "Louis Bertson", "body":'Ohh i miss you too.',"timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 8 , "author": "Louis Bertson", "body":"I'm at home, i will come don't worry","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 9 , "author": "Agape Raston", "body":"Okay my friend","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 10 , "author": "Louis Bertson", "body":"okay fine","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 11 , "author": "Louis Bertson", "body":"have a nice day","timestamp":"24 Nov 2021","incoming" : true});
-		common.messages.push({ "id": 12 , "author": "Agape Raston", "body":"thanks alot, same to you","timestamp":"24 Nov 2021","incoming" : false});
-		common.messages.push({ "id": 13 , "author": "Louis Bertson", "body":"thanks","timestamp":"24 Nov 2021","incoming" : true});
-	
 
 		
 		
-		ROUTE('/chats/{ linker }/',function(){
-	
-				
-		})
-    
-
+		ROUTE('/chats/{ linker }/',function(){	
+				SET('common.page','messages');
+		});
+		ROUTE('/chats',function(){	
+			SET('common.page','chats');
+		});
+		var image = $(e).children('img').attr('src');
+		var name = $(e).parent().find('.user_name name').text(); 
+		$('.lightbox_name').text(name);
+		$('.lightbox_image img').attr('src',image);
+		$('.lightbox').css('display','flex');
+		$('.lightbox').animate({opacity : 1},500);
+		$('.lightbox_container').show();
+		$('.lightbox').click(function(e){
+			console.log('clicked');
+			var q = $(this);
+			if($(e.target).attr('class') == 'lightbox'){
+				 q.animate({opacity : 0},200);
+				 $('.lightbox_container').hide('slow');
+				 $('.lightbox_image img').attr('src','');
+				 setTimeout(function(){
+					q.css('display','none');
+				 },200);
+			}
+		});
 	</script>
 	<script src="/js/default_ui.js"></script>
 </body>

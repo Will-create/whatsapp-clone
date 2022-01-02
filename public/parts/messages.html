@@ -1,0 +1,88 @@
+<div data-scope="messages">
+        <div class="chat_body">
+            <div data-bind="?.messages__template" >
+                <script type="text/html" >
+                    {{ foreach message in value }}
+                    <p data-id="{{ message.id}}"  class="chat_message {{if message.incoming == true }} chat_receiver {{ fi}} ">
+                        <span class="chat_messageAuthor">{{message.author}}</span>
+                        {{message.body | raw}}
+                        <span class="chat_messageBodyMetaTimeStamp">{{message.timestamp}}</span>
+                        </p>
+                    {{ end }}
+                </script>
+            </div>
+
+            <div class="chat_footer">
+                <i class="fa fa-smile"></i>
+                <i class="fa fa-paperclip"></i>
+                
+                <form action="/api/v1/messages/new" method="POST">
+    
+                    <input type="hidden" name="name"value="Louis Bertson">
+                    <input type="hidden" name="receiver" value="0">
+                    <input type="text" name="message" placeholder="Type message here">
+                    <button onclick="sendMessage()" type="submit" >Send Message</button>
+                </form>
+                <i class="fa fa-microphone"></i>
+            </div>
+        </div>
+</div>
+<style>
+    
+    .chat_body{ flex: 1;background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll;}
+    .chat_message{position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
+    .chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800;}
+    .chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+    .chat_receiver{margin-left:auto;background-color: blueviolet;}
+    
+    </style>
+<script>
+    PLUGIN('messages', function(exports) {
+        // You can define your custom functions or properties
+      function lightbox() {
+                console.log($(e));
+                var image = $(e).children('img').attr('src');
+                var name = $(e).parent().find('.user_name name').text(); 
+                $('.lightbox_name').text(name);
+                $('.lightbox_image img').attr('src',image);
+                $('.lightbox').css('display','flex');
+                $('.lightbox').animate({opacity : 1},500);
+                $('.lightbox_container').show();
+                $('.lightbox').click(function(e){
+                    console.log('clicked');
+                    var q = $(this);
+                    if($(e.target).attr('class') == 'lightbox'){
+                         q.animate({opacity : 0},200);
+                         $('.lightbox_container').hide('slow');
+                         $('.lightbox_image img').attr('src','');
+                         setTimeout(function(){
+                            q.css('display','none');
+                         },200);
+                    }
+                });
+        };
+
+        function linker(arr,cb){
+            for( var i = 0, len = arr.length; i < len; i++){
+                arr[i].linker = arr[i].username.slug();
+            }
+            cb(arr);
+        }
+        
+        exports.reload = function() {
+            console.log('relaod');
+            AJAX('GET /api/messages/',function(res){
+
+                console.log(res);
+                SET('?.messages',res);
+               
+            });
+        };
+        
+        exports.refresh = function(){
+            console.log('Refreshing...')
+        };
+    
+    });
+
+</script>

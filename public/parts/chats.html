@@ -1,7 +1,7 @@
 <div data-scope="chats">
     <div  data-bind="?.chats__template">
         <script type="text/html">
-            {{foreach chat in value}}
+            {{ foreach chat in value }}
             <div data-id="{{ chat.id }}" class="single_chat">
                 <div class="image_container exec" data-exec="?/lightbox">
                     <img src="{{ chat.img }}">
@@ -22,9 +22,8 @@
 </div>
 <script>
     PLUGIN('chats', function(exports) {
-    
         // You can define your custom functions or properties
-        exports.lightbox = function() {
+      function lightbox() {
                 console.log($(e));
                 var image = $(e).children('img').attr('src');
                 var name = $(e).parent().find('.user_name name').text(); 
@@ -46,18 +45,26 @@
                     }
                 });
         };
+
+        function linker(arr,cb){
+            for( var i = 0, len = arr.length; i < len; i++){
+                arr[i].linker = arr[i].username.slug();
+            }
+            cb(arr);
+        }
         
         exports.reload = function() {
-            console.lo('relaod');
-            AJAX('GET /api/chats/',function(err, res){
-
-                SETTER('?.chats',res);
+            console.log('relaod');
+            AJAX('GET /api/chats/',function(res){
+                linker(res,function(response){
+                    SET('?.chats',response);
+                })
             });
         };
         
         exports.refresh = function(){
-
-        }
+            console.log('Refreshing...')
+        };
     
     });
 
