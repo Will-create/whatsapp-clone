@@ -15,7 +15,8 @@ body{
     background-image: url('/img/profiles/bugatti.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-
+    margin: 0;
+    padding: 0;
     background-position: center;
 }
 @font-face {
@@ -74,6 +75,15 @@ body{
     height: 60px;
     display: flex;
     justify-content: flex-end;
+    
+
+}
+.toptab_bar{
+    width: 100%;
+    overflow: hidden;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
     
 
 }
@@ -165,10 +175,13 @@ body{
 }
 
 .single_chat{
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 80px;
     position: relative;
     box-sizing: border-box;
+
     padding: 10px 30px;
     background-color: white;
 }
@@ -197,21 +210,29 @@ body{
     justify-content: center;
     float: left;
 }
+
 .image_container img{
     height: 90%;
     border-radius: 999px;
 }
 
 .content_container{
-    width: calc(100% - 80px);
+    width: max-content;
     display: flex;
+    flex-direction: column;
+    margin-left: 22px;
+    width: 90%;
+    float: right;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
 .content_container_inner{
     height: auto;
-    float: left;
+    float: right;
+    display: flex;
+    flex-direction: column;
     margin-left: 20px;
     box-sizing: border-box;
     width: 100%;
@@ -222,19 +243,14 @@ body{
     color: blueviolet;
     font-size: 12px;
     width: 100%;
-    display: block;
+    justify-content: space-between;
+    display: flex;
     letter-spacing: 1.1px;
 }
-.chat_content{
-    padding: 5px;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 40px;
-    font-size: 12px;
-    line-height: 22px;
-    font-family: 'Helvetica Neue Bold';
+.user_name .last_message{
+    color: black!important;
 }
-.chat_content span{
+.user_name  .count{
     background-color: #00d260;
     float: right;
     border-radius: 999px;
@@ -249,9 +265,10 @@ body{
     font-size: 12px;
     vertical-align: -3px;
     line-height: 19px;
+    float: right;
 }
-.user_name span, .read{
-    color: #00d260;
+.user_name .lastupdate, .count,  .read{
+    color: #00d260; 
     font-family : 'Helvetica Neue Medium';
     font-size: 12px;
     float: right;
@@ -415,6 +432,21 @@ textarea:focus, input:focus{
   color: blueviolet;
 }
 
+.back_button{
+    width: 34px;
+    height: 39px;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    padding-top: 5px;
+    left: 20px;
+    top: 20px;
+    z-index: 999;
+}
+.back_button i{
+  color:white;
+}
+
 .dropdown_menu{
     width: 150px;
     height: auto;
@@ -440,4 +472,53 @@ textarea:focus, input:focus{
     cursor: pointer;
     color : white;
     background-color: rgb(165,165,165);
+}
+
+.avatar_container{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 100px;
+
+}
+
+.avatar_container img{
+    height: 90%;
+    border-radius: 999px;
+}
+.avatarcontent_container{
+    width: calc(100% - 30px);
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.avatarcontent_container_inner{
+    height: auto;
+    float: left;
+    margin-left: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    }
+
+.avataruser_name{
+    font-family: 'Helvetica Neue Bold';
+    color: white;
+    font-size: 12px;
+    width: 100%;
+    display: block;
+    letter-spacing: 1.1px;
+}
+.avatar_container .user_name {
+    width: 100%;
+    display: flex;
+
+}
+
+.user_name .avatar_name{
+    padding-top: 5px;
+    color: white!important;
 }

@@ -6,24 +6,21 @@
                 <div class="image_container exec" data-exec="?/lightbox">
                     <img src="{{ chat.img }}">
                 </div>
-                <a href="/chats/{{chat.linker }}" class="R">
-                <div class="content_container">
-                        <div class="content_container_inner">
-                            <p class="user_name"> <name>{{ chat.username }}</name> <span> {{ chat.last_update }}</span> </p>
-                            <p class="chat_content">{{ chat.last_message }}<span>{{ chat.message_count }}</span> </p>
-                   </div>
-                </div>
+                <a  href="/chats/{{chat.unique }}" data-exec="?/current_chat" class="R content_container">
+                            <p class="user_name"> <name>{{ chat.username }}</name> <span class="lastupdate"> {{ chat.last_update }}</span> </p>
+                            <p class="user_name"> <span class="last_message">{{ chat.last_message }}</span> <span class="count">{{ chat.message_count }}</span> </p>
                 </a>
                 </div>
             {{ end }}
         </script>
-</div> 
 
+   </div>
+ 
 </div>
 <script>
     PLUGIN('chats', function(exports) {
         // You can define your custom functions or properties
-      function lightbox() {
+      exports.lightbox  = function (e) {
                 console.log($(e));
                 var image = $(e).children('img').attr('src');
                 var name = $(e).parent().find('.user_name name').text(); 
@@ -45,10 +42,12 @@
                     }
                 });
         };
+        
 
         function linker(arr,cb){
             for( var i = 0, len = arr.length; i < len; i++){
                 arr[i].linker = arr[i].username.slug();
+                arr[i].unique = arr[i].id+''+ arr[i].linker.split('-').join('');
             }
             cb(arr);
         }
@@ -56,7 +55,9 @@
         exports.reload = function() {
             console.log('relaod');
             AJAX('GET /api/chats/',function(res){
+                SET('common.chats',res);
                 linker(res,function(response){
+
                     SET('?.chats',response);
                 })
             });

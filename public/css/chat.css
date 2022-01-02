@@ -31,6 +31,9 @@
     justify-content: space-between;
     align-items: center;
     height: 62px;
+    position:absolute;
+    bottom: 0;
+    width: 90%;
     border-top: 1px solid lightgrey;
 }
 .chat_footer > form {flex:1; display: flex;}
@@ -38,3 +41,12 @@
 .chat_footer > form  > input:focus {border: none;border:0px solid transparent;}
 .chat_footer > form  > button {display: none}
 .chat_footer > .fa {padding: 10px; color: blueviolet;}
+
+.ui-splashscreen{
+    background-color: blueviolet!important;
+    color: white!important;
+    margin: -3px;
+}
+.splash{
+    font-size: 50px!important;
+}

@@ -1,4 +1,3 @@
-		
 		$('document').ready(function(){
 			
 			(function(){
@@ -73,6 +72,9 @@
 			setTimeout(function(){
 				$('.search_bar').css('display','none');
 			},600);
+		});
+		$('.back_button').click(function(){
+			REDIRECT('/chats');
 		});
 		$('*').click(function(e){
 			if($(e.target).width() > 100){

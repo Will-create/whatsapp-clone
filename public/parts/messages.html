@@ -1,6 +1,6 @@
 <div data-scope="messages">
-        <div class="chat_body">
-            <div data-bind="?.messages__template" >
+        <div  data-bind="?.messages__template"  class="chat_body">
+
                 <script type="text/html" >
                     {{ foreach message in value }}
                     <p data-id="{{ message.id}}"  class="chat_message {{if message.incoming == true }} chat_receiver {{ fi}} ">
@@ -10,22 +10,20 @@
                         </p>
                     {{ end }}
                 </script>
-            </div>
+    </div>
+    <div class="chat_footer">
+        <i class="fa fa-smile"></i>
+        <i class="fa fa-paperclip"></i>
+        
+        <form action="/api/v1/messages/new" method="POST">
 
-            <div class="chat_footer">
-                <i class="fa fa-smile"></i>
-                <i class="fa fa-paperclip"></i>
-                
-                <form action="/api/v1/messages/new" method="POST">
-    
-                    <input type="hidden" name="name"value="Louis Bertson">
-                    <input type="hidden" name="receiver" value="0">
-                    <input type="text" name="message" placeholder="Type message here">
-                    <button onclick="sendMessage()" type="submit" >Send Message</button>
-                </form>
-                <i class="fa fa-microphone"></i>
-            </div>
-        </div>
+            <input type="hidden" name="name"value="Louis Bertson">
+            <input type="hidden" name="receiver" value="0">
+            <input type="text" name="message" placeholder="Type message here">
+            <button onclick="sendMessage()" type="submit" >Send Message</button>
+        </form>
+        <i class="fa fa-microphone"></i>
+    </div>
 </div>
 <style>
     

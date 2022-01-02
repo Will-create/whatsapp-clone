@@ -12,10 +12,17 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#FFF" />
 	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/img/icon.png" />
-	
 	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css', 'manifest')}
 </head>
 <body data---="exec">
+	<div data---="animation__null__style:5;together:true;">
+
+	<div data---="splashsc__null__timeout:10000" class="ui-splashscreen">
+        <script type="text/html">
+			<div><i  class="fa fa-comment-dots splash"></i></div>
+           <h1>$endMe</h1>
+        </script>
+    </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
 		<div class="dropdown_menu">
@@ -28,7 +35,7 @@
 		<div class="back_trigger"> <i class="fa fa-arrow-left" ></i> </div>
 		<input type="text" class="search_bar">
 		<div class="lightbox">
-			<div class="lightbox_container">
+			<div class="lightbox_container animation">
 				<div class="lightbox_name">Louis Bertson</div>
 
 				<div class="lightbox_image">
@@ -42,7 +49,7 @@
 				</div>
 			</div>
 		</div>
-        <div class="title_bar">
+        <div class="title_bar animation">
             <div class="title_top">
                 <div class="title_container">
                     <p>Whatsapp</p>
@@ -54,24 +61,41 @@
 					</div>
 				</div>
             </div>
-			<div class="toptab_menu">
-				<div class="single_tab"><i class="fa fa-circle-notch"></i>Status</div>
+			<div class="toptab_bar">
+			<div class="back_button animation"> <i class="fa fa-arrow-left" ></i> </div>
+
+				<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
+					<script type="text/html">
+						<div class="image_container">
+							<img src="{{ value.img }}">
+						</div>
+						<a class="content_container">
+									<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
+						</a>
+					</script>
+					
+                </div>
+               
+				<div class="toptab_menu animation">  
+					<div class="single_tab"><i class="fa fa-circle-notch"></i>Status</div>
 				<div class="single_tab"><i class="fa fa-phone"></i>Calls</div>
+				</div>
 			</div>
         </div>
+		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
+		<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 		<div class="messages_section">
 			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
-			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
-			
+			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
+			<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
+			<div data---="page__common.page__if:calls;url:/parts/calls.html;reload:calls/reload"></div>
 		</div>
-		
-
-		<div  class="android_controls">
+		<div  class="android_controls animation">
 			<div class="botomtab_menu">
 				<a href="/camera" class="R"><div class="single_tab "><i class="fa fa-camera"></i>Camera</div></a>
 				<a href="/chats" class="R"><div class="single_tab "><i class="fa fa-comment-dots"></i>Chats</div></a>
 				<a href="/groups" class="R"><div class="single_tab "><i class="fa fa-users"></i>Groups</div></a>
-				<a href="/status" class="R"><div class="single_tab "><i class="fa fa-circle-notch"></i>Status</div></a>
+				<a href="/stories" class="R"><div class="single_tab "><i class="fa fa-circle-notch"></i>Status</div></a>
 				<a href="/calls" class="R"><div class="single_tab "><i class="fa fa-phone"></i>Calls</div></a>
 			
 		</div>
@@ -81,41 +105,67 @@
 		var common = {};
 		common.page = 'chats';
 		common.messages = [];
+		common.current_chat = {};
 		common.chats = [];
 		common.volume = 80;
 		common.chat_list = [
-			
 		];
-
+		MIDDLEWARE('current_chat',function(next){
+			var md = this;
+			var arr = md.href.split('/');
+			var id = arr[2]+'';
+			var chats = GET('common.chats');
+           	console.log('chats list',chats);
+			var element = chats.findItem('unique',id);
+			console.log(element);
+			var current = {};
+			
+			current.img = element.img;
+			current.username = element.username; 
+			SET('common.current_chat',{});
+			SET('common.current_chat',current);
+			next();
+			
+		});
+		function hider(){
+			$('.title_bar').css('margin-top', '-75px');
+			$('.back_button').css('display','flex');
 		
+			$('.android_controls').css('display','none');
+			$('.messages_section').css('display','none');
+		};
+		function displayer(){
+			$('.title_bar').css('margin-top', '-75px');
+			$('.back_button').css('display','none');
 		
-		ROUTE('/chats/{ linker }/',function(){	
+			$('.android_controls').css('display','flex');
+			$('.messages_section').css('display','flex');
+		};
+		ROUTE('/chats/{ unique }/',function(){	
+				hider();
 				SET('common.page','messages');
+		},'current_chat');
+		ROUTE('/camera',function(){	
+			SET('common.page','camera');
+		});
+		ROUTE('/groups',function(){	
+			SET('common.page','groups');
+		});
+		ROUTE('/stories',function(){	
+			SET('common.page','stories');
 		});
 		ROUTE('/chats',function(){	
+			displayer();
 			SET('common.page','chats');
 		});
-		var image = $(e).children('img').attr('src');
-		var name = $(e).parent().find('.user_name name').text(); 
-		$('.lightbox_name').text(name);
-		$('.lightbox_image img').attr('src',image);
-		$('.lightbox').css('display','flex');
-		$('.lightbox').animate({opacity : 1},500);
-		$('.lightbox_container').show();
-		$('.lightbox').click(function(e){
-			console.log('clicked');
-			var q = $(this);
-			if($(e.target).attr('class') == 'lightbox'){
-				 q.animate({opacity : 0},200);
-				 $('.lightbox_container').hide('slow');
-				 $('.lightbox_image img').attr('src','');
-				 setTimeout(function(){
-					q.css('display','none');
-				 },200);
-			}
+		ROUTE('/calls',function(){	
+			SET('common.page','calls');
 		});
+		
 	</script>
 	<script src="/js/default_ui.js"></script>
+	</div>
+
 </body>
 </html>
 
