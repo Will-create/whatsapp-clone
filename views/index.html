@@ -133,12 +133,13 @@
 		}
 		function active(cls){
 			console.log('Cool classe active function',$(cls));
-			$('.fa-camera').parent().rclass('active');
-			$('.fa-users').parent().rclass('active');
-			$('.fa-circle-notch').parent().rclass('active');
-			$('.fa-comments-dot').parent().rclass('active');
-			$('.fa-phone').parent().rclass('active');
-			$(cls).aclass('active');
+			$('.fa-camera').parent().removeClass('active');
+			$('.fa-users').parent().removeClass('active');
+			$('.fa-circle-notch').parent().removeClass('active');
+			$('.fa-comments-dot').parent().removeClass('active');
+			$(cls).parent().removeClass('active');
+			$('.fa-phone').parent().removeClass('active');
+			$(cls).addClass('active');
 		}
 		function title(txt){
 
