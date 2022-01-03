@@ -12,7 +12,8 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#FFF" />
 	<meta name="apple-mobile-web-app-title" content="@{config.name}" />
 	<link rel="apple-touch-icon" href="/img/icon.png" />
-	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css', 'manifest')}
+	<link rel="stylesheet" href="/ionic/css/ionicons.min.css">
+	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css','style.css', 'manifest')}
 </head>
 <body data---="exec">
 	<div data---="animation__null__style:5;together:true;">
@@ -78,7 +79,8 @@
 				<div class="title_container ">
                     <p class="tab_title">Chats</p>
                 </div>	
-				<div class="toptab_menu animation">  
+				
+				<div class="icon_container">
 					<div>
 						<i class="fa fa-search"></i>
 						<i class="fa fa-ellipsis-v"></i>
@@ -97,11 +99,11 @@
 		</div>
 		<div  class="android_controls animation">
 			<div class="botomtab_menu">
-				<a href="/camera" class="R"><div class="single_tab "><i class="fa fa-camera"></i>Camera</div></a>
-				<a href="/chats" class="R"><div class="single_tab"><i class="fa fa-comment-dots"></i>Chats</div></a>
-				<a href="/groups" class="R"><div class="single_tab "><i class="fa fa-users"></i>Groups</div></a>
-				<a href="/stories" class="R"><div class="single_tab "><i class="fa fa-circle-notch"></i>Status</div></a>
-				<a href="/calls" class="R"><div class="single_tab "><i class="fa fa-phone"></i>Calls</div></a>
+				<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
+				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 32px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
+				<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
+				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-android-globe"></i> <span>Status</span></div></a>
+				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline"></i>Calls</div></a>
 			
 		</div>
 	</div>

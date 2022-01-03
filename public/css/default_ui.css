@@ -9,7 +9,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
 }
 body{
     background-image: url('/img/profiles/bugatti.jpg');
@@ -106,12 +105,12 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     box-sizing : border-box;
     float: left;
-    font-family: 'Helvetica Neue Medium';
+    font-family: 'Helvetica Neue Light';
     letter-spacing: 1.3px;
-    font-weight: 600;
+    font-weight: lighter;
     font-size: 12px;
     border-bottom: solid 3px transparent;
     color: white
@@ -121,6 +120,7 @@ body{
     border-color: white;
     cursor:pointer;
 }
+
 
 .fa {
     cursor :pointer;
@@ -248,7 +248,7 @@ body{
     letter-spacing: 1.1px;
 }
 .user_name .last_message{
-    color: black!important;
+    color: grey;
 }
 .user_name  .count{
     background-color: #00d260;
