@@ -75,14 +75,19 @@
 					</script>
 					
                 </div>
-               
+				<div class="title_container ">
+                    <p class="tab_title">Chats</p>
+                </div>	
 				<div class="toptab_menu animation">  
-					<div class="single_tab"><i class="fa fa-circle-notch"></i>Status</div>
-				<div class="single_tab"><i class="fa fa-phone"></i>Calls</div>
+					<div>
+						<i class="fa fa-search"></i>
+						<i class="fa fa-ellipsis-v"></i>
+					</div>
 				</div>
 			</div>
         </div>
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
+		
 		<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 		<div class="messages_section">
 			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
@@ -93,7 +98,7 @@
 		<div  class="android_controls animation">
 			<div class="botomtab_menu">
 				<a href="/camera" class="R"><div class="single_tab "><i class="fa fa-camera"></i>Camera</div></a>
-				<a href="/chats" class="R"><div class="single_tab "><i class="fa fa-comment-dots"></i>Chats</div></a>
+				<a href="/chats" class="R"><div class="single_tab"><i class="fa fa-comment-dots"></i>Chats</div></a>
 				<a href="/groups" class="R"><div class="single_tab "><i class="fa fa-users"></i>Groups</div></a>
 				<a href="/stories" class="R"><div class="single_tab "><i class="fa fa-circle-notch"></i>Status</div></a>
 				<a href="/calls" class="R"><div class="single_tab "><i class="fa fa-phone"></i>Calls</div></a>
@@ -126,7 +131,24 @@
 				next();
             });
 		}
+		function active(cls){
+			console.log('Cool classe active function',$(cls));
+			$('.fa-camera').parent().rclass('active');
+			$('.fa-users').parent().rclass('active');
+			$('.fa-circle-notch').parent().rclass('active');
+			$('.fa-comments-dot').parent().rclass('active');
+			$('.fa-phone').parent().rclass('active');
+			$(cls).aclass('active');
+		}
+		function title(txt){
+
+            $('.tab_title').text(txt);
+            $('.tab_title').show();
+		}
 		MIDDLEWARE('current_chat',function(next){
+
+            $('.tab_title').text('');
+            $('.tab_title').hide();
 			var md = this;
 			var arr = md.href.split('/');
 			var id = arr[2]+'';
@@ -165,24 +187,33 @@
 				SET('common.page','messages');
 		},'current_chat');
 		ROUTE('/camera',function(){	
+			active('.fa-camera');
+			title('Camera');
 			clear_current();
 			SET('common.page','camera');
 		});
 		ROUTE('/groups',function(){	
+			active('.fa-users');
+			title('Groups');
 			clear_current();
 			SET('common.page','groups');
 		});
 		ROUTE('/stories',function(){	
-			
+			active('.fa-circle-notch');
+			title('Stories');
 			clear_current();
 			SET('common.page','stories');
 		});
 		ROUTE('/chats',function(){	
+			active('.fa-comments-dot');
+			title('Chats');
 			displayer();
 			clear_current();
 			SET('common.page','chats');
 		});
 		ROUTE('/calls',function(){	
+			active('.fa-phone');
+			title('Calls');
 			clear_current();
 			SET('common.page','calls');
 		});

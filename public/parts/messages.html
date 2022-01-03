@@ -1,5 +1,5 @@
 <div data-scope="messages">
-        <div  data-bind="?.messages__template"  class="chat_body">
+        <div  data-bind="?.messages__template" data---="viewbox__null__height:90;parent:.container;">
 
                 <script type="text/html" >
                     {{ foreach message in value }}
@@ -72,7 +72,7 @@
             AJAX('GET /api/messages/',function(res){
 
                 console.log(res);
-                SET('?.messages',res);
+                SET('?.messages',[]);
                
             });
         };
