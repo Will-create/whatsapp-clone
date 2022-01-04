@@ -1,5 +1,5 @@
-<div data-scope="messages">
-        <div  data-bind="?.messages__template">
+<div style="width: 100%;" data-scope="messages">
+        <div style="width: 100%;" class="chat_body" data-bind="?.messages__template">
 
                 <script type="text/html" >
                     {{ foreach message in value }}
@@ -12,8 +12,8 @@
                 </script>
     </div>
     <div class="chat_footer">
-        <i class="fa fa-smile"></i>
-        <i class="fa fa-paperclip"></i>
+        <i class="ion ion-happy"></i>
+        <i class="ion ion-paperclip"></i>
         <form action="/api/v1/messages/new" method="POST">
             <input type="hidden" name="name"value="Louis Bertson">
             <input type="hidden" name="receiver" value="0">
@@ -25,11 +25,7 @@
 </div>
 <style>
     
-    .chat_body{ flex: 1;background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll;}
-    .chat_message{position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
-    .chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800;}
-    .chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
-    .chat_receiver{margin-left:auto;background-color: blueviolet;}
+  
     
     </style>
 <script>

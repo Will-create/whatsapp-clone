@@ -76,6 +76,8 @@
 		$('.back_button').click(function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
 			$('.ion-ios-videocam-outline').addClass('hidden');
+			$('.body_section').addClass('hidden');
+
 			REDIRECT('/chats');
 		});
 		$('*').click(function(e){

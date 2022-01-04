@@ -167,7 +167,15 @@ body{
     padding-bottom: 49px;
     background-color: white;
     overflow: scroll;
-    border-radius: 30px;
+}
+.body_section{
+    width: 100%;
+    height: calc(100%);
+    box-sizing: border-box;
+    padding-bottom: 49px;
+    background-color: white;
+    overflow: scroll;
+    
 }
 .messages_section a{
     text-decoration: none;
@@ -588,3 +596,8 @@ textarea:focus, input:focus{
     font-family: 'Helvetica Neue Medium';
     font-size: 18px;
 }
+.chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
+.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
+.chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800; color: #101010!important;}
+.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+.chat_receiver{margin-left:auto;background-color: blueviolet; color: white;}

@@ -81,8 +81,10 @@
 				</div>
 			</div>
         </div>
+		<div class="body_section hidden">
+			<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+		</div>
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
-			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 		<div class="messages_section">
 			<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
@@ -141,9 +143,11 @@
            SET('common.current_tab',txt);
 		}
 		MIDDLEWARE('current_chat',function(next){
+
 			SET('common.current_tab','');
 			$('.ion-ios-telephone-outline').removeClass('hidden');
 			$('.ion-ios-videocam-outline').removeClass('hidden');
+			$('.body_section').removeClass('hidden');
 			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');

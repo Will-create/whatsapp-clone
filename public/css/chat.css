@@ -33,14 +33,16 @@
     height: 62px;
     position:absolute;
     bottom: 0;
-    width: 90%;
+    width: 100%;
     border-top: 1px solid lightgrey;
+    background-color: blueviolet;
+    padding: 4px;
 }
-.chat_footer > form {flex:1; display: flex;}
-.chat_footer > form  > input{flex:1; display: flex; padding:10px;border : none; border-radius: 30px;}
+.chat_footer > form {flex:1; display: flex; margin-right: 5px;}
+.chat_footer > form  > input{ font-family: "Helvetica Heue Light"; flex:1; display: flex; padding:10px;border : none; border-radius: 30px;}
 .chat_footer > form  > input:focus {border: none;border:0px solid transparent;}
 .chat_footer > form  > button {display: none}
-.chat_footer > .fa {padding: 10px; color: blueviolet;}
+.chat_footer > .ion {padding: 5px; color: white;}
 
 .ui-splashscreen{
     background-color: blueviolet!important;
