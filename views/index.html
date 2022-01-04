@@ -142,8 +142,8 @@
 		}
 		MIDDLEWARE('current_chat',function(next){
 			SET('common.current_tab','');
-			$('.ion-ios-telephone-outline').show();
-			$('.ion-ios-videocam-outline').show();
+			$('.ion-ios-telephone-outline').removeClass('hidden');
+			$('.ion-ios-videocam-outline').removeClass('hidden');
 			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');

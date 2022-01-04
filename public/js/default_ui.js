@@ -74,6 +74,8 @@
 			},600);
 		});
 		$('.back_button').click(function(){
+			$('.ion-ios-telephone-outline').addClass('hidden');
+			$('.ion-ios-videocam-outline').addClass('hidden');
 			REDIRECT('/chats');
 		});
 		$('*').click(function(e){
