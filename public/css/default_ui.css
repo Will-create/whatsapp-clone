@@ -143,6 +143,7 @@ body{
     height: 100%;
 }
 
+
 .icon_container div{
     display: flex;
     height: 100%;
@@ -476,12 +477,10 @@ textarea:focus, input:focus{
 
 .avatar_container{
     height: 50px;
-    width: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    left: 100px;
+    justify-content: space-around;
+   
 
 }
 
@@ -521,4 +520,18 @@ textarea:focus, input:focus{
 .user_name .avatar_name{
     padding-top: 5px;
     color: white!important;
+}
+.icon_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 35%;
+
+}
+.current_container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+
 }

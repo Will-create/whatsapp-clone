@@ -37,10 +37,10 @@
 		<input type="text" class="search_bar">
 		<div class="lightbox">
 			<div class="lightbox_container animation">
-				<div class="lightbox_name">Louis Bertson</div>
+				<div class="lightbox_name"></div>
 
 				<div class="lightbox_image">
-					<img src="/img/profiles/bugatti.jpg" alt="Bugatti car">
+					<img src="" alt="Bugatti car">
 				</div>
 				<div class="lightbox_controls">
 					<div class="one_control"><i class="fa fa-comment-dots" ></i></div>
@@ -52,45 +52,38 @@
 		</div>
         <div class="title_bar animation">
             <div class="title_top">
-                <div class="title_container">
-                    <p>Whatsapp</p>
-                </div>
-				<div class="icon_container">
-					<div>
-						<i class="fa fa-search"></i>
-						<i class="fa fa-ellipsis-v"></i>
-					</div>
-				</div>
+                
             </div>
 			<div class="toptab_bar">
-			<div class="back_button animation"> <i class="fa fa-arrow-left" ></i> </div>
+			<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
 
-				<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
-					<script type="text/html">
-						<div class="image_container">
-							<img src="{{ value.img }}">
-						</div>
-						<a class="content_container">
-									<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
-						</a>
-					</script>
-					
-                </div>
-				<div class="title_container ">
-                    <p class="tab_title">Chats</p>
-                </div>	
-				
-				<div class="icon_container">
-					<div>
-						<i class="fa fa-search"></i>
-						<i class="fa fa-ellipsis-v"></i>
+			
+				<div class="current_container">
+					<div class="" data-bind="common.current_tab__text"></div>
+					<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
+						<script type="text/html">
+							<div class="image_container">
+								<img src="{{ value.img }}">
+							</div>
+							<a class="content_container">
+										<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
+							</a>
+						</script>
 					</div>
+				</div>
+				
+				<div style="color:white;" class="icon_container">
+						<i class="ion ion-ios-videocam-outline"></i>
+						<i class="ion ion-ios-telephone-outline"></i>
+						<i class="ion ion-ios-search"></i>
+						<i class="ion ion-ios-more"></i>
 				</div>
 			</div>
         </div>
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
-		
-		<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+		<div class="chat_body">
+			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+		</div>
 		<div class="messages_section">
 			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
@@ -100,9 +93,9 @@
 		<div  class="android_controls animation">
 			<div class="botomtab_menu">
 				<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
-				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 32px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
+				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
 				<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
-				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-android-globe"></i> <span>Status</span></div></a>
+				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ionic"></i> <span>Status</span></div></a>
 				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline"></i>Calls</div></a>
 			
 		</div>
@@ -111,6 +104,7 @@
 		NAV.clientside('.R');
 		var common = {};
 		common.page = 'chats';
+		common.current_tab = 'Chats';
 		common.messages = [];
 		common.current_chat = {};
 		common.chats = [];
@@ -145,13 +139,11 @@
 		}
 		function title(txt){
 
-            $('.tab_title').text(txt);
-            $('.tab_title').show();
+           SET('common.current_tab',txt);
 		}
 		MIDDLEWARE('current_chat',function(next){
-
-            $('.tab_title').text('');
-            $('.tab_title').hide();
+			SET('common.current_tab','');
+			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');
 			var id = arr[2]+'';
@@ -220,7 +212,17 @@
 			clear_current();
 			SET('common.page','calls');
 		});
-		
+		$('.lightbox').click(function(e){
+			var q = $(this);
+			if($(e.target).attr('class') == 'lightbox'){
+				 q.animate({opacity : 0.5},200);
+				 $('.lightbox_container').hide('slow');
+				 $('.lightbox_image img').attr('src','');
+				 var id = setTimeout(function(){
+					q.css('display','none');
+				 },200);
+			}
+		});
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

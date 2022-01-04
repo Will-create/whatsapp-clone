@@ -1,5 +1,5 @@
 <div data-scope="messages">
-        <div  data-bind="?.messages__template" data---="viewbox__null__height:90;parent:.container;">
+        <div  data-bind="?.messages__template">
 
                 <script type="text/html" >
                     {{ foreach message in value }}
@@ -14,9 +14,7 @@
     <div class="chat_footer">
         <i class="fa fa-smile"></i>
         <i class="fa fa-paperclip"></i>
-        
         <form action="/api/v1/messages/new" method="POST">
-
             <input type="hidden" name="name"value="Louis Bertson">
             <input type="hidden" name="receiver" value="0">
             <input type="text" name="message" placeholder="Type message here">
@@ -72,7 +70,7 @@
             AJAX('GET /api/messages/',function(res){
 
                 console.log(res);
-                SET('?.messages',[]);
+                SET('?.messages',res);
                
             });
         };

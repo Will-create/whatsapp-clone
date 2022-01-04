@@ -27,21 +27,11 @@
                 $('.lightbox_name').text(name);
                 $('.lightbox_image img').attr('src',image);
                 $('.lightbox').css('display','flex');
-                $('.lightbox').animate({opacity : 1},500);
+                $('.lightbox').animate({opacity : 1},200);
                 $('.lightbox_container').show();
-                $('.lightbox').click(function(e){
-                    console.log('clicked');
-                    var q = $(this);
-                    if($(e.target).attr('class') == 'lightbox'){
-                         q.animate({opacity : 0},200);
-                         $('.lightbox_container').hide('slow');
-                         $('.lightbox_image img').attr('src','');
-                         setTimeout(function(){
-                            q.css('display','none');
-                         },200);
-                    }
-                });
+            
         };
+
         
 
         function linker(arr,cb){
