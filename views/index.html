@@ -33,8 +33,8 @@
 			<div class="dropdown_item">Starred Messages</div>
 			<div class="dropdown_item">Settings</div>
 		</div>
-		<div class="back_trigger"> <i class="fa fa-arrow-left" ></i> </div>
-		<input type="text" class="search_bar">
+		<div class="back_trigger hidden"> <i class="fa fa-arrow-left" ></i> </div>
+		<input type="text" class="search_bar hidden">
 		<div class="lightbox">
 			<div class="lightbox_container animation">
 				<div class="lightbox_name"></div>
@@ -44,8 +44,8 @@
 				</div>
 				<div class="lightbox_controls">
 					<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
-					<div class="one_control"><i class="ion ion-ios-videocam-outline lightbox_icon" ></i></div>
-					<div class="one_control"><i class="ion ion-ios-telephone-outline lightbox_icon" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-videocam-outline  lightbox_icon" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-telephone-outline  lightbox_icon" ></i></div>
 					<div class="one_control"><i class="ion ion-ios-information-outline" ></i></div>
 				</div>
 			</div>
@@ -74,8 +74,8 @@
 				</div>
 				
 				<div style="color:white;" class="icon_container">
-						<i class="ion ion-ios-videocam-outline"></i>
-						<i class="ion ion-ios-telephone-outline"></i>
+						<i class="ion ion-ios-videocam-outline hidden"></i>
+						<i class="ion ion-ios-telephone-outline hidden"></i>
 						<i class="ion ion-ios-search"></i>
 						<i class="ion ion-ios-more"></i>
 				</div>
@@ -134,10 +134,7 @@
 			$('.fa-phone').parent().removeClass('active');
 			$(cls).addClass('active');
 		}
-		$('.ion-ios-telephone-outline').hide();
-		$('.ion-ios-videocam-outline').hide();
-		$('.back_trigger').hide();
-		$('.search_bar').hide();
+	
 		$('.ion-ios-search').show();
 		function title(txt){
 
@@ -227,8 +224,7 @@
 			SET('common.page','calls');
 		});
 		$('.lightbox').click(function(e){
-			$('.ion-ios-telephone-outline').hide();
-			$('.ion-ios-videocam-outline').hide();
+		
 			var q = $(this);
 			if($(e.target).attr('class') == 'lightbox'){
 				 q.animate({opacity : 0.5},200);
