@@ -59,7 +59,7 @@
 
 			
 				<div class="current_container">
-					<div class="" data-bind="common.current_tab__text"></div>
+					<div class="tab_title" data-bind="common.current_tab__text"></div>
 					<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
 						<script type="text/html">
 							<div class="image_container">
@@ -67,7 +67,7 @@
 							</div>
 							<a class="content_container">
 										<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
-										<p class="user_name"> <name  class="avatar_status">{{value.status}}</name> </p>
+										<p class="user_name"> <name  class="avatar_status">{{ value.status }}</name> </p>
 							</a>
 						</script>
 					</div>
@@ -82,9 +82,7 @@
 			</div>
         </div>
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
-		<div class="chat_body">
 			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
-		</div>
 		<div class="messages_section">
 			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
