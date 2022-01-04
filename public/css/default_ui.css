@@ -351,17 +351,23 @@ body{
     height: 100%;
 }
 
-@media (max-width:900px) {
+@media (max-width:1200px) {
     .lightbox_container{
-        width: 80vw;
-        height: 50vh;
+        width: 50vw;
+        height: 80vh;
         background-color:white;
         position: relative;
         display: block;
     }
+    .lightbox_name{
+        padding: 25px 25px;
+        font-family: 'Helvetica Neue Bold';
+        font-size: 40px;
+    }
+    
 }
 
-@media (max-width:700px) {
+@media (max-width:900px) {
     .lightbox_container{
         width: 80vw;
         height: 60vh;
@@ -369,6 +375,28 @@ body{
         position: relative;
         display: block;
     }
+    .lightbox_name{
+        padding: 15px 15px;
+        font-family: 'Helvetica Neue Bold';
+        font-size: 30px;
+    }
+    
+}
+
+@media (max-width:700px) {
+    .lightbox_container{
+        width: 80vw;
+        height: 65vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+    .lightbox_name{
+        padding: 12px 12px;
+        font-family: 'Helvetica Neue Medium';
+        font-size: 26px;
+    }
+    
 }
 @media (max-width:500px) {
     .lightbox_container{
@@ -378,6 +406,7 @@ body{
         position: relative;
         display: block;
     }
+   
 }
 
 .lightbox_controls{
