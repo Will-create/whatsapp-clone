@@ -44,8 +44,8 @@
 				</div>
 				<div class="lightbox_controls">
 					<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
-					<div class="one_control"><i class="ion ion-ios-videocam-outline" ></i></div>
-					<div class="one_control"><i class="ion ion-ios-telephone-outline" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-videocam-outline lightbox_icon" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-telephone-outline lightbox_icon" ></i></div>
 					<div class="one_control"><i class="ion ion-ios-information-outline" ></i></div>
 				</div>
 			</div>
@@ -116,7 +116,6 @@
 		}
 		function fetch_chats(next){
 
-			console.log('fetching user chats');
             AJAX('GET /api/chats/',function(res){
                 SET('common.chats',res);
 
@@ -127,7 +126,6 @@
             });
 		}
 		function active(cls){
-			console.log('Cool classe active function',$(cls));
 			$('.fa-camera').parent().removeClass('active');
 			$('.fa-users').parent().removeClass('active');
 			$('.fa-circle-notch').parent().removeClass('active');
@@ -138,6 +136,8 @@
 		}
 		$('.ion-ios-telephone-outline').hide();
 		$('.ion-ios-videocam-outline').hide();
+		$('.back_trigger').hide();
+		$('.search_bar').hide();
 		$('.ion-ios-search').show();
 		function title(txt){
 
@@ -146,7 +146,7 @@
 		MIDDLEWARE('current_chat',function(next){
 			SET('common.current_tab','');
 			$('.ion-ios-telephone-outline').show();
-		$('.ion-ios-videocam-outline').show();
+			$('.ion-ios-videocam-outline').show();
 			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');
@@ -156,8 +156,6 @@
 			if(!element){
 				fetch_chats(next);
 			}
-           	console.log('chats list',chats);
-			console.log(element);
 			var current = {};
 			
 			current.img = element.img;
@@ -167,7 +165,9 @@
 			next();
 			
 		});
+		
 		function hider(){
+			
 			$('.title_bar').css('margin-top', '-75px');
 			$('.back_button').css('display','flex');
 		
@@ -181,6 +181,10 @@
 			$('.android_controls').css('display','flex');
 			$('.messages_section').css('display','flex');
 		};
+		function hide_icons(){
+			$('.ion-ios-telephone-outline').hide();
+			$('.ion-ios-videocam-outline').hide();
+		}
 		ROUTE('/chats/{ unique }/',function(){	
 				hider();
 				SET('common.page','messages');
@@ -189,18 +193,23 @@
 			active('.fa-camera');
 			title('Camera');
 			clear_current();
+			hide_icons();
 			SET('common.page','camera');
 		});
 		ROUTE('/groups',function(){	
 			active('.fa-users');
 			title('Groups');
 			clear_current();
+			hide_icons();
+
 			SET('common.page','groups');
 		});
 		ROUTE('/stories',function(){	
 			active('.fa-circle-notch');
 			title('Stories');
 			clear_current();
+			hide_icons();
+
 			SET('common.page','stories');
 		});
 		ROUTE('/chats',function(){	
@@ -211,12 +220,15 @@
 			SET('common.page','chats');
 		});
 		ROUTE('/calls',function(){	
+			hide_icons();
 			active('.fa-phone');
 			title('Calls');
 			clear_current();
 			SET('common.page','calls');
 		});
 		$('.lightbox').click(function(e){
+			$('.ion-ios-telephone-outline').hide();
+			$('.ion-ios-videocam-outline').hide();
 			var q = $(this);
 			if($(e.target).attr('class') == 'lightbox'){
 				 q.animate({opacity : 0.5},200);
