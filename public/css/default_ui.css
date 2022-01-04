@@ -504,7 +504,7 @@ textarea:focus, input:focus{
     }
 
 .avataruser_name{
-    font-family: 'Helvetica Neue Bold';
+    font-family: 'Helvetica Neue Light';
     color: white;
     font-size: 12px;
     width: 100%;
@@ -520,6 +520,10 @@ textarea:focus, input:focus{
 .user_name .avatar_name{
     padding-top: 5px;
     color: white!important;
+}
+ .avatar_status{
+    color: white!important;
+    font-family: 'Helvetica Neue Light';
 }
 .icon_container{
     display: flex;
