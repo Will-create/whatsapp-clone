@@ -43,10 +43,10 @@
 					<img src="" alt="Bugatti car">
 				</div>
 				<div class="lightbox_controls">
-					<div class="one_control"><i class="fa fa-comment-dots" ></i></div>
-					<div class="one_control"><i class="fa fa-phone" ></i></div>
-					<div class="one_control"><i class="fa fa-video" ></i></div>
-					<div class="one_control"><i class="fa fa-info" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
+					<div class="one_control"><i class="ion ion-ios-videocam-outline" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-telephone-outline" ></i></div>
+					<div class="one_control"><i class="ion ion-ios-information-outline" ></i></div>
 				</div>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 							</div>
 							<a class="content_container">
 										<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
-										<p class="user_name"> <name  class="avatar_status">Recording...</name> </p>
+										<p class="user_name"> <name  class="avatar_status">{{value.status}}</name> </p>
 							</a>
 						</script>
 					</div>
@@ -96,7 +96,7 @@
 				<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
 				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
 				<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
-				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ionic"></i> <span>Status</span></div></a>
+				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ios-ionic-outline"></i> <span>Status</span></div></a>
 				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline"></i>Calls</div></a>
 			
 		</div>
@@ -138,12 +138,17 @@
 			$('.fa-phone').parent().removeClass('active');
 			$(cls).addClass('active');
 		}
+		$('.ion-ios-telephone-outline').hide();
+		$('.ion-ios-videocam-outline').hide();
+		$('.ion-ios-search').show();
 		function title(txt){
 
            SET('common.current_tab',txt);
 		}
 		MIDDLEWARE('current_chat',function(next){
 			SET('common.current_tab','');
+			$('.ion-ios-telephone-outline').show();
+		$('.ion-ios-videocam-outline').show();
 			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');
