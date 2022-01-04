@@ -84,7 +84,7 @@
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 		<div class="messages_section">
-			<div data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
+			<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
 			<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
 			<div data---="page__common.page__if:calls;url:/parts/calls.html;reload:calls/reload"></div>
@@ -95,7 +95,7 @@
 				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
 				<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
 				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ios-ionic-outline"></i> <span>Status</span></div></a>
-				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline"></i>Calls</div></a>
+				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Calls</div></a>
 			
 		</div>
 	</div>
@@ -179,8 +179,9 @@
 			$('.messages_section').css('display','flex');
 		};
 		function hide_icons(){
-			$('.ion-ios-telephone-outline').hide();
-			$('.ion-ios-videocam-outline').hide();
+			$('.ion-ios-telephone-outline').addClass('hidden');
+			$('.ion-ios-videocam-outline').addClass('hidden');
+			$('.tab_phone').removeClass('hidden');
 		}
 		ROUTE('/chats/{ unique }/',function(){	
 				hider();
