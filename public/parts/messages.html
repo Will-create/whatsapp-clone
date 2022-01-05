@@ -12,8 +12,8 @@
                 </script>
     </div>
     <div class="chat_footer">
-        <i class="ion ion-happy emoji"></i>
-        <i class="ion ion-paperclip exec"></i>
+        <i class="ion ion-happy exec" data-exec="show_emoji"></i>
+            <i class="ion ion-paperclip" ></i>
         <form action="/api/v1/messages/new" method="POST">
             <input type="hidden" name="name"value="Louis Bertson">
             <input type="hidden" name="receiver" value="0">
@@ -31,10 +31,21 @@
     
     </style>
 <script>
+
+function show_emoji (){
+        var opt = {};
+opt.align = 'center';
+opt.position = 'top';
+opt.element = this;
+opt.callback = function(selected) {
+    console.log(selected);
+};
+SETTER('emoji', 'show', opt);
+}
+    
     PLUGIN('messages', function(exports) {
         // You can define your custom functions or properties
-   
-        
+ 
         exports.reload = function() {
             console.log(' message relaod');
             AJAX('GET /api/messages/',function(res){

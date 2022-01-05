@@ -16,7 +16,9 @@
 	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css','style.css', 'manifest')}
 </head>
 <body data---="exec">
-	<div data---="emoji" ></div>
+	<a href="/marketplace" class="R"></a>
+	<a href="/wallet" class="R"></a>
+	<div data---="emoji"></div>
 	<div data---="animation__null__style:5;together:true;">
 	
 
@@ -78,6 +80,8 @@
 				<div style="color:white;" class="icon_container">
 						<i class="ion ion-ios-videocam-outline hidden"></i>
 						<i class="ion ion-ios-telephone-outline hidden"></i>
+						<i class="ion ion-social-usd-outline wallet"></i>
+						<i class="ion ion-ios-cart-outline marketplace"></i>
 						<i class="ion ion-ios-search"></i>
 						<i class="ion ion-ios-more"></i>
 				</div>
@@ -85,6 +89,8 @@
         </div>
 		<div class="body_section hidden">
 			<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+			<div style="width: 100%;"  data---="page__common.page__if:marketplace;url:/parts/marketplace.html;reload:marketplace/reload"></div>
+			<div style="width: 100%;"  data---="page__common.page__if:wallet;url:/parts/wallet.html;reload:wallet/reload"></div>
 		</div>
 		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 		<div class="messages_section">
@@ -242,7 +248,22 @@
 				 },200);
 			}
 		});
+		ROUTE('/marketplace',function(){	
+			active('.fa-users');
+			title('Market');
+			clear_current();
+			hide_icons();
 
+			SET('common.page','market');
+		});
+		ROUTE('/wallet',function(){	
+			active('.fa-users');
+			title('Wallet');
+			clear_current();
+			hide_icons();
+
+			SET('common.page','wallet');
+		});
 
 	$('.emoji').click(function(){
 			var opt = {};

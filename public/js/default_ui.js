@@ -84,6 +84,22 @@
 
 			REDIRECT('/chats');
 		});
+		$('.marketplace').click(function(){
+			$('.ion-ios-telephone-outline').addClass('hidden');
+			$('.ion-ios-videocam-outline').addClass('hidden');
+			$('.tab_phone').removeClass('hidden');
+			$('.body_section').addClass('hidden');
+
+			REDIRECT('/marketplace');
+		});
+		$('.wallet').click(function(){
+			$('.ion-ios-telephone-outline').addClass('hidden');
+			$('.ion-ios-videocam-outline').addClass('hidden');
+			$('.tab_phone').removeClass('hidden');
+			$('.body_section').addClass('hidden');
+
+			REDIRECT('/wallet');
+		});
 		$('*').click(function(e){
 			if($(e.target).width() > 100){
 				if($(e.target).attr('class') != 'dropdown_menu' || $(e.target).attr('class') !== 'dropdown_item'){
