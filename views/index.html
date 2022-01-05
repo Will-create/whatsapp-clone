@@ -16,7 +16,9 @@
 	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css','style.css', 'manifest')}
 </head>
 <body data---="exec">
+	<div data---="emoji" ></div>
 	<div data---="animation__null__style:5;together:true;">
+	
 
 	<div data---="splashscreen__null__timeout:10000" class="ui-splashscreen">
         <script type="text/html">
@@ -239,6 +241,19 @@
 					q.css('display','none');
 				 },200);
 			}
+		});
+
+
+	$('.emoji').click(function(){
+			var opt = {};
+	opt.align = 'center';
+	opt.position = 'top';
+	opt.element = this;
+	opt.callback = function(selected) {
+		console.log(selected);
+	};
+	SETTER('emoji', 'show', opt);
+	console.log(FUNC.parseASCII('This one was good. :joy: See you soon :P'));
 		});
 	</script>
 	<script src="/js/default_ui.js"></script>

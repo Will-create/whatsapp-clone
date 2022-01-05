@@ -19,7 +19,6 @@
 .chat_headerAvatar img {
     width: 100%;
     height: 100%;
-
 }
 .chat_headerInfo{
     flex: 1;
@@ -28,7 +27,7 @@
 
 .chat_footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 62px;
     position:absolute;
@@ -42,7 +41,8 @@
 .chat_footer > form  > input{ font-family: "Helvetica Heue Light"; flex:1; display: flex; padding:10px;border : none; border-radius: 30px;}
 .chat_footer > form  > input:focus {border: none;border:0px solid transparent;}
 .chat_footer > form  > button {display: none}
-.chat_footer > .ion {padding: 5px; color: white;}
+.chat_footer > form > .ion {padding: 5px; color: white;}
+.chat_footer > .ion {padding: 5px; color: white;cursor :pointer;font-size: 35px;}
 
 .ui-splashscreen{
     background-color: blueviolet!important;

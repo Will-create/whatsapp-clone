@@ -12,13 +12,15 @@
                 </script>
     </div>
     <div class="chat_footer">
-        <i class="ion ion-happy"></i>
-        <i class="ion ion-paperclip"></i>
+        <i class="ion ion-happy emoji"></i>
+        <i class="ion ion-paperclip exec"></i>
         <form action="/api/v1/messages/new" method="POST">
             <input type="hidden" name="name"value="Louis Bertson">
             <input type="hidden" name="receiver" value="0">
-            <input type="text" name="message" placeholder="Type message here">
-            <button onclick="sendMessage()" type="submit" >Send Message</button>
+            <input id="msg" type="text" name="message" placeholder="Type message here">
+            <i class="ion ion-ios-paperplane-outline exec"></i>
+
+            
         </form>
         <i class="fa fa-microphone"></i>
     </div>
@@ -31,43 +33,13 @@
 <script>
     PLUGIN('messages', function(exports) {
         // You can define your custom functions or properties
-      function lightbox() {
-                console.log($(e));
-                var image = $(e).children('img').attr('src');
-                var name = $(e).parent().find('.user_name name').text(); 
-                $('.lightbox_name').text(name);
-                $('.lightbox_image img').attr('src',image);
-                $('.lightbox').css('display','flex');
-                $('.lightbox').animate({opacity : 1},500);
-                $('.lightbox_container').show();
-                $('.lightbox').click(function(e){
-                    console.log('clicked');
-                    var q = $(this);
-                    if($(e.target).attr('class') == 'lightbox'){
-                         q.animate({opacity : 0},200);
-                         $('.lightbox_container').hide('slow');
-                         $('.lightbox_image img').attr('src','');
-                         setTimeout(function(){
-                            q.css('display','none');
-                         },200);
-                    }
-                });
-        };
-
-        function linker(arr,cb){
-            for( var i = 0, len = arr.length; i < len; i++){
-                arr[i].linker = arr[i].username.slug();
-            }
-            cb(arr);
-        }
+   
         
         exports.reload = function() {
-            console.log('relaod');
+            console.log(' message relaod');
             AJAX('GET /api/messages/',function(res){
-
                 console.log(res);
                 SET('?.messages',res);
-               
             });
         };
         

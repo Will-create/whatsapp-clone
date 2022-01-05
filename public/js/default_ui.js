@@ -62,7 +62,10 @@
 					thisChat.show();
 				}
 			  });
-		 });
+			  
+		});
+
+
 		 $('.back_trigger').click(function(){
 			$('.search_bar').val('');
 			$('.search_bar').keyup();
@@ -89,6 +92,8 @@
 				}
 			}
 			
-		})
+		});
+
+
 
 	});
