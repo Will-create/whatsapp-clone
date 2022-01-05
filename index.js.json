@@ -15,7 +15,7 @@
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
-			"date": "2022-01-05T03:44:57.177Z",
+			"date": "2022-01-05T03:51:57.189Z",
 			"textdb": {
 				"size": 0.003,
 				"pendingwrite": 0,
@@ -25,30 +25,30 @@
 				"reading": 0,
 				"writing": 0
 			},
-			"memory": 12.8,
+			"memory": 13.55,
 			"rm": 4,
-			"fm": 23,
+			"fm": 0,
 			"wm": 0,
 			"em": 0,
 			"mm": 0,
-			"om": 68,
+			"om": 0,
 			"dm": 0,
-			"um": 0.014,
+			"um": 0.005,
 			"pm": 0,
 			"sm": 0,
 			"cm": 0,
 			"dbrm": 0,
 			"dbwm": 0,
 			"usage": 0,
-			"requests": 552,
+			"requests": 628,
 			"pending": 0,
 			"external": 0,
 			"errors": 0,
 			"timeouts": 0,
 			"online": 0,
-			"uptime": 69,
+			"uptime": 76,
 			"download": 0,
-			"upload": 0.23
+			"upload": 0.283
 		}
 	]
 }

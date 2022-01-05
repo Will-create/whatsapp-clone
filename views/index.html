@@ -236,9 +236,9 @@
 			if($(e.target).attr('class') == 'lightbox'){
 				 q.animate({opacity : 0.5},200);
 				 $('.lightbox_container').hide('slow');
-				 $('.lightbox_image img').attr('src','');
 				 var id = setTimeout(function(){
-					q.css('display','none');
+					 q.css('display','none');
+					 $('.lightbox_image img').attr('src','');
 				 },200);
 			}
 		});
