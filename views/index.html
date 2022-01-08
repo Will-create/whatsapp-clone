@@ -37,7 +37,7 @@
 			<div class="dropdown_item">Starred Messages</div>
 			<div class="dropdown_item">Settings</div>
 		</div>
-		<div class="back_trigger hidden"> <i class="fa fa-arrow-left" ></i> </div>
+		<div class="back_trigger hidden"> <i class="ion ion-ios-arrow-left" ></i> </div>
 		<input type="text" class="search_bar hidden">
 		<div class="lightbox">
 			<div class="lightbox_container animation">
@@ -223,7 +223,8 @@
 			SET('common.page','stories');
 		});
 		ROUTE('/chats',function(){	
-			active('.fa-comments-dot');
+			$('.ion-ios-search').removeClass('hidden');
+			active('.ion-ios-chatboxes-outline');
 			title('Chats');
 			displayer();
 			clear_current();
@@ -265,17 +266,7 @@
 			SET('common.page','wallet');
 		});
 
-	$('.emoji').click(function(){
-			var opt = {};
-	opt.align = 'center';
-	opt.position = 'top';
-	opt.element = this;
-	opt.callback = function(selected) {
-		console.log(selected);
-	};
-	SETTER('emoji', 'show', opt);
-	console.log(FUNC.parseASCII('This one was good. :joy: See you soon :P'));
-		});
+	
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

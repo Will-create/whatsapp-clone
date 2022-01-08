@@ -17,7 +17,7 @@
         <form action="/api/v1/messages/new" method="POST">
             <input type="hidden" name="name"value="Louis Bertson">
             <input type="hidden" name="receiver" value="0">
-            <input id="msg" type="text" name="message" placeholder="Type message here">
+            <input id="msg" data-bind="common.msg__text" type="text" name="message" placeholder="Type message here">
             <i class="ion ion-ios-paperplane-outline exec"></i>
 
             
@@ -34,11 +34,11 @@
 
 function show_emoji (){
         var opt = {};
-opt.align = 'center';
-opt.position = 'top';
 opt.element = this;
+opt.align = 'center';
+opt.position = 'bottom';
 opt.callback = function(selected) {
-    console.log(selected);
+    $('#msg').text(selected);
 };
 SETTER('emoji', 'show', opt);
 }

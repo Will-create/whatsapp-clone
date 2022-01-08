@@ -7,11 +7,13 @@
 				if(currentScroll > previousScroll){
 					if(currentScroll > 0 && currentScroll <= 90){
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+						
 					}else{
 						$('.title_bar').css('margin-top', '-75px');
 					}
 				}else{
 					if( currentScroll <= 90){
+						
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
 					}else{
 						$('.title_bar').css('margin-top', '-75px');
@@ -30,26 +32,13 @@
 			
 			$('.dropdown_menu').animate({width : '300px', height : 'auto',opacity :1 },200);
 		});
-
 		//
 		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
 		//
-		
 		// On the change of the search bar input
 
-
 		// Code to make search bar work
-	
-	   
-		$('.icon_container div i:nth-child(1)').click(function(){	
-			$('.search_bar').css('display','block');
-			$('.back_trigger').css('display','block');
-			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
-			$('.title_bar').animate({marginTop : '-75px'},200);
-			$('.search_bar').focus();
-		});
-		
-		
+
 		$('body').on('change, keyup','.search_bar',function(){
 			var thisValue = $(this).val().toLowerCase();
 			var thisLength = $(this).val().length;
@@ -70,11 +59,13 @@
 			$('.search_bar').val('');
 			$('.search_bar').keyup();
 			$('.search_bar').animate({opacity : 0},200);
-			$('.title_bar').animate({marginTop : '0px'},200);
+			$('.title_bar').animate({marginTop : '-75px'},200);
 			$('.back_trigger').css('display','none');
+			$('.back_trigger').addClass('hidden');
 			setTimeout(function(){
 				$('.search_bar').css('display','none');
-			},600);
+				$('.search_bar').addClass('hidden');
+			},200);
 		});
 		$('.back_button').click(function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
@@ -112,5 +103,15 @@
 		});
 
 
-
+		$('.ion-ios-search').click(function(){	
+			
+			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
+			$('.title_bar').animate({marginTop : '-75px'},200);
+			$('.search_bar').removeClass('hidden');
+			$('.back_trigger').removeClass('hidden');
+			$('.back_trigger').css('display','block');
+			$('.search_bar').focus();
+		});
+		
+		
 	});
