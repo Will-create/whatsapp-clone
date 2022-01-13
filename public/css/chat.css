@@ -9,6 +9,9 @@
     padding: 20px 20px 10px 5px;
     border-bottom: 1px solid lightgrey;
 }
+.chat_header{border-bottom: 1px solid lightgrey;}
+.chat_headerAvatar {
+border:0.5px solid #fff;}
 .chat_headerAvatar {
     width: 50px;
     height: 50px;   
@@ -49,6 +52,8 @@
     color: white!important;
     margin: -3px;
 }
+
+
 .splash{
     font-size: 50px!important;
 }

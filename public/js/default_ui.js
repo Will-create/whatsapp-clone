@@ -53,8 +53,6 @@
 			  });
 			  
 		});
-
-
 		 $('.back_trigger').click(function(){
 			$('.search_bar').val('');
 			$('.search_bar').keyup();
@@ -62,6 +60,7 @@
 			$('.title_bar').animate({marginTop : '-75px'},200);
 			$('.back_trigger').css('display','none');
 			$('.back_trigger').addClass('hidden');
+			
 			setTimeout(function(){
 				$('.search_bar').css('display','none');
 				$('.search_bar').addClass('hidden');
@@ -71,6 +70,8 @@
 			$('.ion-ios-telephone-outline').addClass('hidden');
 			$('.ion-ios-videocam-outline').addClass('hidden');
 			$('.tab_phone').removeClass('hidden');
+			$('.wallet').removeClass('hidden');
+			$('.marketplace').removeClass('hidden');
 			$('.body_section').addClass('hidden');
 
 			REDIRECT('/chats');

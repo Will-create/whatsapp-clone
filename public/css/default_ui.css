@@ -51,7 +51,6 @@ body{
     background-color: blueviolet;
     width: 100%;
     height: 150px;
-
 }
 .title_top{
     overflow: hidden;
@@ -113,21 +112,20 @@ body{
     font-weight: lighter;
     font-size: 12px;
     border-bottom: solid 3px transparent;
-    color: white
-}       
+    color: white;
+}      
+
 .single_tab:hover, .active{
     color: white;
     border-color: white;
     cursor:pointer;
 }
 
-
 .fa {
     cursor :pointer;
     font-size: 24px;
     color: white;
 }
-
 .title_container p{
     font-family: 'Helvetica Neue Light';
     color: white;

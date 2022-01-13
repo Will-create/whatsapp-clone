@@ -14,6 +14,52 @@
 	<link rel="apple-touch-icon" href="/img/icon.png" />
 	<link rel="stylesheet" href="/ionic/css/ionicons.min.css">
 	@{import('head', 'meta', 'spa.min@18.js', 'spa.min@18.css', 'default_ui.css','chat.css','style.css', 'manifest')}
+
+
+	<style>
+
+		.chat_header{border-bottom: 1px solid lightgrey;}
+		.chat_header{border-bottom: 1px solid lightgrey;}
+		.chat_headerAvatar {border:0.5px solid #fff;}
+		.chat_headerAvatar {border:0.5px solid #fff;}
+		.chat_footer{border-top: 1px solid lightgrey;background-color: blueviolet;}
+		.chat_footer > form > .ion {padding: 5px; color: white;}
+		.chat_footer > .ion {padding: 5px; color: white;cursor :pointer;font-size: 35px;}
+		.ui-splashscreen{background-color: blueviolet!important;color: white!important;}
+		.container{background-color: blueviolet;}
+		.title_bar{background-color: blueviolet;}
+		.title_container{color : white;}
+		.single_tab{border-bottom: solid 3px transparent;color: white;}      
+		.single_tab:hover, .active{color: white;border-color: white;}
+		.fa {color: white;}
+		.title_container p{color: white;}
+		.messages_section{background-color: white;}
+		.body_section{background-color: white;}
+		.messages_section a{color: black;}
+		.single_chat{background-color: white;}
+		.single_chat:after{background-color: white;}
+		.user_name{color: blueviolet;}
+		.user_name .last_message{color: grey;}
+		.user_name  .count{background-color: #00d260;color: white;}
+		.user_name .lastupdate, .count,  .read{color: #00d260; }
+		.read{color: rgba(165,165,165,0.8)!important;}
+		.android_controls{background-color: blueviolet;}
+		.lightbox_container{background-color:white;}
+		.lightbox_controls{background-color: blueviolet;}
+		.one_control i{color: white;}
+		.back_trigger i{color: blueviolet;}
+		.back_button i{color:white;}
+		.dropdown_item{background-color: white;}
+		.dropdown_item:hover{color : white;background-color: rgb(165,165,165);}
+		.avataruser_name{color: white;}
+		.user_name .avatar_name{color: white!important;}
+		.avatar_status{color: white!important;}
+		.tab_title{color: white;}
+		.chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
+		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
+		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+		.chat_receiver{margin-left:auto;background-color: blueviolet; color: white;}
+	</style>
 </head>
 <body data---="exec">
 	<a href="/marketplace" class="R"></a>
@@ -80,8 +126,8 @@
 				<div style="color:white;" class="icon_container">
 						<i class="ion ion-ios-videocam-outline hidden"></i>
 						<i class="ion ion-ios-telephone-outline hidden"></i>
-						<i class="ion ion-social-usd-outline wallet"></i>
-						<i class="ion ion-ios-cart-outline marketplace"></i>
+						<i class="ion ion-social-usd-outline wallet hidden"></i>
+						<i class="ion ion-ios-cart-outline marketplace hidden"></i>
 						<i class="ion ion-ios-search"></i>
 						<i class="ion ion-ios-more"></i>
 				</div>
@@ -128,7 +174,6 @@
 
             AJAX('GET /api/chats/',function(res){
                 SET('common.chats',res);
-
 				if(!next){
 					return;
 				}
