@@ -135,6 +135,12 @@
 				next();
             });
 		}
+		// Display marketplace and wallet tabs
+		$('.wallet').removeClass('hidden');
+		$('.marketplace').removeClass('hidden');
+
+
+		// Function for toggle tab active
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
 			$('.ion-ios-chatboxes-outline').parent().removeClass('active');
@@ -144,18 +150,25 @@
 			$(cls).parent().removeClass('active');
 			$(cls).addClass('active');
 		}
-	
+		// Show Search bar icon;
 		$('.ion-ios-search').show();
-		function title(txt){
 
+		// Function for set tab title
+		function title(txt){
            SET('common.current_tab',txt);
 		}
+
+		// Middleware for every chat opened
 		MIDDLEWARE('current_chat',function(next){
 
 			SET('common.current_tab','');
 			$('.ion-ios-telephone-outline').removeClass('hidden');
+
 			$('.ion-ios-videocam-outline').removeClass('hidden');
 			$('.body_section').removeClass('hidden');
+			$('.wallet').addClass('hidden');
+			$('.marketplace').addClass('hidden');
+
 			$('.ion-ios-search').hide();
 			var md = this;
 			var arr = md.href.split('/');
@@ -174,7 +187,7 @@
 			next();
 			
 		});
-		
+		// function for hide things Header and and bottom tab bar
 		function hider(){
 			
 			$('.title_bar').css('margin-top', '-75px');
@@ -183,6 +196,8 @@
 			$('.android_controls').css('display','none');
 			$('.messages_section').css('display','none');
 		};
+		
+		//function for  display things: Header and bottom tab bar
 		function displayer(){
 			$('.title_bar').css('margin-top', '-75px');
 			$('.back_button').css('display','none');
@@ -190,16 +205,24 @@
 			$('.android_controls').css('display','flex');
 			$('.messages_section').css('display','flex');
 		};
+
+		// function for hide icons/tabs in defauls
 		function hide_icons(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
 			$('.ion-ios-videocam-outline').addClass('hidden');
 			$('.tab_phone').removeClass('hidden');
 		}
+
+
+		// route for open a chat with middleware
 		ROUTE('/chats/{ unique }/',function(){	
 				active('.ion-ios-chatboxes-outline');
 				hider();
 				SET('common.page','messages');
 		},'current_chat');
+
+
+		// route for open device camera
 		ROUTE('/camera',function(){	
 			active('.fa-camera');
 			title('Camera');
@@ -207,6 +230,9 @@
 			hide_icons();
 			SET('common.page','camera');
 		});
+
+
+		// Route for goto Groups
 		ROUTE('/groups',function(){	
 			active('.fa-users');
 			title('Groups');
@@ -215,6 +241,8 @@
 
 			SET('common.page','groups');
 		});
+
+		// Route for goto stories
 		ROUTE('/stories',function(){	
 			active('.fa-circle-notch');
 			title('Stories');
@@ -223,6 +251,8 @@
 
 			SET('common.page','stories');
 		});
+
+		// Route for goto chats
 		ROUTE('/chats',function(){	
 			$('.ion-ios-search').removeClass('hidden');
 			active('.ion-ios-chatboxes-outline');
@@ -230,7 +260,9 @@
 			displayer();
 			clear_current();
 			SET('common.page','chats');
-		});
+		}); 
+
+		// Route for go to phone/video calls
 		ROUTE('/calls',function(){	
 			hide_icons();
 			active('.fa-phone');
@@ -238,8 +270,9 @@
 			clear_current();
 			SET('common.page','calls');
 		});
+
+		// Click event for display the lightbox of chats
 		$('.lightbox').click(function(e){
-		
 			var q = $(this);
 			if($(e.target).attr('class') == 'lightbox'){
 				 q.animate({opacity : 0.5},200);
@@ -250,6 +283,8 @@
 				 },200);
 			}
 		});
+
+		// Route for goto marketplace
 		ROUTE('/marketplace',function(){	
 			active('.fa-users');
 			title('Market');
@@ -258,6 +293,9 @@
 
 			SET('common.page','market');
 		});
+
+
+		// Route for goto wallet
 		ROUTE('/wallet',function(){	
 			active('.fa-users');
 			title('Wallet');
