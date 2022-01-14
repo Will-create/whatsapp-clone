@@ -486,11 +486,7 @@ textarea:focus, input:focus{
     height: 39px;
     background-color: transparent;
     cursor: pointer;
-    position: absolute;
-    padding-top: 5px;
-    left: 20px;
-    top: 20px;
-    z-index: 999;
+   
 }
 .back_button i{
   color:white;
@@ -522,16 +518,23 @@ textarea:focus, input:focus{
     color : white;
     background-color: rgb(165,165,165);
 }
-
+.current_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+.tab_title{
+    color: white;
+    font-family: 'Helvetica Neue Medium';
+    font-size: 18px;
+}
 .avatar_container{
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-   
-
 }
-
 .avatar_container img{
     height: 90%;
     border-radius: 999px;
@@ -541,6 +544,7 @@ textarea:focus, input:focus{
     display: flex;
     align-items: center;
     height: 100%;
+    flex: 1;
 }
 
 .avatarcontent_container_inner{
@@ -580,20 +584,7 @@ textarea:focus, input:focus{
     width: 35%;
 
 }
-.current_container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex: 1;
 
-}
-
-
-.tab_title{
-    color: white;
-    font-family: 'Helvetica Neue Medium';
-    font-size: 18px;
-}
 .chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
 .chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 .chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800; color: #101010!important;}

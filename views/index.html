@@ -22,12 +22,12 @@
 		.chat_header{border-bottom: 1px solid lightgrey;}
 		.chat_headerAvatar {border:0.5px solid #fff;}
 		.chat_headerAvatar {border:0.5px solid #fff;}
-		.chat_footer{border-top: 1px solid lightgrey;background-color: blueviolet;}
+		.chat_footer{border-top: 1px solid lightgrey;background-color: #ED4F05;}
 		.chat_footer > form > .ion {padding: 5px; color: white;}
 		.chat_footer > .ion {padding: 5px; color: white;cursor :pointer;font-size: 35px;}
-		.ui-splashscreen{background-color: blueviolet!important;color: white!important;}
-		.container{background-color: blueviolet;}
-		.title_bar{background-color: blueviolet;}
+		.ui-splashscreen{background-color: #ED4F05!important;color: white!important;}
+		.container{background-color: #ED4F05;}
+		.title_bar{background-color: #ED4F05;}
 		.title_container{color : white;}
 		.single_tab{border-bottom: solid 3px transparent;color: white;}      
 		.single_tab:hover, .active{color: white;border-color: white;}
@@ -38,16 +38,16 @@
 		.messages_section a{color: black;}
 		.single_chat{background-color: white;}
 		.single_chat:after{background-color: white;}
-		.user_name{color: blueviolet;}
+		.user_name{color: #ED4F05;}
 		.user_name .last_message{color: grey;}
 		.user_name  .count{background-color: #00d260;color: white;}
 		.user_name .lastupdate, .count,  .read{color: #00d260; }
 		.read{color: rgba(165,165,165,0.8)!important;}
-		.android_controls{background-color: blueviolet;}
+		.android_controls{background-color: #ED4F05;}
 		.lightbox_container{background-color:white;}
-		.lightbox_controls{background-color: blueviolet;}
+		.lightbox_controls{background-color: #ED4F05;}
 		.one_control i{color: white;}
-		.back_trigger i{color: blueviolet;}
+		.back_trigger i{color: #ED4F05;}
 		.back_button i{color:white;}
 		.dropdown_item{background-color: white;}
 		.dropdown_item:hover{color : white;background-color: rgb(165,165,165);}
@@ -58,7 +58,7 @@
 		.chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
 		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
-		.chat_receiver{margin-left:auto;background-color: blueviolet; color: white;}
+		.chat_receiver{margin-left:auto;background-color: #ED4F05; color: white;}
 	</style>
 </head>
 <body data---="exec">
@@ -66,12 +66,10 @@
 	<a href="/wallet" class="R"></a>
 	<div data---="emoji"></div>
 	<div data---="animation__null__style:5;together:true;">
-	
-
 	<div data---="splashscreen__null__timeout:10000" class="ui-splashscreen">
         <script type="text/html">
 			<div><i  class="fa fa-comment-dots splash"></i></div>
-           <h1>$endMe</h1>
+           <h1>SendMe</h1>
         </script>
     </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
@@ -105,10 +103,10 @@
                 
             </div>
 			<div class="toptab_bar">
-			<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
-
-			
+				
+				
 				<div class="current_container">
+					<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
 					<div class="tab_title" data-bind="common.current_tab__text"></div>
 					<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
 						<script type="text/html">
@@ -122,7 +120,6 @@
 						</script>
 					</div>
 				</div>
-				
 				<div style="color:white;" class="icon_container">
 						<i class="ion ion-ios-videocam-outline hidden"></i>
 						<i class="ion ion-ios-telephone-outline hidden"></i>
