@@ -582,7 +582,7 @@ textarea:focus, input:focus{
     justify-content: space-around;
     align-items: center;
     width: 35%;
-
+    padding-right: 10px;
 }
 
 .chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
