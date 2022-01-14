@@ -38,14 +38,14 @@ border:0.5px solid #fff;}
     width: 100%;
     border-top: 1px solid lightgrey;
     background-color: blueviolet;
-    padding: 4px;
+    padding: 4px 10px 4px 10px;
 }
 .chat_footer > form {flex:1; display: flex; margin-right: 5px;}
 .chat_footer > form  > input{ font-family: "Helvetica Heue Light"; flex:1; display: flex; padding:10px;border : none; border-radius: 30px;}
 .chat_footer > form  > input:focus {border: none;border:0px solid transparent;}
 .chat_footer > form  > button {display: none}
-.chat_footer > form > .ion {padding: 5px; color: white;}
-.chat_footer > .ion {padding: 5px; color: white;cursor :pointer;font-size: 35px;}
+.chat_footer > form > .ion { color: white;}
+.chat_footer > .ion {color: white;cursor :pointer;font-size: 35px;}
 
 .ui-splashscreen{
     background-color: blueviolet!important;
