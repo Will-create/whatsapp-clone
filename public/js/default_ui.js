@@ -2,8 +2,8 @@
 			
 			(function(){
 			var previousScroll = 0;
-			$('.messages_section').scroll(function(){
-				var currentScroll = $('.messages_section').scrollTop();
+			$('.ui-viewbox').scroll(function(){
+				var currentScroll = $('.ui-viewbox').scrollTop();
 				if(currentScroll > previousScroll){
 					if(currentScroll > 0 && currentScroll <= 90){
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');

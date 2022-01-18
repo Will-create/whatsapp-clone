@@ -1,20 +1,22 @@
 <div style="width: 100%;" data-scope="chats">
-    <div style="width: 100%;"  data-bind="?.chats__template">
-        <script  type="text/html">
-            {{ foreach chat in value }}
-            <div data-id="{{ chat.id }}" class="single_chat">
-                <div class="image_container exec" data-exec="?/lightbox">
-                    <img src="{{ chat.img }}">
-                </div>
-                <a  href="/chats/{{chat.unique }}" data-exec="?/current_chat" class="R content_container">
-                            <p class="user_name"> <name>{{ chat.username }}</name> <span class="lastupdate"> {{ chat.last_update }}</span> </p>
-                            <p class="user_name"> <span class="last_message">{{ chat.last_message }}</span> <span class="count">{{ chat.message_count }}</span> </p>
-                </a>
-                </div>
-            {{ end }}
-        </script>
-
-   </div>
+    <div data---="viewbox__null__height:83.7;parent:window;scrollbar:true;">
+        <div style="width: 100%;"  data-bind="?.chats__template">
+            <script  type="text/html">
+                {{ foreach chat in value }}
+                <div data-id="{{ chat.id }}" class="single_chat">
+                    <div class="image_container exec" data-exec="?/lightbox">
+                        <img src="{{ chat.img }}">
+                    </div>
+                    <a  href="/chats/{{chat.unique }}" data-exec="?/current_chat" class="R content_container">
+                                <p class="user_name"> <name>{{ chat.username }}</name> <span class="lastupdate"> {{ chat.last_update }}</span> </p>
+                                <p class="user_name"> <span class="last_message">{{ chat.last_message }}</span> <span class="count">{{ chat.message_count }}</span> </p>
+                    </a>
+                    </div>
+                {{ end }}
+            </script>
+    
+       </div>
+   
  
 </div>
 <script>
@@ -32,6 +34,32 @@
                 $('.lightbox_container').show();
               
         };
+        (function(){
+			var previousScroll = 0;
+			$('.ui-viewbox').scroll(function(){
+				var currentScroll = $('.ui-viewbox').scrollTop();
+				if(currentScroll > previousScroll){
+					if(currentScroll > 0 && currentScroll <= 90){
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+						
+					}else{
+						$('.title_bar').css('margin-top', '-75px');
+					}
+				}else{
+					if( currentScroll <= 90){
+						
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+					}else{
+						$('.title_bar').css('margin-top', '-75px');
+					}
+				}
+	
+				previousScroll = currentScroll;
+			});
+
+			
+	
+		})();
 
         
 

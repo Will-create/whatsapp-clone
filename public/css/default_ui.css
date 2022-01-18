@@ -73,8 +73,6 @@ body{
     height: 60px;
     display: flex;
     justify-content: flex-end;
-    
-
 }
 .toptab_bar{
     width: 100%;
@@ -162,9 +160,7 @@ body{
     width: 100%;
     height: calc(100% - 120px);
     box-sizing: border-box;
-    padding-bottom: 49px;
     background-color: white;
-    overflow: scroll;
 }
 .body_section{
     width: 100%;
@@ -172,7 +168,6 @@ body{
     box-sizing: border-box;
     padding-bottom: 49px;
     background-color: white;
-    overflow: scroll;
     
 }
 .messages_section a{
@@ -288,8 +283,8 @@ body{
 
 .android_controls{
     width: 100%;
-    height: 70px;
-   
+    height: 7%;
+   padding-top: 3px;
     background-color: blueviolet;
 
 }

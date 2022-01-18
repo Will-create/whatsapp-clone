@@ -1,29 +1,19 @@
 <div style="width: 100%;" data-scope="messages">
-        <div style="width: 100%;" class="chat_body" data-bind="?.messages__template">
 
-                <script type="text/html" >
-                    {{ foreach message in value }}
-                    <p data-id="{{ message.id}}"  class="chat_message {{if message.incoming == true }} chat_receiver {{ fi}} ">
-                        <span class="chat_messageAuthor">{{message.author}}</span>
-                        {{message.body | raw}}
-                        <span class="chat_messageBodyMetaTimeStamp">{{message.timestamp}}</span>
-                        </p>
-                    {{ end }}
-                </script>
+    <div data---="viewbox__null__height:81.3;parent:window;scrollbar:true;">
+        <div class="chatbody" style="width: 100%;" data-bind="?.messages__template">
+            <script type="text/html" >
+                {{ foreach message in value }}
+                <p data-id="{{ message.id}}"  class="chat_message {{if message.incoming == true }} chat_receiver {{ fi}} ">
+                    <span class="chat_messageAuthor">{{message.author}}</span>
+                    {{message.body | raw}}
+                    <span class="chat_messageBodyMetaTimeStamp">{{message.timestamp}}</span>
+                    </p>
+                {{ end }}
+            </script>
+        </div>
     </div>
-    <div class="chat_footer">
-        <i class="ion ion-happy exec" data-exec="show_emoji"></i>
-            <i class="ion ion-paperclip" ></i>
-        <form action="/api/v1/messages/new" method="POST">
-            <input type="hidden" name="name"value="Louis Bertson">
-            <input type="hidden" name="receiver" value="0">
-            <input id="msg" data-bind="common.msg__text" type="text" name="message" placeholder="Type message here">
-            <i class="ion ion-ios-paperplane-outline exec"></i>
-
-            
-        </form>
-        <i class="fa fa-microphone"></i>
-    </div>
+    
 </div>
 <style>
     
@@ -31,6 +21,11 @@
     
     </style>
 <script>
+    FIND('viewbox',function (component){
+        console.log('This is main percent h',MAIN.percentH);
+        component.configure('height',MAIN.percentH);
+    });
+
 
 function show_emoji (){
         var opt = {};

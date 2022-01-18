@@ -55,7 +55,7 @@
 		.user_name .avatar_name{color: white!important;}
 		.avatar_status{color: white!important;}
 		.tab_title{color: white;}
-		.chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;overflow: scroll!important;}
+		.chatbody{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 25px;}
 		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
 		.chat_receiver{margin-left:auto;background-color: #ED4F05; color: white;}
@@ -74,83 +74,95 @@
     </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
-		<div class="dropdown_menu">
-			<div class="dropdown_item">New Group</div>
-			<div class="dropdown_item">New broadcast</div>
-			<div class="dropdown_item">Whatsapp Web</div>
-			<div class="dropdown_item">Starred Messages</div>
-			<div class="dropdown_item">Settings</div>
-		</div>
-		<div class="back_trigger hidden"> <i class="ion ion-ios-arrow-left" ></i> </div>
-		<input type="text" class="search_bar hidden">
-		<div class="lightbox">
-			<div class="lightbox_container animation">
-				<div class="lightbox_name"></div>
-
-				<div class="lightbox_image">
-					<img src="" alt="Bugatti car">
-				</div>
-				<div class="lightbox_controls">
-					<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
-					<div class="one_control"><i class="ion ion-ios-videocam-outline  lightbox_icon" ></i></div>
-					<div class="one_control"><i class="ion ion-ios-telephone-outline  lightbox_icon" ></i></div>
-					<div class="one_control"><i class="ion ion-ios-information-outline" ></i></div>
-				</div>
+			<div class="dropdown_menu">
+				<div class="dropdown_item">New Group</div>
+				<div class="dropdown_item">New broadcast</div>
+				<div class="dropdown_item">Whatsapp Web</div>
+				<div class="dropdown_item">Starred Messages</div>
+				<div class="dropdown_item">Settings</div>
 			</div>
-		</div>
-        <div class="title_bar animation">
-            <div class="title_top">
-                
-            </div>
-			<div class="toptab_bar">
-				
-				
-				<div class="current_container">
-					<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
-					<div class="tab_title" data-bind="common.current_tab__text"></div>
-					<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
-						<script type="text/html">
-							<div class="image_container">
-								<img src="{{ value.img }}">
-							</div>
-							<a class="content_container">
-										<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
-										<p class="user_name"> <name  class="avatar_status">{{ value.status }}</name> </p>
-							</a>
-						</script>
+			<div class="back_trigger hidden"> <i class="ion ion-ios-arrow-left" ></i> </div>
+			<input type="text" class="search_bar hidden">
+			<div class="lightbox">
+				<div class="lightbox_container animation">
+					<div class="lightbox_name"></div>
+	
+					<div class="lightbox_image">
+						<img src="" alt="Bugatti car">
+					</div>
+					<div class="lightbox_controls">
+						<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
+						<div class="one_control"><i class="ion ion-ios-videocam-outline  lightbox_icon" ></i></div>
+						<div class="one_control"><i class="ion ion-ios-telephone-outline  lightbox_icon" ></i></div>
+						<div class="one_control"><i class="ion ion-ios-information-outline" ></i></div>
 					</div>
 				</div>
-				<div style="color:white;" class="icon_container">
-						<i class="ion ion-ios-videocam-outline hidden"></i>
-						<i class="ion ion-ios-telephone-outline hidden"></i>
-						<i class="ion ion-social-usd-outline wallet hidden"></i>
-						<i class="ion ion-ios-cart-outline marketplace hidden"></i>
-						<i class="ion ion-ios-search"></i>
-						<i class="ion ion-ios-more"></i>
+			</div>
+			<div class="title_bar animation">
+				<div class="title_top">
+					
+				</div>
+				<div class="toptab_bar">
+					
+					
+					<div class="current_container">
+						<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
+						<div class="tab_title" data-bind="common.current_tab__text"></div>
+						<div data-bind="common.current_chat__template" class="avatar_container exec" data-exec="lightbox">
+							<script type="text/html">
+								<div class="image_container">
+									<img src="{{ value.img }}">
+								</div>
+								<a class="content_container">
+											<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
+											<p class="user_name"> <name  class="avatar_status">{{ value.status }}</name> </p>
+								</a>
+							</script>
+						</div>
+					</div>
+					<div style="color:white;" class="icon_container">
+							<i class="ion ion-ios-videocam-outline hidden"></i>
+							<i class="ion ion-ios-telephone-outline hidden"></i>
+							<i class="ion ion-social-usd-outline wallet hidden"></i>
+							<i class="ion ion-ios-cart-outline marketplace hidden"></i>
+							<i class="ion ion-ios-search"></i>
+							<i class="ion ion-ios-more"></i>
+					</div>
 				</div>
 			</div>
-        </div>
-		<div class="body_section hidden">
-			<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
-			<div style="width: 100%;"  data---="page__common.page__if:marketplace;url:/parts/marketplace.html;reload:marketplace/reload"></div>
-			<div style="width: 100%;"  data---="page__common.page__if:wallet;url:/parts/wallet.html;reload:wallet/reload"></div>
-		</div>
-		<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
-		<div class="messages_section">
-			<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
-			<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
-			<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
-			<div data---="page__common.page__if:calls;url:/parts/calls.html;reload:calls/reload"></div>
-		</div>
-		<div  class="android_controls animation">
-			<div class="botomtab_menu">
-				<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
-				<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
-				<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
-				<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ios-ionic-outline"></i> <span>Status</span></div></a>
-				<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Calls</div></a>
-			
-		</div>
+			<div class="body_section hidden">
+				<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:marketplace;url:/parts/marketplace.html;reload:marketplace/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:wallet;url:/parts/wallet.html;reload:wallet/reload"></div>
+			</div>
+			<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
+			<div class="messages_section">
+				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
+				<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
+				<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
+				<div data---="page__common.page__if:calls;url:/parts/calls.html;reload:calls/reload"></div>
+			</div>
+			<div class="chat_footer hidden">
+				<i class="ion ion-happy exec" data-exec="show_emoji"></i>
+					<i class="ion ion-paperclip" ></i>
+				<form action="/api/v1/messages/new" method="POST">
+					<input type="hidden" name="name"value="Louis Bertson">
+					<input type="hidden" name="receiver" value="0">
+					<input id="msg" data-bind="common.msg__text" type="text" name="message" placeholder="Type message here">
+					<i class="ion ion-ios-paperplane-outline exec"></i>
+				</form>
+				<i class="fa fa-microphone"></i>
+			</div>
+			<div  class="android_controls animation">
+				<div class="botomtab_menu">
+					<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
+					<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
+					<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
+					<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ios-ionic-outline"></i> <span>Status</span></div></a>
+					<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Calls</div></a>
+				</div>
+		  	</div>
+		
 	</div>
 	<script>
 		NAV.clientside('.R');
@@ -177,6 +189,14 @@
 				next();
             });
 		}
+
+
+		MAIN.bottomH = $('.android_controls').height();
+        MAIN.topH = 60;
+		var bottomTopH = MAIN.bottomH + MAIN.topH;
+        var H = WH - bottomTopH;
+        var percentH = (H * 100) / WH;
+		MAIN.percentH = percentH.toFixed(1);
 		// Display marketplace and wallet tabs
 		$('.wallet').removeClass('hidden');
 		$('.marketplace').removeClass('hidden');
@@ -229,6 +249,7 @@
 			next();
 			
 		});
+		$('.title_bar').css('margin-top', '-90px');
 		// function for hide things Header and and bottom tab bar
 		function hider(){
 			
@@ -272,8 +293,6 @@
 			hide_icons();
 			SET('common.page','camera');
 		});
-
-
 		// Route for goto Groups
 		ROUTE('/groups',function(){	
 			active('.fa-users');
