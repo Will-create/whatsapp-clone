@@ -2,8 +2,8 @@
 			
 			(function(){
 			var previousScroll = 0;
-			$('.ui-viewbox').scroll(function(){
-				var currentScroll = $('.ui-viewbox').scrollTop();
+			$('.ui-scrollbar-area').scroll(function(){
+				var currentScroll = $('.ui-scrollbar-area').scrollTop();
 				if(currentScroll > previousScroll){
 					if(currentScroll > 0 && currentScroll <= 90){
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
@@ -90,7 +90,6 @@
 			$('.ion-ios-videocam-outline').addClass('hidden');
 			$('.tab_phone').removeClass('hidden');
 			$('.body_section').addClass('hidden');
-
 			REDIRECT('/wallet');
 		});
 		$('*').click(function(e){

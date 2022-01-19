@@ -1,6 +1,4 @@
 <div style="width: 100%;" data-scope="messages">
-
-    <div data---="viewbox__null__parent:window;scrollbar:true;scrollbarshadow:true;">
         <div class="chatbody" style="width: 100%;" data-bind="?.messages__template">
             <script type="text/html" >
                 {{ foreach message in value }}
@@ -12,14 +10,9 @@
                 {{ end }}
             </script>
         </div>
-    </div>
-    
 </div>
 <style>
-    
-  
-    
-    </style>
+</style>
 <script>
     FIND('viewbox',function (component){
         component.config.height = parseFloat(MAIN.percentH);

@@ -192,10 +192,11 @@
 
 
 		MAIN.bottomH = 75;
-        MAIN.topH = 60;
+		MAIN.topH = 60;
 		var bottomTopH = MAIN.bottomH + MAIN.topH;
-        var H = WH - bottomTopH;
-        var percentH = (H * 100) / WH;
+		var H = WH - bottomTopH;
+		var percentH = (H * 100) / WH;
+		MAIN.sectionH = H;
 		MAIN.percentH = percentH.toFixed(3);
 		// Display marketplace and wallet tabs
 		$('.wallet').removeClass('hidden');
@@ -367,7 +368,53 @@
 			SET('common.page','wallet');
 		});
 
-	
+		ON('resize2', function() {
+			MAIN.bottomH = 75;
+			MAIN.topH = 60;
+			var bottomTopH = MAIN.bottomH + MAIN.topH;
+			var H = WH - bottomTopH;
+			var percentH = (H * 100) / WH;
+			MAIN.percentH = percentH.toFixed(3);
+			MAIN.sectionH = H;
+			console.log('Width:', WW, 'Height:', WH);
+		});
+		
+		
+		ON('ready',function(){
+			var previousScroll = 0;
+			var element = $('.messages_section');
+			var opt = {};
+				opt.shadow = true;
+				opt.onscroll = function(scrollbar){
+					var currentScroll = scrollbar.scrollTop();
+					console.log(currentScroll);
+				if(currentScroll > previousScroll){
+					element.height(parseFloat(MAIN.sectionH));
+					if(currentScroll > 0 && currentScroll <= 90){
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+						element.height(parseFloat(MAIN.sectionH - currentScroll));
+					}else{
+						$('.title_bar').css('margin-top', '-75px');
+						element.height(parseFloat(MAIN.sectionH));
+					}
+
+				}else{
+					if( currentScroll <= 90){
+						
+						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
+						element.height(parseFloat(MAIN.sectionH - currentScroll));
+					}else{
+						$('.title_bar').css('margin-top', '-75px');
+						element.height(parseFloat(MAIN.sectionH));
+					}
+					element.height(parseFloat(MAIN.sectionH));
+				}
+				previousScroll = currentScroll;
+				element.height(parseFloat(MAIN.sectionH));
+				};
+				element.height(parseFloat(MAIN.sectionH));
+				SCROLLBAR(element, opt);
+		});
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

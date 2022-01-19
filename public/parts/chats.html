@@ -1,5 +1,4 @@
 <div style="width: 100%;" data-scope="chats">
-    <div data---="viewbox__null__parent:window;scrollbar:true;scrollbarshadow:true;">
         <div style="width: 100%;"  data-bind="?.chats__template">
             <script  type="text/html">
                 {{ foreach chat in value }}
@@ -14,15 +13,12 @@
                     </div>
                 {{ end }}
             </script>
-    
        </div>
-   
- 
-</div>
 <script>
 
     FIND('viewbox',function (component){
-        component.config.height = parseFloat(MAIN.percentH)
+
+        component.config.height = parseFloat(MAIN.percentH);
     });
 
     PLUGIN('chats', function(exports) {
@@ -37,7 +33,6 @@
                 $('.lightbox').css('display','flex');
                 $('.lightbox').animate({opacity : 1},200);
                 $('.lightbox_container').show();
-              
         };
         (function(){
 			var previousScroll = 0;
