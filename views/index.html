@@ -191,12 +191,12 @@
 		}
 
 
-		MAIN.bottomH = 60;
+		MAIN.bottomH = 75;
         MAIN.topH = 60;
 		var bottomTopH = MAIN.bottomH + MAIN.topH;
         var H = WH - bottomTopH;
         var percentH = (H * 100) / WH;
-		MAIN.percentH = percentH.toFixed(1);
+		MAIN.percentH = percentH.toFixed(3);
 		// Display marketplace and wallet tabs
 		$('.wallet').removeClass('hidden');
 		$('.marketplace').removeClass('hidden');

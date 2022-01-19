@@ -1,6 +1,6 @@
 <div style="width: 100%;" data-scope="messages">
 
-    <div data---="viewbox__null__height:81.3;parent:window;scrollbar:true;">
+    <div data---="viewbox__null__parent:window;scrollbar:true;scrollbarshadow:true;">
         <div class="chatbody" style="width: 100%;" data-bind="?.messages__template">
             <script type="text/html" >
                 {{ foreach message in value }}
@@ -23,8 +23,12 @@
 <script>
     FIND('viewbox',function (component){
         console.log('This is main percent h',MAIN.percentH);
-        component.configure('height',MAIN.percentH);
-    });
+        component.config.height = parseFloat(MAIN.percentH);
+        component.dom.$scrollbar.scroll(function(e,t){
+            console.log(e);
+            console.log(t);
+        });
+    },500);
 
 
 function show_emoji (){

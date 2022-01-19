@@ -1,5 +1,5 @@
 <div style="width: 100%;" data-scope="chats">
-    <div data---="viewbox__null__height:83.7;parent:window;scrollbar:true;">
+    <div data---="viewbox__null__parent:window;scrollbar:true;scrollbarshadow:true;">
         <div style="width: 100%;"  data-bind="?.chats__template">
             <script  type="text/html">
                 {{ foreach chat in value }}
@@ -20,6 +20,13 @@
  
 </div>
 <script>
+
+    FIND('viewbox',function (component){
+        console.log('This is main percent h',MAIN.percentH);
+        console.log(component);
+        component.config.height = parseFloat(MAIN.percentH)
+    });
+
     PLUGIN('chats', function(exports) {
         // You can define your custom functions or properties
       exports.lightbox  = function (e) {
