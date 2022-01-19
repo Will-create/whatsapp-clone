@@ -22,12 +22,7 @@
     </style>
 <script>
     FIND('viewbox',function (component){
-        console.log('This is main percent h',MAIN.percentH);
         component.config.height = parseFloat(MAIN.percentH);
-        component.dom.$scrollbar.scroll(function(e,t){
-            console.log(e);
-            console.log(t);
-        });
     },500);
 
 

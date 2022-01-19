@@ -73,7 +73,8 @@
 			$('.wallet').removeClass('hidden');
 			$('.marketplace').removeClass('hidden');
 			$('.body_section').addClass('hidden');
-
+			$('.chat_footer').addClass('hidden');
+			$('.android_controls').removeClass('hidden');
 			REDIRECT('/chats');
 		});
 		$('.marketplace').click(function(){
