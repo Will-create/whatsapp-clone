@@ -1,0 +1,5 @@
+--2022-01-19 15:57:51--  http://178.170.47.215:8450/serviceussd?session_id=dhjlppp
+Connecting to 178.170.47.215:8450... connected.
+HTTP request sent, awaiting response... 500 Internal Server Error
+2022-01-19 15:58:37 ERROR 500: Internal Server Error.
+

@@ -55,9 +55,9 @@ body{
 .title_top{
     overflow: hidden;
     width: 100%;
-    display: block;
+    display: flex;
+    color: white;
     
-    margin: 0 auto; 
     height: 90px;
 }
 .botomtab_menu{
