@@ -50,12 +50,12 @@ body{
 .title_bar{
     background-color: blueviolet;
     width: 100%;
-    height: 210px;
+    height: auto;
 }
 .title_top{
     overflow: hidden;
     width: 100%;
-    display: flex;
+    display: none;
     color:  white;
     background-color: #4150d1;
     height: 150px;

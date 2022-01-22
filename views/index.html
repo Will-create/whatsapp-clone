@@ -183,14 +183,11 @@
 		common.current_chat = {};
 		common.chats = [];
 		common.volume = 80;
-		common.chat_list = [
-			];
-			
+		common.chat_list = [];
 			function clear_current(){
 				SET('common.current_chat',{});
 		}
 		function fetch_chats(next){
-
             AJAX('GET /api/chats/',function(res){
                 SET('common.chats',res);
 				if(!next){
@@ -201,7 +198,7 @@
 		}
 
 
-		MAIN.bottomH = 75;
+		MAIN.bottomH = 60;
 		MAIN.topH = 60;
 		var bottomTopH = MAIN.bottomH + MAIN.topH;
 		var H = WH - bottomTopH;
@@ -378,12 +375,15 @@
 		};
 		ON('resize2', function() {
 			MAIN.bottomH = 60;
-			MAIN.topH = 150;
+			MAIN.topH = 60;
 			var bottomTopH = MAIN.bottomH + MAIN.topH;
 			var H = WH - bottomTopH;
 			var percentH = (H * 100) / WH;
 			MAIN.percentH = percentH.toFixed(3);
 			MAIN.sectionH = H;
+			var element = $('.messages_section');
+			element.css('padding-bottom','60px');
+			element.height(parseFloat(MAIN.sectionH));
 			console.log('Width:', WW, 'Height:', WH);
 		});
 		$('.messages_section').css('padding-top','0px');
@@ -392,6 +392,7 @@
 			var previousScroll = 0;
 			var element = $('.messages_section');
 			element.css('padding-bottom','60px');
+			element.height(parseFloat(MAIN.sectionH));
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){

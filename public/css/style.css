@@ -17,14 +17,13 @@
 }
 .ion {
     cursor :pointer;
-    font-size: 35px;
+    font-size: 30px;
     padding: 2px 3px;
 }
 
 .ion:hover {
-    font-size: 38px;
-    padding: 3px 4px;
-
+    font-size: 32px;
+    padding: 2px 3px;
     border-radius: 100%;
     opacity: 0.9;
 }

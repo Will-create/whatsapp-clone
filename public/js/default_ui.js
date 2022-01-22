@@ -69,12 +69,11 @@
 			}
 		});
 		$('#search').click(function(){	
-			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
-			$('.title_bar').animate({marginTop : '-75px'},200);
 			$('.search_bar').removeClass('hidden');
+			$('.search_bar').focus();
+			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
 			$('.back_trigger').removeClass('hidden');
 			$('.back_trigger').css('display','block');
-			$('.search_bar').focus();
 		});
 		
 		
