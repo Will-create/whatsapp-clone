@@ -47,8 +47,9 @@
 		.one_control i{color: white;}
 		.back_trigger i{color: #2C3DD6;}
 		.back_button i{color:white;}
-		.dropdown_item{background-color: white;}
-		.dropdown_item:hover{color : white;background-color: rgb(165,165,165);}
+		.dropdown_item{background-color: #2C3DD6;}
+		.dropdown_item{color: white;}
+		.dropdown_item:hover{color : #2C3DD6;background-color : white;}
 		.avataruser_name{color: white;}
 		.user_name .avatar_name{color: white!important;}
 		.avatar_status{color: white!important;}
@@ -72,7 +73,7 @@
     </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
-			<div class="dropdown_menu">
+			<div id="dropdown_menu"  class="dropdown_menu">
 				<div class="dropdown_item">New Group</div>
 				<div class="dropdown_item">New broadcast</div>
 				<div class="dropdown_item">Whatsapp Web</div>
@@ -98,7 +99,10 @@
 			</div>
 			<div class="title_bar animation">
 				<div class="title_top">
-					<div class="row">
+					<div class="wallet_image">
+							<img style="width: 200px;height:50px" src="/svg/pay_online.svg" alt="Wallet">
+					</div>
+					<div class="wallet_ballance">
 						<div id="balance">
 							XOF : 6 543 000
 						</div>
@@ -129,8 +133,8 @@
 							<i class="ion ion-ios-telephone-outline hidden"></i>
 							<i class="ion ion-social-usd-outline wallet hidden"></i>
 							<i class="ion ion-ios-cart-outline marketplace hidden"></i>
-							<i class="ion ion-ios-search"></i>
-							<i class="ion ion-ios-more"></i>
+							<i id="search" class="ion ion-ios-search"></i>
+							<i id="options" class="ion ion-ios-more exec" data-exec="more_options" ></i>
 					</div>
 				</div>
 			</div>
@@ -205,8 +209,7 @@
 		// Display marketplace and wallet tabs
 		$('.wallet').removeClass('hidden');
 		$('.marketplace').removeClass('hidden');
-
-
+		$('.title_bar').css('margin-top', '-90px');
 		// Function for toggle tab active
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
@@ -371,7 +374,10 @@
 
 			SET('common.page','wallet');
 		});
-
+		function more_options(){
+			$('#dropdown_menu').tclass('hidden');
+			$('#dropdown_menu').animate({width : '200px', height : 'auto'},400);
+		};
 		ON('resize2', function() {
 			MAIN.bottomH = 75;
 			MAIN.topH = 60;
@@ -383,7 +389,7 @@
 			console.log('Width:', WW, 'Height:', WH);
 		});
 		
-		
+
 		ON('ready',function(){
 			var previousScroll = 0;
 			var element = $('.messages_section');
@@ -398,7 +404,7 @@
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
 						element.height(parseFloat(MAIN.sectionH - currentScroll));
 					}else{
-						$('.title_bar').css('margin-top', '-75px');
+						$('.title_bar').css('margin-top', '-90px');
 						element.height(parseFloat(MAIN.sectionH));
 					}
 
@@ -408,7 +414,7 @@
 						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
 						element.height(parseFloat(MAIN.sectionH - currentScroll));
 					}else{
-						$('.title_bar').css('margin-top', '-75px');
+						$('.title_bar').css('margin-top', '-90px');
 						element.height(parseFloat(MAIN.sectionH));
 					}
 					element.height(parseFloat(MAIN.sectionH));

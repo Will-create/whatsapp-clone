@@ -56,8 +56,8 @@ body{
     overflow: hidden;
     width: 100%;
     display: flex;
-    color: white;
-    
+    color:  blueviolet;
+    background-color: white;
     height: 90px;
 }
 .botomtab_menu{
@@ -489,15 +489,14 @@ textarea:focus, input:focus{
 }
 
 .dropdown_menu{
-    width: 150px;
-    height: auto;
+    width: '200px';
+    height: 'auto';
     overflow: hidden;
     box-shadow: 0px 0px 4px rgba(16,16,16,0.5);
     position: absolute;
-    opacity: 0;
     right: 20px;
-    top: 40px;
-    z-index: 999;
+    top: 90px;
+    z-index: 99999;
 }
 
 .dropdown_item{
@@ -505,7 +504,7 @@ textarea:focus, input:focus{
     font-family: 'Helvetica Neue Light';
     box-sizing: border-box;
     padding: 12px 20px;
-    font-size: 22px;
+    font-size: 16px;
     background-color: white;
 }
 
@@ -578,7 +577,7 @@ textarea:focus, input:focus{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 35%;
+    width: 45%;
     padding-right: 10px;
 }
 
@@ -587,3 +586,12 @@ textarea:focus, input:focus{
 .chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800; color: #101010!important;}
 .chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
 .chat_receiver{margin-left:auto;background-color: blueviolet; color: white;}
+
+.wallet_image{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
