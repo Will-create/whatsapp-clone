@@ -27,7 +27,7 @@
 	
 		})();
 
-
+		$('.dropdown_menu').hide();
 		$('.icon_container div i:nth-child(2)').click(function(){	
 			
 			$('.dropdown_menu').animate({width : '300px', height : 'auto',opacity :1 },200);
