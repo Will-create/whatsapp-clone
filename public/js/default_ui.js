@@ -1,30 +1,5 @@
 		$('document').ready(function(){
-			
-			(function(){
-			var previousScroll = 0;
-			$('.ui-scrollbar-area').scroll(function(){
-				var currentScroll = $('.ui-scrollbar-area').scrollTop();
-				if(currentScroll > previousScroll){
-					if(currentScroll > 0 && currentScroll <= 90){
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-						
-					}else{
-						$('.title_bar').css('margin-top', '-75px');
-					}
-				}else{
-					if( currentScroll <= 90){
-						
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-					}else{
-						$('.title_bar').css('margin-top', '-75px');
-					}
-				}
-	
-				previousScroll = currentScroll;
-			});
-		})();
 		$('#dropdown_menu').tclass('hidden');
-	
 		//
 		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
 		//
@@ -90,12 +65,9 @@
 				if($(e.target).attr('class') != 'dropdown_menu' || $(e.target).attr('class') !== 'dropdown_item'){
 					$('#dropdown_menu').animate({height : 'auto',width : '200px' },400);
 					$('#dropdown_menu').tclass('hidden');
-
 				}
 			}
-			
 		});
-		
 		$('#search').click(function(){	
 			$('.search_bar').animate({opacity : 1 , width : '100%'},200);
 			$('.title_bar').animate({marginTop : '-75px'},200);

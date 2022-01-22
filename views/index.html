@@ -58,6 +58,8 @@
 		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
 		.chat_receiver{margin-left:auto;background-color: #2C3DD6; color: white;}
+		.arrows{ color: white;width:auto; height:auto; position: fixed; top : 0; left: 45%;}
+		.arrows .ion{ padding-top: 0; margin-top: 0;}
 	</style>
 </head>
 <body data---="exec">
@@ -99,17 +101,10 @@
 			</div>
 			<div class="title_bar animation">
 				<div class="title_top">
-					<div class="wallet_image">
-							<img style="width: 200px;height:50px" src="/svg/pay_online.svg" alt="Wallet">
+					<div class="arrows2">
+						<i class="ion2 ion-ios-arrow-up wallet_up "></i>
 					</div>
-					<div class="wallet_ballance">
-						<div id="balance">
-							XOF : 6 543 000
-						</div>
-						<div id="deposit">Dépot</div>
-						<div id="withdraw">Retrait</div>
 					</div>
-				</div>
 				<div class="toptab_bar">
 					
 					
@@ -128,9 +123,15 @@
 							</script>
 						</div>
 					</div>
+					<div class="arrows">
+						<i class="ion2 ion-ios-arrow-up wallet_up hidden"></i>
+						<i class="ion2 ion-ios-arrow-down wallet_down "></i>
+					</div>
 					<div style="color:white;" class="icon_container">
+						
 							<i class="ion ion-ios-videocam-outline hidden"></i>
 							<i class="ion ion-ios-telephone-outline hidden"></i>
+							
 							<i class="ion ion-social-usd-outline wallet hidden"></i>
 							<i class="ion ion-ios-cart-outline marketplace hidden"></i>
 							<i id="search" class="ion ion-ios-search"></i>
@@ -145,6 +146,7 @@
 			</div>
 			<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
+				
 				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 				<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
 				<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
@@ -209,7 +211,6 @@
 		// Display marketplace and wallet tabs
 		$('.wallet').removeClass('hidden');
 		$('.marketplace').removeClass('hidden');
-		$('.title_bar').css('margin-top', '-90px');
 		// Function for toggle tab active
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
@@ -258,11 +259,9 @@
 			next();
 			
 		});
-		$('.title_bar').css('margin-top', '-90px');
 		// function for hide things Header and and bottom tab bar
 		function hider(){
 			
-			$('.title_bar').css('margin-top', '-75px');
 			$('.back_button').css('display','flex');
 		
 			$('.android_controls').css('display','none');
@@ -271,7 +270,6 @@
 		
 		//function for  display things: Header and bottom tab bar
 		function displayer(){
-			$('.title_bar').css('margin-top', '-75px');
 			$('.back_button').css('display','none');
 		
 			$('.android_controls').css('display','flex');
@@ -379,8 +377,8 @@
 			$('#dropdown_menu').animate({width : '200px', height : 'auto'},400);
 		};
 		ON('resize2', function() {
-			MAIN.bottomH = 75;
-			MAIN.topH = 60;
+			MAIN.bottomH = 60;
+			MAIN.topH = 150;
 			var bottomTopH = MAIN.bottomH + MAIN.topH;
 			var H = WH - bottomTopH;
 			var percentH = (H * 100) / WH;
@@ -388,41 +386,17 @@
 			MAIN.sectionH = H;
 			console.log('Width:', WW, 'Height:', WH);
 		});
-		
+		$('.messages_section').css('padding-top','0px');
 
 		ON('ready',function(){
 			var previousScroll = 0;
 			var element = $('.messages_section');
+			element.css('padding-bottom','60px');
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){
-					var currentScroll = scrollbar.scrollTop();
-					console.log(currentScroll);
-				if(currentScroll > previousScroll){
-					element.height(parseFloat(MAIN.sectionH));
-					if(currentScroll > 0 && currentScroll <= 90){
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-						element.height(parseFloat(MAIN.sectionH - currentScroll));
-					}else{
-						$('.title_bar').css('margin-top', '-90px');
-						element.height(parseFloat(MAIN.sectionH));
-					}
-
-				}else{
-					if( currentScroll <= 90){
-						
-						$('.title_bar').css('margin-top', '-'+currentScroll+'px');
-						element.height(parseFloat(MAIN.sectionH - currentScroll));
-					}else{
-						$('.title_bar').css('margin-top', '-90px');
-						element.height(parseFloat(MAIN.sectionH));
-					}
-					element.height(parseFloat(MAIN.sectionH));
-				}
-				previousScroll = currentScroll;
-				element.height(parseFloat(MAIN.sectionH));
+					
 				};
-				element.height(parseFloat(MAIN.sectionH));
 				SCROLLBAR(element, opt);
 		});
 	</script>

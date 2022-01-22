@@ -19,13 +19,26 @@
     cursor :pointer;
     font-size: 35px;
     padding: 2px 3px;
-    
-    
 }
 
 .ion:hover {
+    font-size: 38px;
+    padding: 3px 4px;
+
     border-radius: 100%;
     opacity: 0.9;
-    
+}
+.ion2 {
+    cursor :pointer;
+    font-size: 35px;
+    padding: 0 ;
+    margin: 0;
+}
+
+.ion2:hover {
+    font-size: 38px;
+    padding: 1px;
+    border-radius: 100%;
+    opacity: 0.9;
 }
 

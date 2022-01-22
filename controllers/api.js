@@ -47,7 +47,7 @@ function chats(){
 		if(err){
 			return;
 		}; 
-		res.for
+		console.log(res);
 		self.json(res);
 	})
 }
