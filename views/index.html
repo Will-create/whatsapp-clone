@@ -381,7 +381,7 @@
 			$('.wallet_down').show();
 			$(this).hide();
 		});
-		$('#options').click(function(e){
+		$('#options').click(function(){
 					var opt = {};
 					opt.items = ['Label', 
 					{ name: 'New Group', icon: 'print' },
@@ -391,13 +391,11 @@
 					{ name: 'Settings', icon: 'print' }
 					];
 					opt.align = 'center';
-					opt.element = e.target;
+					opt.element = this;
 					//opt.classname = 'dropdown_menu';
 					opt.callback = function(selected) {
 						console.log(selected);
 					};	
-					console.log(opt);
-
 					SETTER('menu','show', opt);
 
 		});
@@ -406,6 +404,7 @@
 			var options = $('#options');		
 			
 		};
+		
 		ON('resize2', function() {
 			MAIN.bottomH = 60;
 			MAIN.topH = 60;

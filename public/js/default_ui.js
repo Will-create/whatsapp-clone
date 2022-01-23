@@ -27,6 +27,7 @@
 			$('.search_bar').animate({opacity : 0},200);
 
 			$('.back_trigger').css('display','none');
+			$('.back_button').css('display','none');
 			$('.search_bar').css('display','none');
 			$('.back_trigger').addClass('hidden');
 			
@@ -72,7 +73,12 @@
 			$('.back_trigger').removeClass('hidden');
 			$('.back_trigger').css('display','block');
 		});
-
+		if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+			REDIRECT('/');
+			console.info( "This page is reloaded" );
+		  } else {
+			console.info( "This page is not reloaded");
+		  };
 
 	
 		
