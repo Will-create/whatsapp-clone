@@ -447,7 +447,7 @@ body{
 .search_bar{
     width: 100%;
     position: absolute;
-    height: 74px;
+    height: 59px;
     box-shadow: -1px -10px 13px 10px #101010;
     border: none;
     font-family: 'Helvetica Neue Light';
@@ -470,13 +470,12 @@ textarea:focus, input:focus{
     cursor: pointer;
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 12px;
     z-index: 999;
 }
 .back_trigger i{
   color: blueviolet;
 }
-
 .back_button{
     width: 34px;
     height: 39px;
@@ -487,7 +486,6 @@ textarea:focus, input:focus{
 .back_button i{
   color:white;
 }
-
 .dropdown_menu{
     width: '200px';
     height: 'auto';
@@ -562,7 +560,6 @@ textarea:focus, input:focus{
 .avatar_container .user_name {
     width: 100%;
     display: flex;
-
 }
 
 .user_name .avatar_name{

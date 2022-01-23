@@ -25,14 +25,12 @@
 			$('.search_bar').val('');
 			$('.search_bar').keyup();
 			$('.search_bar').animate({opacity : 0},200);
-			$('.title_bar').animate({marginTop : '-75px'},200);
+
 			$('.back_trigger').css('display','none');
+			$('.search_bar').css('display','none');
 			$('.back_trigger').addClass('hidden');
 			
-			setTimeout(function(){
-				$('.search_bar').css('display','none');
-				$('.search_bar').addClass('hidden');
-			},200);
+	
 		});
 		$('.back_button').click(function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
@@ -50,7 +48,6 @@
 			$('.ion-ios-videocam-outline').addClass('hidden');
 			$('.tab_phone').removeClass('hidden');
 			$('.body_section').addClass('hidden');
-
 			REDIRECT('/marketplace');
 		});
 		$('.wallet').click(function(){
@@ -75,6 +72,9 @@
 			$('.back_trigger').removeClass('hidden');
 			$('.back_trigger').css('display','block');
 		});
+
+
+	
 		
 		
 	});

@@ -58,7 +58,7 @@
 		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
 		.chat_receiver{margin-left:auto;background-color: #2C3DD6; color: white;}
-		.arrows{ color: white;width:auto; height:auto; position: fixed; top : 0; left: 45%;}
+		.arrows{ color: white;width:auto; height:auto; position: fixed; top : 0; left: 48%;}
 		.arrows .ion{ padding-top: 0; margin-top: 0;}
 	</style>
 </head>
@@ -68,6 +68,7 @@
 	<div data---="emoji"></div>
 	<div data---="animation__null__style:5;together:true;">
 	<div data---="splashscreen__null__timeout:5000" class="ui-splashscreen">
+		<div data---="menu"></div>
         <script type="text/html">
 			<div><i  class="fa fa-comment-dots splash"></i></div>
            <h1>SendMe</h1>
@@ -75,13 +76,7 @@
     </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
-			<div id="dropdown_menu"  class="dropdown_menu">
-				<div class="dropdown_item">New Group</div>
-				<div class="dropdown_item">New broadcast</div>
-				<div class="dropdown_item">Whatsapp Web</div>
-				<div class="dropdown_item">Starred Messages</div>
-				<div class="dropdown_item">Settings</div>
-			</div>
+			
 			<div class="back_trigger hidden"> <i class="ion ion-ios-arrow-left" ></i> </div>
 			<input type="text" class="search_bar hidden">
 			<div class="lightbox">
@@ -101,10 +96,15 @@
 			</div>
 			<div class="title_bar animation">
 				<div class="title_top">
-					<div class="arrows2">
-						<i class="ion2 ion-ios-arrow-up wallet_up "></i>
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-1">
+							
+						</div>
+						<div class="col-md-10"></div>
 					</div>
-					</div>
+					
+				</div>
 				<div class="toptab_bar">
 					
 					
@@ -117,25 +117,23 @@
 									<img src="{{ value.img }}">
 								</div>
 								<a class="content_container">
-											<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
-											<p class="user_name"> <name  class="avatar_status">{{ value.status }}</name> </p>
+									<p class="user_name"> <name class="avatar_name">{{ value.username }}</name> </p>
+									<p class="user_name"> <name  class="avatar_status">{{ value.status }}</name> </p>
 								</a>
 							</script>
 						</div>
 					</div>
-					<div class="arrows">
-						<i class="ion2 ion-ios-arrow-up wallet_up hidden"></i>
-						<i class="ion2 ion-ios-arrow-down wallet_down "></i>
-					</div>
+					
+					
 					<div style="color:white;" class="icon_container">
 						
+							<i class="ion ion-ios-arrow-down wallet_down "></i>
+							<i class="ion ion-ios-arrow-up wallet_up "></i>
 							<i class="ion ion-ios-videocam-outline hidden"></i>
 							<i class="ion ion-ios-telephone-outline hidden"></i>
-							
-							<i class="ion ion-social-usd-outline wallet hidden"></i>
 							<i class="ion ion-ios-cart-outline marketplace hidden"></i>
 							<i id="search" class="ion ion-ios-search"></i>
-							<i id="options" class="ion ion-ios-more exec" data-exec="more_options" ></i>
+							<i id="options" class="ion ion-ios-more"  ></i>
 					</div>
 				</div>
 			</div>
@@ -369,9 +367,44 @@
 
 			SET('common.page','wallet');
 		});
+		$('.wallet_up').hide();
+
+		$('.wallet_down').click(function(){
+			$('.title_top').slideDown();
+			$('.wallet_up').show();
+			$(this).hide();
+		});
+		
+
+		$('.wallet_up').click(function(){
+			$('.title_top').slideUp();
+			$('.wallet_down').show();
+			$(this).hide();
+		});
+		$('#options').click(function(e){
+					var opt = {};
+					opt.items = ['Label', 
+					{ name: 'New Group', icon: 'print' },
+					{ name: 'New Broadcast', icon: 'print' },
+					{ name: 'Whatsapp Web', icon: 'print' },
+					{ name: 'Stared messages', icon: 'print' },
+					{ name: 'Settings', icon: 'print' }
+					];
+					opt.align = 'center';
+					opt.element = e.target;
+					//opt.classname = 'dropdown_menu';
+					opt.callback = function(selected) {
+						console.log(selected);
+					};	
+					console.log(opt);
+
+					SETTER('menu','show', opt);
+
+		});
 		function more_options(){
-			$('#dropdown_menu').tclass('hidden');
-			$('#dropdown_menu').animate({width : '200px', height : 'auto'},400);
+			console.log('Options clicked');
+			var options = $('#options');		
+			
 		};
 		ON('resize2', function() {
 			MAIN.bottomH = 60;
@@ -399,6 +432,10 @@
 					
 				};
 				SCROLLBAR(element, opt);
+
+
+
+				
 		});
 	</script>
 	<script src="/js/default_ui.js"></script>
