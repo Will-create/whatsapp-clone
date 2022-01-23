@@ -156,13 +156,11 @@ body{
 
 .messages_section{
     width: 100%;
-    height: calc(100% - 120px);
     box-sizing: border-box;
     background-color: white;
 }
 .body_section{
     width: 100%;
-    height: calc(100%);
     box-sizing: border-box;
     padding-bottom: 49px;
     background-color: white;

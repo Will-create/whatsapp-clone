@@ -163,6 +163,7 @@
 			</div>
 			<div  class="android_controls animation">
 				<div class="botomtab_menu">
+					<a href="/" class="R hidden"></a>
 					<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
 					<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
 					<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
@@ -203,10 +204,6 @@
 		var percentH = (H * 100) / WH;
 		MAIN.sectionH = H;
 		MAIN.percentH = percentH.toFixed(3);
-		// Display marketplace and wallet tabs
-		$('.wallet').removeClass('hidden');
-		$('.marketplace').removeClass('hidden');
-		// Function for toggle tab active
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
 			$('.ion-ios-chatboxes-outline').parent().removeClass('active');
@@ -216,10 +213,7 @@
 			$(cls).parent().removeClass('active');
 			$(cls).addClass('active');
 		}
-		// Show Search bar icon;
-		$('.ion-ios-search').show();
-
-		// Function for set tab title
+		
 		function title(txt){
            SET('common.current_tab',txt);
 		}
@@ -252,13 +246,10 @@
 			SET('common.current_chat',{});
 			SET('common.current_chat',current);
 			next();
-			
 		});
 		// function for hide things Header and and bottom tab bar
 		function hider(){
-			
 			$('.back_button').css('display','flex');
-		
 			$('.android_controls').css('display','none');
 			$('.messages_section').css('display','none');
 		};
@@ -266,7 +257,6 @@
 		//function for  display things: Header and bottom tab bar
 		function displayer(){
 			$('.back_button').css('display','none');
-		
 			$('.android_controls').css('display','flex');
 			$('.messages_section').css('display','flex');
 		};
@@ -324,7 +314,27 @@
 			clear_current();
 			SET('common.page','chats');
 		}); 
-
+		ROUTE('/',function(){	
+			$('.ion-ios-telephone-outline').addClass('hidden');
+			$('.ion-ios-videocam-outline').addClass('hidden');
+			$('.tab_phone').removeClass('hidden');
+			$('.wallet').removeClass('hidden');
+			$('.marketplace').removeClass('hidden');
+			$('.body_section').addClass('hidden');
+			$('.chat_footer').addClass('hidden');
+			$('.android_controls').removeClass('hidden');
+			// Show Search bar icon;
+			$('.ion-ios-search').show();
+			$('.ion-ios-search').removeClass('hidden');
+			// Display marketplace and wallet tabs
+			$('.wallet').removeClass('hidden');
+			$('.marketplace').removeClass('hidden');
+			// Function for toggle tab active
+			title('Chats');
+			displayer();
+			clear_current();
+			SET('common.page','chats');
+		}); 
 		// Route for go to phone/video calls
 		ROUTE('/calls',function(){	
 			hide_icons();
@@ -417,25 +427,14 @@
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
 			console.log('Width:', WW, 'Height:', WH);
-		});
-		$('.messages_section').css('padding-top','0px');
-
-		ON('ready',function(){
-			var previousScroll = 0;
-			var element = $('.messages_section');
-			element.css('padding-bottom','60px');
-			element.height(parseFloat(MAIN.sectionH));
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){
 					
 				};
 				SCROLLBAR(element, opt);
-
-
-
-				
 		});
+
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

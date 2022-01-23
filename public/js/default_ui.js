@@ -4,9 +4,7 @@
 		// CODE TO BRING OUT UP THE IMAGE LIGHTBOX
 		//
 		// On the change of the search bar input
-
 		// Code to make search bar work
-
 		$('body').on('change, keyup','.search_bar',function(){
 			var thisValue = $(this).val().toLowerCase();
 			var thisLength = $(this).val().length;
@@ -19,7 +17,6 @@
 					thisChat.show();
 				}
 			  });
-			  
 		});
 		 $('.back_trigger').click(function(){
 			$('.search_bar').val('');
@@ -42,7 +39,7 @@
 			$('.body_section').addClass('hidden');
 			$('.chat_footer').addClass('hidden');
 			$('.android_controls').removeClass('hidden');
-			REDIRECT('/chats');
+			NAV.back();
 		});
 		$('.marketplace').click(function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
