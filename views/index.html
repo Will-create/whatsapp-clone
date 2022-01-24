@@ -170,10 +170,10 @@
 				<div class="botomtab_menu">
 					<a href="/" class="R hidden"></a>
 					<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
-					<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Chats</span> </div></a>
-					<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groups</span> </div></a>
+					<a href="/chats" class="R"><div class="single_tab"><i style="font-size: 33px;" class="ion ion-ios-chatboxes-outline"></i> <span>Messages</span> </div></a>
+					<a href="/groups" class="R"><div class="single_tab "><i style="font-size: 42px;" class="ion ion-ios-people-outline"></i> <span>Groupes</span> </div></a>
 					<a href="/stories" class="R"><div class="single_tab "><i style="font-size: 32px;" class="ion ion-ios-ionic-outline"></i> <span>Status</span></div></a>
-					<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Calls</div></a>
+					<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Appels</div></a>
 				</div>
 		  	</div>
 		
@@ -291,7 +291,7 @@
 		// Route for goto Groups
 		ROUTE('/groups',function(){	
 			active('.fa-users');
-			title('Groups');
+			title('Groupes');
 			clear_current();
 			hide_icons();
 
@@ -314,7 +314,7 @@
 			$('.ion-ios-search').show();
 			$('.marketplace').removeClass('hidden');
 			active('.ion-ios-chatboxes-outline');
-			title('Chats');
+			title('Discussions');
 			displayer();
 			clear_current();
 			SET('common.page','chats');
@@ -344,7 +344,7 @@
 		ROUTE('/calls',function(){	
 			hide_icons();
 			active('.fa-phone');
-			title('Calls');
+			title('Appels');
 			clear_current();
 			SET('common.page','calls');
 		});
