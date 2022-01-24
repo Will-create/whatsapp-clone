@@ -62,8 +62,6 @@
 		.arrows .ion{ padding-top: 0; margin-top: 0;}
 		.ion:hover {color: #e0e0e0;}
 		.ion2:hover {color: #e0e0e0;}
-
-
 	</style>
 </head>
 <body data---="exec">
@@ -252,16 +250,16 @@
 		});
 		// function for hide things Header and and bottom tab bar
 		function hider(){
-			$('.back_button').css('display','flex');
-			$('.android_controls').css('display','none');
-			$('.messages_section').css('display','none');
+			$('.back_button').show();
+			$('.android_controls').hide();
+			$('.messages_section').hide();
 		};
 		
 		//function for  display things: Header and bottom tab bar
 		function displayer(){
-			$('.back_button').css('display','none');
-			$('.android_controls').css('display','flex');
-			$('.messages_section').css('display','flex');
+			$('.back_button').hide();
+			$('.android_controls').show();
+			$('.messages_section').show();
 		};
 
 		// function for hide icons/tabs in defauls
@@ -278,7 +276,6 @@
 				hider();
 				SET('common.page','messages');
 		},'current_chat');
-
 
 		// route for open device camera
 		ROUTE('/camera',function(){	
@@ -444,6 +441,7 @@
 			$('.search_bar').addClass('hidden');
 			$('.back_trigger').addClass('hidden');
 			resizeAll(60,'.messages_section');
+
 		});
 
 		var element = $('.messages_section');
@@ -453,7 +451,7 @@
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){
-					
+					console.log(scrollbar);
 				};
 				SCROLLBAR(element, opt);
 
@@ -464,7 +462,6 @@
 				var opt2 = {};
 					opt2.shadow = true;
 					opt2.onscroll = function(scrollbar){
-						
 					};
 					SCROLLBAR(element2, opt2);
 	</script>

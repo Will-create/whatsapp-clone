@@ -185,9 +185,7 @@ body { background-color: white; padding: 0; color: gray; font-smoothing: antiali
 .theme-purple .panel .user-settings .fa { color: #FFCE54; border-left-color: #4E4277; }
 .theme-purple .caption { color: white; }
 .theme-purple .panel .user-stats { color: white; }
-
 .section { border: 1px solid #E0E0E0; border-radius: 4px; }
-
 #header .search { background-color: white; border-radius: 4px; margin: 12px 0 0; padding: 2px; overflow: hidden; color: gray; border: 1px solid #E0E0E0; margin-right: 45px; }
 #header .search span { float: left; width: 40px; font-size: 14px; border-right: 1px solid #E0E0E0; text-align: center; height: 28px; padding: 6px 0 0 0; }
 #header .search div { margin-left: 40px; padding: 6px 10px 0; height: 28px; }

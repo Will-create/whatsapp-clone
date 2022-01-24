@@ -10,14 +10,7 @@
     -ms-user-select: none;
     user-select: none;
 }
-body{
-    background-image: url('/img/profiles/bugatti.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    background-position: center;
-}
+
 @font-face {
     font-family: Helvetica Neue Light;
     src: url('/fonts/HelveticaNeueLight.ttf');
@@ -597,5 +590,6 @@ textarea:focus, input:focus{
 *{
   box-sizing:border-box;
   font-family: 'Space Mono', monospace;
+  word-spacing: 0.1;
 }
 
