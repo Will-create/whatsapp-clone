@@ -26,11 +26,10 @@
         // You can define your custom functions or properties
       exports.lightbox  = function (e) {
                 $('.lightbox_icon').removeClass('hidden');
-                console.log($(e));
                 var image = $(e).children('img').attr('src');
+                $('.lightbox_image img').attr('src',image);
                 var name = $(e).parent().find('.user_name name').text(); 
                 $('.lightbox_name').text(name);
-                $('.lightbox_image img').attr('src',image);
                 $('.lightbox').css('display','flex');
                 $('.lightbox').animate({opacity : 1},200);
                 $('.lightbox_container').show();

@@ -40,7 +40,7 @@ body{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    background-color: blueviolet;
+    background-color: white;
     overflow: hidden;
     margin: 0;
     position: relative;
@@ -352,38 +352,7 @@ body{
 }
 @media (max-width:1600px) {
     .lightbox_container{
-        width: 45vw;
-        height: 75vh;
-        background-color:white;
-        position: relative;
-        display: block;
-    }
-    .lightbox_name{
-        padding: 25px 25px;
-        font-family: 'Helvetica Neue Bold';
-        font-size: 40px;
-    }
-    
-}
-@media (max-width:1200px) {
-    .lightbox_container{
-        width: 50vw;
-        height: 80vh;
-        background-color:white;
-        position: relative;
-        display: block;
-    }
-    .lightbox_name{
-        padding: 25px 25px;
-        font-family: 'Helvetica Neue Bold';
-        font-size: 40px;
-    }
-    
-}
-
-@media (max-width:900px) {
-    .lightbox_container{
-        width: 80vw;
+        width: 30vw;
         height: 60vh;
         background-color:white;
         position: relative;
@@ -392,29 +361,62 @@ body{
     .lightbox_name{
         padding: 15px 15px;
         font-family: 'Helvetica Neue Bold';
-        font-size: 30px;
+        font-size: 20px;
     }
-    
-}
 
-@media (max-width:700px) {
+}
+@media (max-width:1200px) {
     .lightbox_container{
-        width: 80vw;
-        height: 65vh;
+        width: 45vw;
+        height: 60vh;
         background-color:white;
         position: relative;
         display: block;
     }
     .lightbox_name{
-        padding: 12px 12px;
+        padding: 15px 15px;
+        font-family: 'Helvetica Neue Bold';
+        font-size: 20px;
+    }
+   
+    
+}
+
+@media (max-width:900px) {
+    .lightbox_container{
+        width: 70vw;
+        height: 60vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+    .lightbox_name{
+        padding: 15px 15px;
+        font-family: 'Helvetica Neue Bold';
+        font-size: 20px;
+    }
+   
+    
+}
+
+@media (max-width:700px) {
+    .lightbox_container{
+        width: 70vw;
+        height: 60vh;
+        background-color:white;
+        position: relative;
+        display: block;
+    }
+    .lightbox_name{
+        padding: 8px 8px;
         font-family: 'Helvetica Neue Medium';
-        font-size: 26px;
+        font-size: 16px;
     }
     
 }
 @media (max-width:500px) {
     .lightbox_container{
-        width: 80vw;
+        width: 70vw;
         height: 50vh;
         background-color:white;
         position: relative;
@@ -579,7 +581,7 @@ textarea:focus, input:focus{
 .chat_body{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 30px;}
 .chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
 .chat_messageAuthor{position:absolute;top:-15px;font-size: xx-small;font-weight: 800; color: #101010!important;}
-.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: #e0e0e0;}
 .chat_receiver{margin-left:auto;background-color: blueviolet; color: white;}
 
 .wallet_image{

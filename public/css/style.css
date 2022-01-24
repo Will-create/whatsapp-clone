@@ -27,6 +27,13 @@
     border-radius: 100%;
     opacity: 0.9;
 }
+.ion2:hover {
+    font-size: 38px;
+    padding: 1px;
+    border-radius: 100%;
+    opacity: 0.9;
+}
+
 .ion2 {
     cursor :pointer;
     font-size: 35px;
@@ -34,10 +41,4 @@
     margin: 0;
 }
 
-.ion2:hover {
-    font-size: 38px;
-    padding: 1px;
-    border-radius: 100%;
-    opacity: 0.9;
-}
 

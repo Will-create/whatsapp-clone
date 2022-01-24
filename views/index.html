@@ -24,7 +24,7 @@
 		.chat_footer > form > .ion {padding: 5px; color: white;}
 		.chat_footer > .ion {padding: 5px; color: white;cursor :pointer;font-size: 35px;}
 		.ui-splashscreen{background-color: #2C3DD6!important;color: white!important;}
-		.container{background-color: #2C3DD6;}
+		.container{background-color: white;}
 		.title_bar{background-color: #2C3DD6;}
 		.title_container{color : white;}
 		.single_tab{border-bottom: solid 3px transparent;color: white;}      
@@ -60,6 +60,10 @@
 		.chat_receiver{margin-left:auto;background-color: #2C3DD6; color: white;}
 		.arrows{ color: white;width:auto; height:auto; position: fixed; top : 0; left: 48%;}
 		.arrows .ion{ padding-top: 0; margin-top: 0;}
+		.ion:hover {color: #e0e0e0;}
+		.ion2:hover {color: #e0e0e0;}
+
+
 	</style>
 </head>
 <body data---="exec">
@@ -197,13 +201,13 @@
 		}
 
 
-		MAIN.bottomH = 60;
-		MAIN.topH = 60;
-		var bottomTopH = MAIN.bottomH + MAIN.topH;
-		var H = WH - bottomTopH;
-		var percentH = (H * 100) / WH;
-		MAIN.sectionH = H;
-		MAIN.percentH = percentH.toFixed(3);
+		//MAIN.bottomH = 60;
+		//MAIN.topH = 60;
+		//var bottomTopH = MAIN.bottomH + MAIN.topH;
+		//var H = WH - bottomTopH;
+		//var percentH = (H * 100) / WH;
+		//MAIN.sectionH = H;
+		//MAIN.percentH = percentH.toFixed(3);
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
 			$('.ion-ios-chatboxes-outline').parent().removeClass('active');
@@ -223,7 +227,6 @@
 
 			SET('common.current_tab','');
 			$('.ion-ios-telephone-outline').removeClass('hidden');
-
 			$('.ion-ios-videocam-outline').removeClass('hidden');
 			$('.body_section').removeClass('hidden');
 			$('.wallet').addClass('hidden');
@@ -308,6 +311,8 @@
 		// Route for goto chats
 		ROUTE('/chats',function(){	
 			$('.ion-ios-search').removeClass('hidden');
+			$('.ion-ios-search').show();
+			$('.marketplace').removeClass('hidden');
 			active('.ion-ios-chatboxes-outline');
 			title('Chats');
 			displayer();
@@ -400,7 +405,6 @@
 					{ name: 'Stared messages', icon: 'print' },
 					{ name: 'Settings', icon: 'print' }
 					];
-					opt.align = 'center';
 					opt.element = this;
 					//opt.classname = 'dropdown_menu';
 					opt.callback = function(selected) {
@@ -414,27 +418,43 @@
 			var options = $('#options');		
 			
 		};
-		
-		ON('resize2', function() {
-			MAIN.bottomH = 60;
-			MAIN.topH = 60;
-			var bottomTopH = MAIN.bottomH + MAIN.topH;
+		// resize viewport according to Height ot fixed elements such as 
+		//the botom menu bar and the top menu and titlebars
+		function resizeAll(Hbotom, classname){
+			var bottomTopH = Hbotom;
 			var H = WH - bottomTopH;
 			var percentH = (H * 100) / WH;
 			MAIN.percentH = percentH.toFixed(3);
 			MAIN.sectionH = H;
-			var element = $('.messages_section');
+			var element = $(classname);
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
-			console.log('Width:', WW, 'Height:', WH);
+			console.log('RESIZING... Width:', WW, 'Height:', WH);
+		};
+		ON('resize2', function() {
+			resizeAll(60,'.messages_section');
+		});
+		$('.back_trigger').click(function(){
+			$('.search_bar').val('');
+			$('.search_bar').keyup();
+			$('.search_bar').animate({opacity : 0},400);
+			$('.back_trigger').addClass('hidden');
+			$('.back_button').addClass('hidden');
+			$('.search_bar').addClass('hidden');
+			$('.back_trigger').addClass('hidden');
+			resizeAll(60,'.messages_section');
+		});
+
+		var element = $('.messages_section');
+			element.css('padding-bottom','60px');
+			element.height(parseFloat(MAIN.sectionH));
+			console.log('RESIZING... Width:', WW, 'Height:', WH);
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){
 					
 				};
 				SCROLLBAR(element, opt);
-		});
-
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>
