@@ -18,7 +18,6 @@
 				}
 			  });
 		});
-
 		$('.back_button').click(function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
 			$('.ion-ios-videocam-outline').addClass('hidden');
@@ -65,8 +64,4 @@
 		  } else {
 			console.info( "This page is not reloaded");
 		  };
-
-	
-		
-		
 	});

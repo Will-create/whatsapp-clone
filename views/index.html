@@ -56,7 +56,7 @@
 		.tab_title{color: white;}
 		.chatbody{ width: 100%; background-image: url('../backgrounds/bg.png');background-repeat: repeat;background-position: center;padding: 25px;}
 		.chat_message{ font-family: "Helvetica Heue Light"; position: relative;font-size:16px;padding: 10px;border-radius: 10px; background-color: #fff;margin-bottom: 30px;max-width:70%;}
-		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: grey;}
+		.chat_messageBodyMetaTimeStamp{ margin-left:10px;font-size: xx-small; color: #e0e0e0;}
 		.chat_receiver{margin-left:auto;background-color: #2C3DD6; color: white;}
 		.arrows{ color: white;width:auto; height:auto; position: fixed; top : 0; left: 48%;}
 		.arrows .ion{ padding-top: 0; margin-top: 0;}
@@ -433,6 +433,7 @@
 		};
 		ON('resize2', function() {
 			resizeAll(60,'.messages_section');
+			resizeAll(60,'.body_section');
 		});
 		$('.back_trigger').click(function(){
 			$('.search_bar').val('');
@@ -455,6 +456,17 @@
 					
 				};
 				SCROLLBAR(element, opt);
+
+				var element2 = $('.body_section');
+				element2.css('padding-bottom','20px');
+				element2.height(parseFloat(MAIN.sectionH));
+				console.log('RESIZING... Width:', WW, 'Height:', WH);
+				var opt2 = {};
+					opt2.shadow = true;
+					opt2.onscroll = function(scrollbar){
+						
+					};
+					SCROLLBAR(element2, opt2);
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>
