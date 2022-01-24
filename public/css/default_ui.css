@@ -58,6 +58,11 @@
     overflow: hidden;
     height: 60px;
 }
+.botomtab_menu2{
+    width: 100%;
+    overflow: hidden;
+    height: 60px;
+}
 .toptab_menu{
     width: 100%;
     overflow: hidden;
@@ -107,6 +112,30 @@
 .single_tab:hover, .active{
     color: white;
     border-color: white;
+    cursor:pointer;
+}
+
+
+
+.single_tab2{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing : border-box;
+    float: left;
+    font-family: 'Helvetica Neue Light';
+    letter-spacing: 1.3px;
+    font-weight: lighter;
+    font-size: 12px;
+    border-bottom: solid 3px transparent;
+    color: white;
+}      
+
+.single_tab2:hover, .active{
+    color: white;
     cursor:pointer;
 }
 
