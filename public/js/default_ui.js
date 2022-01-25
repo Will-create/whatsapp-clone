@@ -57,6 +57,9 @@
 			$('.back_trigger').removeClass('hidden');
 			$('.back_trigger').css('display','block');
 			$('.search_bar').focus();
+			$('.title_top').slideUp();
+			$('.wallet_down').show();
+			$('.wallet_up').hide();
 		});
 		if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
 			REDIRECT('/');
