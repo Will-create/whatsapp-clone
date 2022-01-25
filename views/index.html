@@ -145,8 +145,12 @@
 				<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:marketplace;url:/parts/marketplace.html;reload:marketplace/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:wallet;url:/parts/wallet.html;reload:wallet/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:deposit;url:/parts/deposit.html;reload:wallet/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:withdraw;url:/parts/withdraw.html;reload:wallet/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:scanner;url:/parts/scanner.html;reload:wallet/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:settings;url:/parts/settings.html;reload:wallet/reload"></div>
+				<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			</div>
-			<div data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
 				
 				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
@@ -250,6 +254,13 @@
 			SET('common.current_chat',current);
 			next();
 		});
+
+		if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+			REDIRECT('/');
+			console.info( "This page is reloaded" );
+		  } else {
+			console.info( "This page is not reloaded");
+		  };
 		// function for hide things Header and and bottom tab bar
 		function hider(){
 			$('.back_button').show();
@@ -281,6 +292,7 @@
 
 		// route for open device camera
 		ROUTE('/camera',function(){	
+			hide_tabMenu();
 			active('.fa-camera');
 			title('Camera');
 			clear_current();
@@ -381,6 +393,42 @@
 
 			SET('common.page','wallet');
 		});
+		ROUTE('/deposit',function(){	
+			wallet_up();
+
+			title('Dépos');
+			clear_current();
+			hide_icons();
+
+			SET('common.page','deposit');
+		});
+		ROUTE('/withdraw',function(){	
+			wallet_up();
+
+			title('Retrait');
+			clear_current();
+			hide_icons();
+
+			SET('common.page','withdraw');
+		});
+		ROUTE('/scanner',function(){	
+			wallet_up(true);
+
+			title('Scanner');
+			clear_current();
+			hide_icons();
+
+			SET('common.page','scanner');
+		});
+		ROUTE('/settings',function(){	
+
+			wallet_up();
+			title('Paramètres');
+			clear_current();
+			hide_icons();
+
+			SET('common.page','settings');
+		});
 		$('.wallet_up').hide();
 
 		$('.wallet_down').click(function(){
@@ -445,7 +493,23 @@
 			resizeAll(60,'.messages_section');
 
 		});
-
+		function wallet_up(hide){
+			$('.title_top').slideUp();
+			$('.wallet_down').show();
+			$('.wallet_up').hide();
+			if(hide){
+				hide_tabMenu();
+			}else{
+				show_tabMenu();
+			}
+		};
+		function hide_tabMenu(){
+			$('.android_controls').hide();
+			resizeAll(60,'.messages_section');
+		};
+		function show_tabMenu(){
+			$('.android_controls').show();
+		};
 		var element = $('.messages_section');
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
@@ -466,6 +530,8 @@
 					opt2.onscroll = function(scrollbar){
 					};
 					SCROLLBAR(element2, opt2);
+
+
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

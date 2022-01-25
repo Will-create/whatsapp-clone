@@ -57,14 +57,7 @@
 			$('.back_trigger').removeClass('hidden');
 			$('.back_trigger').css('display','block');
 			$('.search_bar').focus();
-			$('.title_top').slideUp();
-			$('.wallet_down').show();
-			$('.wallet_up').hide();
+			wallet_up();
 		});
-		if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-			REDIRECT('/');
-			console.info( "This page is reloaded" );
-		  } else {
-			console.info( "This page is not reloaded");
-		  };
+	
 	});
