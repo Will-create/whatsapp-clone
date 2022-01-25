@@ -149,8 +149,8 @@
 				<div style="width: 100%;"  data---="page__common.page__if:withdraw;url:/parts/withdraw.html;reload:wallet/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:scanner;url:/parts/scanner.html;reload:wallet/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:settings;url:/parts/settings.html;reload:wallet/reload"></div>
-				<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			</div>
+			<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
 				
 				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
@@ -513,23 +513,21 @@
 		var element = $('.messages_section');
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
-			console.log('RESIZING... Width:', WW, 'Height:', WH);
 			var opt = {};
 				opt.shadow = true;
 				opt.onscroll = function(scrollbar){
 					console.log(scrollbar);
 				};
-				SCROLLBAR(element, opt);
+		SCROLLBAR(element, opt);
 
 				var element2 = $('.body_section');
 				element2.css('padding-bottom','20px');
 				element2.height(parseFloat(MAIN.sectionH));
-				console.log('RESIZING... Width:', WW, 'Height:', WH);
 				var opt2 = {};
 					opt2.shadow = true;
 					opt2.onscroll = function(scrollbar){
 					};
-					SCROLLBAR(element2, opt2);
+		SCROLLBAR(element2, opt2);
 
 
 	</script>
