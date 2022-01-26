@@ -1,26 +1,98 @@
 <div style="width: 100%;" data-scope="camera">
         <div style="width: 100%; height:100%;" >
-           <video autoplay muted width="100vw" height="90vh" style="width: 100vw!important; height: 90vh!important;; border : 1px solid red;"  id="video"></video>
+           <js-camera id="camera" dat-gui></js-camera>
        </div>
+       <div class="actions">
+        <button id="btnOpen" type="button">Open</button>
+        <button id="btnClose" type="button">Close</button>
+        <button id="btnPause" type="button">Pause</button>
+        <button id="btnPlay" type="button">Play</button>
+        <button id="btnCapture" type="button">Take photo</button>
+      </div>
 </div>
+<style>
+    .actions {
+        position: absolute;
+        z-index: 1002;
+        left: 0;
+        bottom: 0;  
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+      }
+</style>
 <script>
 
     var video = document.getElementById('video');
-  
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+        console.log("Let's get this party started");
+        navigator.mediaDevices.getUserMedia({ video :  true});
+      };
 
     PLUGIN('camera', function(exports) {
         // You can define your custom functions or properties
-     
-        
+        //<video autoplay muted width="100vw" height="90vh" style="width: 100vw!important; height: 90vh!important;; border : 1px solid red;"  id="video"></video>
+
         exports.reload = function() {
-            navigator.getUserMedia({ video :   {}},function (stream){
-                console.log(video);
-                video.srcObject = stream;
-            },function(err){
-                console.log(err);
+            //navigator.getUserMedia({ video :   {}},function (stream){
+            //    video.srcObject = stream;
+            //    video.play();
+            //},function(err){
+            //    console.log(err);
+            //});
+
+
+            const camera = document.querySelector('#camera');
+
+            // Open the camera.
+            // If necessary, you can also specify the resolution like "await camera.open('back', 1920, 1080)".
+            document.querySelector('#btnOpen').addEventListener('click', async () => {
+            await camera.open('back');
+            });
+
+            // Close the camera.
+            document.querySelector('#btnClose').addEventListener('click', () => {
+            if (!camera.opened)
+                return;
+            camera.close();
+            });
+
+            // Pause
+            document.querySelector('#btnPause').addEventListener('click', () => {
+            if (!camera.opened)
+                return;
+            camera.pause();
+            });
+
+            // Play camera
+            document.querySelector('#btnPlay').addEventListener('click', () => {
+            if (!camera.opened)
+                return;
+            camera.play();
+            });
+
+            // Take a photo
+            document.querySelector('#btnCapture').addEventListener('click', () => {
+            if (!camera.opened)
+                return;
+            // Get the photo data taken
+            let base64 = camera.capture();
+            console.log(`Capture: ${base64}`);// Capture: data:image/png;base64,iVBORw0K
+
+            // You can specify image/webp, image/png, image/jpeg as the capture format.
+            // Default is image/png.
+            base64 = camera.capture({format: 'image/webp'});
+            console.log(`WebP capture: ${base64}`);// WebP capture: data:image/webp;base64,UklGRrb
+
+            // You can also resize the capture with width, height, and fit options.
+            base64 = camera.capture({
+                fit: 'cover',
+                width: 300,
+                height: 200
+            });
+            console.log(`Resize capture: ${base64}`);// Resize capture: data:image/png;base64,iVBORw0K
             });
         };
-        
         exports.refresh = function(){
             console.log('Refreshing...')
         };
