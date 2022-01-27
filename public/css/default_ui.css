@@ -153,6 +153,26 @@
     color: white;
     cursor:pointer;
 }
+.single_tab3{
+    width: 33.333333%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing : border-box;
+    float: left;
+    letter-spacing: 1.3px;
+    font-weight: bold;
+    font-size: 35px;
+    color: white;
+}      
+
+.single_tab3:hover, .active{
+    color: white;
+    cursor:pointer;
+}
+
 
 .fa {
     cursor :pointer;
@@ -636,4 +656,3 @@ textarea:focus, input:focus{
   font-family: 'Space Mono', monospace;
   word-spacing: 0.1;
 }
-

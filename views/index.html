@@ -64,6 +64,7 @@
 		.ion2:hover {color: #e0e0e0;}
 	</style>
 </head>
+
 <body data---="exec">
 	<a href="/marketplace" class="R"></a>
 	<a href="/wallet" class="R"></a>
@@ -481,6 +482,8 @@
 		ON('resize2', function() {
 			resizeAll(60,'.messages_section');
 			resizeAll(60,'.body_section');
+			$('.camera_zone').css('height',parseFloat(MAIN.sectionH)+'px');
+			$('.camera_zone').css('width','100%');
 		});
 		$('.back_trigger').click(function(){
 			$('.search_bar').val('');
