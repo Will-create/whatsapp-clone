@@ -170,7 +170,7 @@
 				</form>
 				<i class="fa fa-microphone"></i>
 			</div>
-			<div  class="android_controls animation">
+			<div  class="android_controls animation hidden">
 				<div class="botomtab_menu">
 					<a href="/" class="R hidden"></a>
 					<a href="/camera" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-camera-outline"></i> <span>Camera</span></div></a>
@@ -286,7 +286,6 @@
 
 		// route for open a chat with middleware
 		ROUTE('/chats/{ unique }/',function(){	
-				active('.ion-ios-chatboxes-outline');
 				hider();
 				SET('common.page','messages');
 		},'current_chat');
@@ -294,7 +293,6 @@
 		// route for open device camera
 		ROUTE('/camera',function(){	
 			hide_tabMenu();
-			active('.fa-camera');
 			title('Camera');
 			clear_current();
 			hide_icons();
@@ -302,7 +300,6 @@
 		});
 		// Route for goto Groups
 		ROUTE('/groups',function(){	
-			active('.fa-users');
 			title('Groupes');
 			clear_current();
 			hide_icons();
@@ -312,7 +309,6 @@
 
 		// Route for goto stories
 		ROUTE('/stories',function(){	
-			active('.fa-circle-notch');
 			title('Status');
 			clear_current();
 			hide_icons();
@@ -325,7 +321,6 @@
 			$('.ion-ios-search').removeClass('hidden');
 			$('.ion-ios-search').show();
 			$('.marketplace').removeClass('hidden');
-			active('.ion-ios-chatboxes-outline');
 			title('Discussions');
 			displayer();
 			clear_current();
@@ -355,7 +350,6 @@
 		// Route for go to phone/video calls
 		ROUTE('/calls',function(){	
 			hide_icons();
-			active('.fa-phone');
 			title('Appels');
 			clear_current();
 			SET('common.page','calls');
@@ -376,7 +370,6 @@
 
 		// Route for goto marketplace
 		ROUTE('/marketplace',function(){	
-			active('.fa-users');
 			title('Market');
 			clear_current();
 			hide_icons();
@@ -387,7 +380,6 @@
 
 		// Route for goto wallet
 		ROUTE('/wallet',function(){	
-			active('.fa-users');
 			title('Wallet');
 			clear_current();
 			hide_icons();
@@ -508,12 +500,10 @@
 		};
 		function hide_tabMenu(){
 			$('.android_controls').addClass('hidden');
-			$('.botomtab_menu').addClass('hidden');
 			resizeAll(60,'.messages_section');
 		};
 		function show_tabMenu(){
 			$('.android_controls').removeClass('hidden');
-			$('.botomtab_menu').removeClass('hidden');
 
 		};
 		show_tabMenu();	
