@@ -153,7 +153,7 @@
     color: white;
     cursor:pointer;
 }
-.single_tab3{
+.single_tab4{
     width: 33.333333%;
     height: 100%;
     display: flex;
@@ -168,7 +168,7 @@
     color: white;
 }      
 
-.single_tab3:hover, .active{
+.single_tab4:hover, .active{
     color: white;
     cursor:pointer;
 }

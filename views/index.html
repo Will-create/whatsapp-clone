@@ -430,19 +430,19 @@
 
 			SET('common.page','settings');
 		});
-		$('.wallet_up').hide();
+		$('.wallet_up').addClass('hidden');
 
 		$('.wallet_down').click(function(){
 			$('.title_top').slideDown();
-			$('.wallet_up').show();
-			$(this).hide();
+			$('.wallet_up').removeClass('hidden');
+			$(this).addClass('hidden');
 		});
 		
 
 		$('.wallet_up').click(function(){
 			$('.title_top').slideUp();
-			$('.wallet_down').show();
-			$(this).hide();
+			$('.wallet_down').removeClass('hidden');
+			$(this).addClass('hidden');
 		});
 		$('#options').click(function(){
 					var opt = {};
@@ -498,8 +498,8 @@
 		});
 		function wallet_up(hide){
 			$('.title_top').slideUp();
-			$('.wallet_down').show();
-			$('.wallet_up').hide();
+			$('.wallet_down').removeClass('hidden');
+			$('.wallet_up').addClass('hidden');
 			if(hide){
 				hide_tabMenu();
 			}else{
@@ -507,12 +507,16 @@
 			}
 		};
 		function hide_tabMenu(){
-			$('.android_controls').hide();
+			$('.android_controls').addClass('hidden');
+			$('.botomtab_menu').addClass('hidden');
 			resizeAll(60,'.messages_section');
 		};
 		function show_tabMenu(){
-			$('.android_controls').show();
+			$('.android_controls').removeClass('hidden');
+			$('.botomtab_menu').removeClass('hidden');
+
 		};
+		show_tabMenu();	
 		var element = $('.messages_section');
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
