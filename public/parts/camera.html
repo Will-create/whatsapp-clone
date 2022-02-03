@@ -1,7 +1,7 @@
 <div style="width: 100%;" data-scope="camera">
-        <div class="camera_zone" style="width: 100%; height:100%; background-color:black;" >
+        <div class="camera_zone" style="width: 100%; height:100%;background-color:black;" >
             
-   
+            <video id="video" width="100%" height="100%" autoplay muted></video>
             <div  class="camera_controls">
 				<div class="camera_menu">
                     <i class="ion3 ion-ios-arrow-up gallery_up "></i>
@@ -18,9 +18,9 @@
                         <div class="photo" ><img src="/img/profiles/sonny.jpg" alt=""></div>
                     </div>
                     <div class="camera_actions">
-                        <div class="single_tab4"><i style="font-size: 40px;" class="ion ion-ios-bolt"></i> <span></span> </div>
+                        <div class="single_tab4"><i style="font-size: 40px;" class="ion ion-ios-bolt flash"></i> <span></span> </div>
 						<div class="single_tab4"><i style="font-size: 80px;" class="ion ion-ios-circle-outline"></i> <span></span> </div>
-						<div class="single_tab4"><i style="font-size: 40px;" class="ion ion-ios-reverse-camera-outline"></i> <span></span> </div>
+						<div class="single_tab4"><i style="font-size: 40px;" class="ion ion-ios-reverse-camera-outline switch"></i> <span></span> </div>
                     </div>
                     <div class="camera_help">Hold for video, tap for photo</div>
                     
@@ -36,7 +36,7 @@
     padding-top: 3px;
     background-color: transparent;
     position: absolute;
-    z-index: 99;
+    z-index: 998;
     bottom: 0;
     left: 0;
 }
@@ -91,8 +91,18 @@
         // You can define your custom functions or properties
         //<video autoplay muted width="100vw" height="90vh" style="width: 100vw!important; height: 90vh!important;; border : 1px solid red;"  id="video"></video>
         exports.reload = function() {
+            if(isMOBILE){
+                resizeAll2(60,'.camera_zone');
+            }
             $('.camera_zone').css('height',parseFloat(MAIN.sectionH)+'px');
 			$('.camera_zone').css('width','100%');
+            hide_tabMenu();
+
+            
+  
+  //The light will be on as long the track exists
+  
+  
             //navigator.getUserMedia({ video :   {}},function (stream){
             //    video.srcObject = stream;
             //    video.play();

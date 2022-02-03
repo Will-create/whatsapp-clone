@@ -146,10 +146,10 @@
 				<div style="width: 100%;"  data---="page__common.page__if:messages;url:/parts/messages.html;reload:messages/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:marketplace;url:/parts/marketplace.html;reload:marketplace/reload"></div>
 				<div style="width: 100%;"  data---="page__common.page__if:wallet;url:/parts/wallet.html;reload:wallet/reload"></div>
-				<div style="width: 100%;"  data---="page__common.page__if:deposit;url:/parts/deposit.html;reload:wallet/reload"></div>
-				<div style="width: 100%;"  data---="page__common.page__if:withdraw;url:/parts/withdraw.html;reload:wallet/reload"></div>
-				<div style="width: 100%;"  data---="page__common.page__if:scanner;url:/parts/scanner.html;reload:wallet/reload"></div>
-				<div style="width: 100%;"  data---="page__common.page__if:settings;url:/parts/settings.html;reload:wallet/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:deposit;url:/parts/deposit.html;reload:deposit/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:withdraw;url:/parts/withdraw.html;reload:withdraw/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:scanner;url:/parts/scanner.html;reload:scanner/reload"></div>
+				<div style="width: 100%;"  data---="page__common.page__if:settings;url:/parts/settings.html;reload:settings/reload"></div>
 			</div>
 			<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
@@ -203,16 +203,13 @@
 				}
 				next();
             });
-		}
+		};
+		MAIN.topH = 60;
+		var bottomTopH = MAIN.topH;
+		var H = WH - bottomTopH;
+		MAIN.sectionH = H;
+	
 
-
-		//MAIN.bottomH = 60;
-		//MAIN.topH = 60;
-		//var bottomTopH = MAIN.bottomH + MAIN.topH;
-		//var H = WH - bottomTopH;
-		//var percentH = (H * 100) / WH;
-		//MAIN.sectionH = H;
-		//MAIN.percentH = percentH.toFixed(3);
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
 			$('.ion-ios-chatboxes-outline').parent().removeClass('active');
@@ -292,7 +289,6 @@
 
 		// route for open device camera
 		ROUTE('/camera',function(){	
-			hide_tabMenu();
 			title('Camera');
 			clear_current();
 			hide_icons();
@@ -462,20 +458,36 @@
 		//the botom menu bar and the top menu and titlebars
 		function resizeAll(Hbotom, classname){
 			var bottomTopH = Hbotom;
-			var H = WH - bottomTopH;
-			var percentH = (H * 100) / WH;
-			MAIN.percentH = percentH.toFixed(3);
+
+			var H;
+			H = WH - bottomTopH;
 			MAIN.sectionH = H;
 			var element = $(classname);
 			element.css('padding-bottom','60px');
-			element.height(parseFloat(MAIN.sectionH));
+			element.height('height',parseFloat(MAIN.sectionH));
+			console.log('RESIZING... Width:', WW, 'Height:', WH);
+		};
+		function resizeAll2(Hbotom, classname){
+			var bottomTopH = Hbotom;
+
+			var H;
+
+			H = WH - 4;
+			MAIN.sectionH = H;
+			
+			
+			var element = $(classname);
+			element.css('padding-bottom','60px');
+			element.height('height',parseFloat(MAIN.sectionH));
 			console.log('RESIZING... Width:', WW, 'Height:', WH);
 		};
 		ON('resize2', function() {
 			resizeAll(60,'.messages_section');
 			resizeAll(60,'.body_section');
-			$('.camera_zone').css('height',parseFloat(MAIN.sectionH)+'px');
-			$('.camera_zone').css('width','100%');
+			if(isMOBILE){
+                resizeAll2(60,'.camera_zone');
+				$('.camera_zone').css('width','100%');
+            }
 		});
 		$('.back_trigger').click(function(){
 			$('.search_bar').val('');
