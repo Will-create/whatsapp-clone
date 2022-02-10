@@ -6,7 +6,7 @@
 const options = {};
 
 // options.ip = '127.0.0.1';
-// options.port = parseInt(process.argv[2]);
+ options.port = 8004;
 // options.unixsocket = require('path').join(require('os').tmpdir(), 'app_name');
 // options.unixsocket777 = true;
 // options.config = { name: 'Total.js' };
@@ -33,5 +33,5 @@ options.servicemode = process.argv.indexOf('--servicemode', 1) !== -1;
 // options.threads = '/api/';
 // options.logs = 'isolated';
 
-var type = process.argv.indexOf('--release', 1) !== -1 ? 'release' : 'debug';
+var type = process.argv.indexOf('--release', 1) !== -1 ? 'release' : 'release';
 require('total4/' + type)(options);
