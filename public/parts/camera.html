@@ -1,6 +1,6 @@
 <div style="width: 100%;" data-scope="camera">
         <div class="camera_zone" style="width: 100%; height:100%;background-color:black;" >
-            
+
             <video id="video" width="100%" height="100%" autoplay muted></video>
             <div  class="camera_controls">
 				<div class="camera_menu">
@@ -23,13 +23,13 @@
 						<div class="single_tab4"><i style="font-size: 40px;" class="ion ion-ios-reverse-camera-outline switch"></i> <span></span> </div>
                     </div>
                     <div class="camera_help">Hold for video, tap for photo</div>
-                    
+
 				</div>
 		  	</div>
        </div>
 </div>
 <style>
- 
+
 .camera_controls{
     width: 100%;
     height: 250px;
@@ -98,23 +98,23 @@
 			$('.camera_zone').css('width','100%');
             hide_tabMenu();
 
-            
-  
+
+
   //The light will be on as long the track exists
-  
-  
-            //navigator.getUserMedia({ video :   {}},function (stream){
-            //    video.srcObject = stream;
-            //    video.play();
-            //},function(err){
-            //    console.log(err);
-            //});
-    
+
+
+            navigator.getUserMedia({ video :   {}},function (stream){
+               video.srcObject = stream;
+               video.play();
+            },function(err){
+               console.log(err);
+            });
+
         };
         exports.refresh = function(){
             console.log('Refreshing...')
         };
-    
+
     });
 
 </script>

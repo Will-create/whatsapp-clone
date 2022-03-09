@@ -27,7 +27,7 @@
 		.container{background-color: white;}
 		.title_bar{background-color: #2C3DD6;}
 		.title_container{color : white;}
-		.single_tab{border-bottom: solid 3px transparent;color: white;}      
+		.single_tab{border-bottom: solid 3px transparent;color: white;}
 		.single_tab:hover, .active{color: white;border-color: white;}
 		.fa {color: white;}
 		.title_container p{color: white;}
@@ -70,7 +70,7 @@
 	<a href="/wallet" class="R"></a>
 	<div data---="emoji"></div>
 	<div data---="animation__null__style:5;together:true;">
-	<div data---="splashscreen__null__timeout:2000" class="ui-splashscreen">
+	<div data---="splashscreen__null__timeout:10000" class="ui-splashscreen">
 		<div data---="menu"></div>
         <script type="text/html">
 			<div><i  class="fa fa-comment-dots splash"></i></div>
@@ -79,15 +79,14 @@
     </div>
 	<div data---="serviceworker__common.version__datasource:common.serviceversion"></div>
 	<div class="container">
-			
 			<div class="back_trigger hidden"> <i class="ion ion-ios-arrow-left" ></i> </div>
 			<input type="text" class="search_bar hidden">
 			<div class="lightbox">
 				<div class="lightbox_container animation">
 					<div class="lightbox_name"></div>
-	
+
 					<div class="lightbox_image">
-						<img src="" alt="Bugatti car">
+						<img  alt="Bugatti car">
 					</div>
 					<div class="lightbox_controls">
 						<div class="one_control"><i class="ion ion-ios-chatbubble-outline"></i></div>
@@ -111,8 +110,8 @@
 						</div>
 				</div>
 				<div class="toptab_bar">
-					
-					
+
+
 					<div class="current_container">
 						<div class="back_button animation"> <i class="ion ion-ios-arrow-left" ></i> </div>
 						<div class="tab_title" data-bind="common.current_tab__text"></div>
@@ -128,10 +127,10 @@
 							</script>
 						</div>
 					</div>
-					
-					
+
+
 					<div style="color:white;" class="icon_container">
-						
+
 							<i class="ion ion-ios-arrow-down wallet_down "></i>
 							<i class="ion ion-ios-arrow-up wallet_up "></i>
 							<i class="ion ion-ios-videocam-outline hidden"></i>
@@ -153,7 +152,7 @@
 			</div>
 			<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
-				
+
 				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 				<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
 				<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
@@ -180,7 +179,7 @@
 					<a href="/calls" class="R"><div class="single_tab "><i style="font-size: 40px;" class="ion ion-ios-telephone-outline tab_phone"></i>Appels</div></a>
 				</div>
 		  	</div>
-		
+
 	</div>
 	<script>
 		NAV.clientside('.R');
@@ -208,7 +207,7 @@
 		var bottomTopH = MAIN.topH;
 		var H = WH - bottomTopH;
 		MAIN.sectionH = H;
-	
+
 
 		function active(cls){
 			$('.ion-ios-camera-outline').parent().removeClass('active');
@@ -219,7 +218,7 @@
 			$(cls).parent().removeClass('active');
 			$(cls).addClass('active');
 		}
-		
+
 		function title(txt){
            SET('common.current_tab',txt);
 		}
@@ -245,9 +244,9 @@
 				fetch_chats(next);
 			}
 			var current = {};
-			
+
 			current.img = element.img;
-			current.username = element.username; 
+			current.username = element.username;
 			SET('common.current_chat',{});
 			SET('common.current_chat',current);
 			next();
@@ -265,7 +264,7 @@
 			$('.android_controls').hide();
 			$('.messages_section').hide();
 		};
-		
+
 		//function for  display things: Header and bottom tab bar
 		function displayer(){
 			$('.back_button').hide();
@@ -282,20 +281,20 @@
 
 
 		// route for open a chat with middleware
-		ROUTE('/chats/{ unique }/',function(){	
+		ROUTE('/chats/{ unique }/',function(){
 				hider();
 				SET('common.page','messages');
 		},'current_chat');
 
 		// route for open device camera
-		ROUTE('/camera',function(){	
+		ROUTE('/camera',function(){
 			title('Camera');
 			clear_current();
 			hide_icons();
 			SET('common.page','camera');
 		});
 		// Route for goto Groups
-		ROUTE('/groups',function(){	
+		ROUTE('/groups',function(){
 			title('Groupes');
 			clear_current();
 			hide_icons();
@@ -304,7 +303,7 @@
 		});
 
 		// Route for goto stories
-		ROUTE('/stories',function(){	
+		ROUTE('/stories',function(){
 			title('Status');
 			clear_current();
 			hide_icons();
@@ -313,7 +312,7 @@
 		});
 
 		// Route for goto chats
-		ROUTE('/chats',function(){	
+		ROUTE('/chats',function(){
 			$('.ion-ios-search').removeClass('hidden');
 			$('.ion-ios-search').show();
 			$('.marketplace').removeClass('hidden');
@@ -321,8 +320,8 @@
 			displayer();
 			clear_current();
 			SET('common.page','chats');
-		}); 
-		ROUTE('/',function(){	
+		});
+		ROUTE('/',function(){
 			$('.ion-ios-telephone-outline').addClass('hidden');
 			$('.ion-ios-videocam-outline').addClass('hidden');
 			$('.tab_phone').removeClass('hidden');
@@ -342,9 +341,9 @@
 			displayer();
 			clear_current();
 			SET('common.page','chats');
-		}); 
+		});
 		// Route for go to phone/video calls
-		ROUTE('/calls',function(){	
+		ROUTE('/calls',function(){
 			hide_icons();
 			title('Appels');
 			clear_current();
@@ -365,7 +364,7 @@
 		});
 
 		// Route for goto marketplace
-		ROUTE('/marketplace',function(){	
+		ROUTE('/marketplace',function(){
 			title('Market');
 			clear_current();
 			hide_icons();
@@ -375,14 +374,14 @@
 
 
 		// Route for goto wallet
-		ROUTE('/wallet',function(){	
+		ROUTE('/wallet',function(){
 			title('Wallet');
 			clear_current();
 			hide_icons();
 
 			SET('common.page','wallet');
 		});
-		ROUTE('/deposit',function(){	
+		ROUTE('/deposit',function(){
 			wallet_up();
 
 			title('Dépos');
@@ -391,7 +390,7 @@
 
 			SET('common.page','deposit');
 		});
-		ROUTE('/withdraw',function(){	
+		ROUTE('/withdraw',function(){
 			wallet_up();
 
 			title('Retrait');
@@ -400,7 +399,7 @@
 
 			SET('common.page','withdraw');
 		});
-		ROUTE('/scanner',function(){	
+		ROUTE('/scanner',function(){
 			wallet_up(true);
 
 			title('Scanner');
@@ -409,7 +408,7 @@
 
 			SET('common.page','scanner');
 		});
-		ROUTE('/settings',function(){	
+		ROUTE('/settings',function(){
 
 			wallet_up();
 			title('Paramètres');
@@ -425,7 +424,7 @@
 			$('.wallet_up').removeClass('hidden');
 			$(this).addClass('hidden');
 		});
-		
+
 
 		$('.wallet_up').click(function(){
 			$('.title_top').slideUp();
@@ -434,7 +433,7 @@
 		});
 		$('#options').click(function(){
 					var opt = {};
-					opt.items = ['Label', 
+					opt.items = ['Label',
 					{ name: 'New Group', icon: 'print' },
 					{ name: 'New Broadcast', icon: 'print' },
 					{ name: 'Whatsapp Web', icon: 'print' },
@@ -445,16 +444,16 @@
 					//opt.classname = 'dropdown_menu';
 					opt.callback = function(selected) {
 						console.log(selected);
-					};	
+					};
 					SETTER('menu','show', opt);
 
 		});
 		function more_options(){
 			console.log('Options clicked');
-			var options = $('#options');		
-			
+			var options = $('#options');
+
 		};
-		// resize viewport according to Height ot fixed elements such as 
+		// resize viewport according to Height ot fixed elements such as
 		//the botom menu bar and the top menu and titlebars
 		function resizeAll(Hbotom, classname){
 			var bottomTopH = Hbotom;
@@ -474,8 +473,8 @@
 
 			H = WH - 4;
 			MAIN.sectionH = H;
-			
-			
+
+
 			var element = $(classname);
 			element.css('padding-bottom','60px');
 			element.height('height',parseFloat(MAIN.sectionH));
@@ -518,7 +517,7 @@
 			$('.android_controls').removeClass('hidden');
 
 		};
-		show_tabMenu();	
+		show_tabMenu();
 		var element = $('.messages_section');
 			element.css('padding-bottom','60px');
 			element.height(parseFloat(MAIN.sectionH));
