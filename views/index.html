@@ -153,8 +153,8 @@
 			<div style="width: 100%;" data---="page__common.page__if:camera;url:/parts/camera.html;reload:camera/reload"></div>
 			<div class="messages_section">
 
-				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/messages.html;reload:messages/reload"></div>
-				<div style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
+				<div id="leftpart" style="width: 100%;" data---="page__common.page__if:chats;url:/parts/messages.html;reload:messages/reload"></div>
+				<div id="rightpart" style="width: 100%;" data---="page__common.page__if:chats;url:/parts/chats.html;reload:chats/reload"></div>
 				<div data---="page__common.page__if:groups;url:/parts/groups.html;reload:groups/reload"></div>
 				<div data---="page__common.page__if:stories;url:/parts/stories.html;reload:stories/reload"></div>
 				<div data---="page__common.page__if:calls;url:/parts/calls.html;reload:calls/reload"></div>
@@ -537,7 +537,13 @@
 					};
 		SCROLLBAR(element2, opt2);
 
-
+	  if(!isMOBILE){
+		  $('#leftpart').css('width','30vw');
+		  $('#rightpart').css('width','70vw');
+	  }else{
+		
+		$('#rightpart').hide();
+	  }
 	</script>
 	<script src="/js/default_ui.js"></script>
 	</div>

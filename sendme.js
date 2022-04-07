@@ -33,5 +33,5 @@ options.servicemode = process.argv.indexOf('--servicemode', 1) !== -1;
 // options.threads = '/api/';
 // options.logs = 'isolated';
 
-var type = process.argv.indexOf('--release', 1) !== -1 ? 'release' : 'release';
+var type = process.argv.indexOf('--release', 1) !== -1 ? 'debug' : 'debug';
 require('total4/' + type)(options);
