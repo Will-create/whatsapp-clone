@@ -103,13 +103,22 @@
   //The light will be on as long the track exists
 
 
-            navigator.getUserMedia({ video :   {}},function (stream){
+            navigator.getUserMedia({ audio :true ,video :    {
+                width: { ideal: 1280 },
+                height: { ideal: 720 }
+              }},function (stream){
                video.srcObject = stream;
                video.play();
             },function(err){
                console.log(err);
             });
-
+            ON('location', function(url) {
+                if(url != '/camera/'){
+                    console.log('camera off');
+                    video.srcObject = null;
+                    video.pause();
+                }
+            });
         };
         exports.refresh = function(){
             console.log('Refreshing...')
